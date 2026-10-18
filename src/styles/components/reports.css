@@ -16,6 +16,17 @@
   min-width: 0;
 }
 
+/* İki kart eşit yükseklikte; satırlar kart içinde eşit dağılır (Figma revize) */
+.reports__column > .list-card {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.reports__column > .list-card > .report-row {
+  flex: 1 0 auto;
+}
+
 /* Kart içinde ayraçlı liste (Seans/Rapor/KAP ortak kabı) */
 .list-card {
   padding: var(--space-1) var(--space-4);

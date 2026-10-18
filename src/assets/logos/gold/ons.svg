@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="32" height="32" fill="#DFDEDE"/>
+<g id="Logo/Alt&#196;&#177;n">
+<g id="T&#195;&#188;r=Ons" clip-path="url(#clip0_78_102655)">
+<circle id="bg" cx="16" cy="16" r="16" fill="#FFF4E3"/>
+<rect id="bar" x="7" y="11" width="18" height="10" rx="2.5" fill="#F5B13D"/>
+<rect id="shine" x="11" y="14" width="10" height="2" rx="1" fill="#FFF4E3"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_78_102655">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

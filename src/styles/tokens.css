@@ -150,10 +150,12 @@
     0 24px 10px rgb(161 161 161 / 0.01),
     0 38px 11px rgb(161 161 161 / 0);
   --shadow-ticker: 0 4px 10px rgb(0 0 0 / 0.05);
+  --shadow-dropdown: 0 12px 16px rgb(17 23 34 / 0.14); /* Dropdown/Para Birimi */
 
   /* Haber kartı (Görsel Üzeri) overlay'leri */
   --overlay-hero-scrim: linear-gradient(180deg, rgb(17 18 24 / 0) 50.12%, rgb(17 18 24 / 0.92) 100%);
   --overlay-hero-blur: linear-gradient(180deg, rgb(50 50 50 / 0) 0%, #323232 100%);
+  --blur-hero-max: 40px; /* Background blur · Progressive · Start 0 → End 40 */
 
   /* Döviz & Altın Çevirici arka planı (marka lacivert → altın parıltı) */
   --gradient-converter:

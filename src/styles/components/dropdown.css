@@ -1,0 +1,175 @@
+/* ==========================================================================
+   DROPDOWN · Figma "Dropdown/Para Birimi" (127:36908) + "Dropdown/Item" (127:36907)
+   Varyantlar:
+     .dropdown            → arama + gruplu liste (Döviz ve Altın Çevirici)
+     .dropdown--compact   → yalnız liste (Paramın Karşılığı › Para birimi)
+   Item durumları: Default | Hover (.is-active / :hover) | Seçili ([aria-selected="true"])
+   Konum: tetikleyici (.select) altına, sağ kenara hizalı açılır.
+   ========================================================================== */
+
+.select {
+  position: relative;
+  display: flex;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: 360px;
+  max-width: calc(100vw - 2 * var(--layout-page-padding));
+  padding: var(--space-2);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg-plus);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-dropdown);
+  transform-origin: top right;
+  animation: dropdown-in 0.14s ease-out;
+}
+
+.dropdown[hidden] {
+  display: none;
+}
+
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+
+/* --- search ------------------------------------------------------------- */
+.dropdown__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  color: var(--color-icon-tertiary);
+}
+
+.dropdown__search .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown__search input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.dropdown__search input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* --- list --------------------------------------------------------------- */
+.dropdown__list {
+  max-height: 452px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: var(--space-1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.dropdown__group {
+  padding: var(--space-2) 0 var(--space-1) var(--space-3);
+  color: var(--color-text-tertiary);
+}
+
+.dropdown__divider {
+  height: 1px;
+  margin-block: var(--space-1);
+  background: var(--color-border-subtle);
+}
+
+.dropdown__empty {
+  padding: var(--space-4) var(--space-3);
+  color: var(--color-text-tertiary);
+}
+
+/* --- Dropdown/Item ------------------------------------------------------- */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 48px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.dropdown-item:hover,
+.dropdown-item.is-active {
+  background: var(--color-bg-subtle);
+}
+
+.dropdown-item[aria-selected="true"] {
+  background: var(--color-bg-brand-subtle);
+}
+
+.dropdown-item__text {
+  display: flex;
+  flex: 1 0 0;
+  gap: var(--space-1-5);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dropdown-item__name {
+  color: var(--color-text-secondary);
+}
+
+.dropdown-item[aria-selected="true"] .dropdown-item__code {
+  color: var(--color-text-brand);
+}
+
+.dropdown-item__check {
+  display: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-brand);
+}
+
+.dropdown-item[aria-selected="true"] .dropdown-item__check {
+  display: block;
+}
+
+/* --- Kompakt varyant (Paramın Karşılığı) -------------------------------- */
+.dropdown--compact {
+  top: calc(100% + 18px);
+  left: -13px;
+  right: auto;
+  width: 240px;
+  transform-origin: top left;
+}
+
+/* Tetikleyici açıkken chevron döner */
+[data-select-trigger][aria-expanded="true"] .currency-select__chevron {
+  transform: rotate(180deg);
+}
+
+.currency-select__chevron {
+  transition: transform 0.15s ease;
+}
+
+@media (max-width: 1279px) {
+  /* Tablet/mobil: çevirici alanları alt alta → liste alan genişliğinde, sağa hizalı */
+  .converter .dropdown {
+    width: min(360px, calc(100vw - 2 * var(--layout-page-padding) - 32px));
+  }
+}
+
+/* Liste klavyeyle gezilirken odak, aktif öğe vurgusuyla gösterilir */
+.dropdown__list:focus-visible {
+  outline: none;
+}

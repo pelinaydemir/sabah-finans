@@ -20,6 +20,7 @@
 /* --- Haber Kartı / Görsel Üzeri ----------------------------------------- */
 .news-hero {
   position: relative;
+  touch-action: pan-y; /* yatay kaydırma (swipe) JS ile manşet değiştirir */
   aspect-ratio: 690 / 517;
   overflow: hidden;
   border-radius: var(--radius-lg-plus);
@@ -51,9 +52,35 @@
   gap: var(--space-4);
   padding: var(--space-6);
   background: var(--overlay-hero-blur);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   color: var(--color-text-on-brand);
+}
+
+.news-hero__body > * {
+  position: relative; /* blur katmanının üstünde */
+}
+
+/* Progressive background blur (Figma: Start 0 → End 40)
+   Blur katmanı tam şiddette uygulanır, maske yukarıdan aşağı açılarak
+   bulanıklığın 0'dan 40px'e kademeli artmasını sağlar. */
+.news-hero__body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(var(--blur-hero-max));
+  -webkit-backdrop-filter: blur(var(--blur-hero-max));
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 100%);
+}
+
+/* Manşet değişirken içerik yumuşak geçer */
+.news-hero.is-changing .news-hero__img,
+.news-hero.is-changing .news-hero__body > * {
+  opacity: 0;
+}
+
+.news-hero__img,
+.news-hero__body > * {
+  transition: opacity 0.25s ease;
 }
 
 .news-hero__meta {

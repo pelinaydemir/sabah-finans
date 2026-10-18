@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="32" height="32" fill="#DFDEDE"/>
+<g id="Logo/Alt&#196;&#177;n">
+<g id="T&#195;&#188;r=&#195;&#135;eyrek" clip-path="url(#clip0_78_102655)">
+<circle id="bg" cx="16" cy="16" r="16" fill="#FFF4E3"/>
+<path id="coin" d="M23 16C23 19.866 19.866 23 16 23C12.134 23 9 19.866 9 16C9 12.134 12.134 9 16 9C19.866 9 23 12.134 23 16ZM13.2 16C13.2 17.5464 14.4536 18.8 16 18.8C17.5464 18.8 18.8 17.5464 18.8 16C18.8 14.4536 17.5464 13.2 16 13.2C14.4536 13.2 13.2 14.4536 13.2 16Z" fill="#F5B13D"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_78_102655">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

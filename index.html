@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Google+Sans+Flex:opsz,wght@6..144,400..600&display=swap">
 
   <link rel="stylesheet" href="src/styles/main.css">
-  <script src="src/scripts/main.js" defer></script>
+  <script type="module" src="src/scripts/main.js"></script>
 </head>
 <body>
   <a class="skip-link t-body-s-semibold" href="#main">İçeriğe geç</a>
@@ -214,13 +214,13 @@
       <section class="top-stories" aria-label="Manşet haberler" data-slot="top-stories">
         <h1 class="visually-hidden">Sabah Finans – Piyasalar ve ekonomi haberleri</h1>
 
-        <div class="headline-slider" data-slider>
-          <article class="news-hero">
-            <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
+        <div class="headline-slider" data-slider aria-roledescription="carousel" aria-label="Manşet haberler">
+          <article class="news-hero" aria-live="polite" data-hero>
+            <img class="news-hero__img" data-hero-img src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
             <div class="news-hero__body">
-              <p class="news-hero__meta t-body-s-medium"><span>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time datetime="2026-10-18T09:49">11 dakika önce</time></p>
-              <h2 class="news-hero__title t-display-bold"><a href="#">New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
-              <ul class="news-hero__tickers" aria-label="İlgili hisseler">
+              <p class="news-hero__meta t-body-s-medium"><span data-hero-category>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time data-hero-time datetime="2026-10-18T09:49">11 dakika önce</time></p>
+              <h2 class="news-hero__title t-display-bold"><a href="#" data-hero-title>New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
+              <ul class="news-hero__tickers" aria-label="İlgili hisseler" data-hero-tickers>
                 <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li>
                 <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li>
               </ul>
@@ -236,16 +236,16 @@
           </article>
 
           <ol class="nav-numbers" aria-label="Manşet sayfaları">
-            <li><button class="nav-number t-body-s-medium" type="button" aria-current="true">1</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">2</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">3</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">4</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">5</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">6</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">7</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">8</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">9</button></li>
-            <li><button class="nav-number t-body-s-medium" type="button">10</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="1. manşet" aria-current="true">1</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="2. manşet">2</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="3. manşet">3</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="4. manşet">4</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="5. manşet">5</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="6. manşet">6</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="7. manşet">7</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="8. manşet">8</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="9. manşet">9</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button" aria-label="10. manşet">10</button></li>
           </ol>
         </div>
 
@@ -409,19 +409,21 @@
       </aside>
 
       <!-- DÖVİZ VE ALTIN ÇEVİRİCİ · Figma "Widget/Döviz ve Altın Çevirici" (150:44309) -->
-      <section class="converter" aria-labelledby="converter-title" data-slot="converter" data-converter data-rate="41.5612">
+      <section class="converter" aria-labelledby="converter-title" data-slot="converter" data-converter>
         <h2 class="converter__title t-h3-bold" id="converter-title">Döviz ve Altın Çevirici</h2>
         <div class="converter__card">
           <div class="converter__fields">
             <div class="field converter__field">
               <label class="field__label t-body-s-regular" for="conv-amount">Miktar</label>
               <input class="field__input t-h3-semibold" id="conv-amount" type="text" inputmode="decimal" value="1,00" data-converter-input>
-              <button class="currency-select" type="button" aria-haspopup="listbox" aria-label="Kaynak para birimi: USD ABD Doları">
+              <div class="select" data-select="from" data-value="USD">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-label="Kaynak para birimi: USD ABD Doları">
                 <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/usd.svg" alt=""></span>
                 <span class="currency-select__code t-body-m-semibold" data-currency-code>USD</span>
                 <span class="currency-select__name t-body-m-regular" data-currency-name>ABD Doları</span>
                 <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
               </button>
+              </div>
             </div>
 
             <button class="converter__swap" type="button" aria-label="Para birimlerini yer değiştir" data-converter-swap>
@@ -431,12 +433,14 @@
             <div class="field converter__field converter__field--to">
               <label class="field__label t-body-s-regular" for="conv-result">Karşılığı</label>
               <output class="field__input t-h3-semibold" id="conv-result" for="conv-amount" data-converter-output>41,56</output>
-              <button class="currency-select" type="button" aria-haspopup="listbox" aria-label="Hedef para birimi: TRY Türk Lirası">
+              <div class="select" data-select="to" data-value="TRY">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-label="Hedef para birimi: TRY Türk Lirası">
                 <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/try.svg" alt=""></span>
                 <span class="currency-select__code t-body-m-semibold" data-currency-code>TRY</span>
                 <span class="currency-select__name t-body-m-regular" data-currency-name>Türk Lirası</span>
                 <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
               </button>
+              </div>
             </div>
           </div>
 
@@ -444,8 +448,8 @@
             <div class="converter__rate">
               <p class="t-h2-semibold" data-converter-rate>1 USD = 41,56<span class="converter__rate-fraction">12</span> TRY</p>
               <div class="converter__meta">
-                <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,18</span></span>
-                <p class="t-body-s-medium"><span class="converter__meta-label">Alış</span> 41,5240 &nbsp;·&nbsp; <span class="converter__meta-label">Satış</span> 41,5984</p>
+                <span class="change change--up" data-converter-change><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,18</span></span>
+                <p class="t-body-s-medium" data-converter-spread><span class="converter__meta-label">Alış</span> 41,5240 &nbsp;·&nbsp; <span class="converter__meta-label">Satış</span> 41,5984</p>
               </div>
             </div>
             <a class="btn btn--primary converter__cta" href="#">
@@ -630,11 +634,11 @@
       <section class="crypto" aria-labelledby="crypto-title" data-slot="crypto">
         <h2 class="section-title" id="crypto-title"><a href="#"><span class="t-h3-bold">Kripto Paralar</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
         <div class="crypto__card">
-          <div class="tabs tabs--sm crypto__tabs" role="tablist" aria-label="Zaman aralığı">
-            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Günlük</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
+          <div class="tabs tabs--sm crypto__tabs" role="tablist" data-tabs="crypto" aria-label="Zaman aralığı">
+            <button class="tab tab--sm is-selected" type="button" role="tab" data-tab="daily" aria-selected="true"><span class="tab__label">Günlük</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="weekly" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="monthly" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="yearly" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
           </div>
 
           <table class="crypto-table">
@@ -648,7 +652,7 @@
                 <th scope="col"><span class="crypto-table__hide-sm">Son </span>24 Saat</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody data-crypto-rows>
               <tr>
                 <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/btc.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BTC/USDT</span><span class="coin__full t-body-xs-regular">Bitcoin</span></span></span></th>
                 <td class="t-numeric-m-semibold">$ 78.439,61</td>
@@ -657,7 +661,7 @@
                 <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,54</span></td>
               </tr>
               <tr>
-                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #627eea" aria-hidden="true">E</span><span class="coin__name"><span class="t-body-m-semibold">ETH/USDT</span><span class="coin__full t-body-xs-regular">Ethereum</span></span></span></th>
+                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/eth.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">ETH/USDT</span><span class="coin__full t-body-xs-regular">Ethereum</span></span></span></th>
                 <td class="t-numeric-m-semibold">$ 2.474,67</td>
                 <td class="crypto-table__hide-sm t-body-m-regular">$ 2.511,40</td>
                 <td class="crypto-table__hide-sm t-body-m-regular">$ 2.463,00</td>
@@ -692,7 +696,7 @@
                 <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,65</span></td>
               </tr>
               <tr>
-                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #c2a633" aria-hidden="true">D</span><span class="coin__name"><span class="t-body-m-semibold">DOGE/USDT</span><span class="coin__full t-body-xs-regular">Dogecoin</span></span></span></th>
+                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/doge.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">DOGE/USDT</span><span class="coin__full t-body-xs-regular">Dogecoin</span></span></span></th>
                 <td class="t-numeric-m-semibold">$ 0,2214</td>
                 <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2289</td>
                 <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2198</td>
@@ -802,54 +806,56 @@
         <header class="widget__header">
           <h2 class="t-h5-semibold" id="money-title">Paramın Karşılığı Ne Olurdu?</h2>
         </header>
-        <div class="widget__card money">
-          <div class="tabs tabs--sm tabs--fill" role="tablist" aria-label="Zaman aralığı">
-            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Günlük</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
+        <div class="widget__card money" data-money>
+          <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="money" aria-label="Zaman aralığı">
+            <button class="tab tab--sm is-selected" type="button" role="tab" data-tab="daily" aria-selected="true"><span class="tab__label">Günlük</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="weekly" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="monthly" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="yearly" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
           </div>
 
           <div class="money__inputs">
             <div class="field field--sm money__currency">
               <span class="field__label t-body-s-regular" id="money-currency-label">Para birimi</span>
-              <button class="currency-select" type="button" aria-haspopup="listbox" aria-labelledby="money-currency-label money-currency-value">
+              <div class="select" data-select="money" data-value="TRY">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-labelledby="money-currency-label money-currency-value">
                 <span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/try.svg" alt=""></span>
                 <span class="currency-select__code t-body-m-medium" id="money-currency-value">TRY</span>
                 <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
               </button>
+              </div>
             </div>
             <div class="field field--sm money__amount">
               <label class="field__label t-body-s-regular" for="money-amount">Miktar</label>
-              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="decimal" value="1.000">
-              <span class="field__suffix t-body-m-medium" aria-hidden="true">₺</span>
+              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="decimal" value="1.000" data-money-amount>
+              <span class="field__suffix t-body-m-medium" aria-hidden="true" data-money-symbol>₺</span>
             </div>
           </div>
 
           <div class="money__chart">
             <div class="money__baseline" aria-hidden="true">
-              <span class="money__badge t-body-xs-semibold">1.000 ₺</span>
+              <span class="money__badge t-body-xs-semibold" data-money-badge>1.000 ₺</span>
               <img class="money__pointer" src="src/assets/charts/pointer.svg" width="24" height="5" alt="">
             </div>
-            <ul class="money__rows">
+            <ul class="money__rows" data-money-rows>
               <li class="money-row">
                 <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
-                <img class="money-row__bar" src="src/assets/charts/bar-gold.svg" width="80" height="56" alt="">
+                <span class="money-bar money-bar--up" style="--value: 1.00" aria-hidden="true"><span class="money-bar__fill"></span></span>
                 <span class="market-row__value"><span class="t-h6-semibold">1.012,30 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%1,23</span></span></span>
               </li>
               <li class="money-row">
                 <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
-                <img class="money-row__bar" src="src/assets/charts/bar-usd.svg" width="80" height="56" alt="">
+                <span class="money-bar money-bar--up" style="--value: 0.46" aria-hidden="true"><span class="money-bar__fill"></span></span>
                 <span class="market-row__value"><span class="t-h6-semibold">1.005,60 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,56</span></span></span>
               </li>
               <li class="money-row">
                 <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
-                <img class="money-row__bar" src="src/assets/charts/bar-eur.svg" width="80" height="56" alt="">
+                <span class="money-bar money-bar--down" style="--value: 0.67" aria-hidden="true"><span class="money-bar__fill"></span></span>
                 <span class="market-row__value"><span class="t-h6-semibold">991,80 ₺</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-%0,82</span></span></span>
               </li>
               <li class="money-row">
                 <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/bist100.png" alt=""></span><span class="t-body-m-medium">BIST 100</span></span>
-                <img class="money-row__bar" src="src/assets/charts/bar-bist.svg" width="80" height="56" alt="">
+                <span class="money-bar money-bar--up" style="--value: 0.28" aria-hidden="true"><span class="money-bar__fill"></span></span>
                 <span class="market-row__value"><span class="t-h6-semibold">1.003,40 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,34</span></span></span>
               </li>
             </ul>
@@ -875,13 +881,13 @@
           <h2 id="bist-title"><a class="widget__title-link t-h5-semibold" href="#">BIST Öne Çıkanlar<svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
         </header>
         <div class="widget__card widget__card--stack">
-          <div class="tabs tabs--sm tabs--fill" role="tablist" aria-label="Hisse listesi">
-            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Yükselen</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Düşen</span></button>
-            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">En Aktif</span></button>
+          <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="bist" aria-label="Hisse listesi">
+            <button class="tab tab--sm is-selected" type="button" role="tab" data-tab="up" aria-selected="true"><span class="tab__label">Yükselen</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="down" aria-selected="false" tabindex="-1"><span class="tab__label">Düşen</span></button>
+            <button class="tab tab--sm" type="button" role="tab" data-tab="active" aria-selected="false" tabindex="-1"><span class="tab__label">En Aktif</span></button>
           </div>
 
-          <ul class="stock-tiles">
+          <ul class="stock-tiles" data-bist-tiles>
             <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20 logo-company--bordered" src="src/assets/logos/company/celha.png" alt=""><span class="t-body-s-semibold">CELHA</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%7,15</span><span class="t-body-xs-regular">8,76 ₺</span></span></a></li>
             <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/hubvc.png" alt=""><span class="t-body-s-semibold">HUBVC</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%5,88</span><span class="t-body-xs-regular">156,30 ₺</span></span></a></li>
             <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/kozal.svg" alt=""><span class="t-body-s-semibold">KOZAL</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%4,52</span><span class="t-body-xs-regular">289,40 ₺</span></span></a></li>

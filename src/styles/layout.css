@@ -25,6 +25,8 @@
 
 /* Yan kolon: tek parça gri panel, bloklar arası 3px beyaz ayraç */
 .page__sidebar {
+  position: sticky;
+  top: var(--sidebar-sticky-top, var(--space-8)); /* JS hesaplar: panel sonu görününce sabitlenir */
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -70,6 +72,10 @@
   .page__sidebar,
   .news-columns {
     display: contents;
+  }
+
+  .page__sidebar {
+    position: static;
   }
 
   .page__sidebar > .widget {

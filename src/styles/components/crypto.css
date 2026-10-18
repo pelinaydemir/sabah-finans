@@ -62,6 +62,20 @@
   background: var(--color-bg-row-alt);
 }
 
+/* Satır hover */
+.crypto-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.crypto-table tbody tr:hover {
+  background: var(--color-bg-brand-subtle);
+}
+
+.crypto-table tbody tr:hover .coin__name > :first-child {
+  color: var(--color-text-brand);
+}
+
 .crypto-table tbody th {
   font-weight: inherit;
 }

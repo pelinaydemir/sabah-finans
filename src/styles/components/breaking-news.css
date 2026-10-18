@@ -21,7 +21,12 @@
   align-items: center;
   gap: var(--space-4);
   min-width: 0;
-  scroll-behavior: smooth;
+}
+
+/* Otomatik kayan şerit: JS listeyi kopyalayıp sürekli kaydırır,
+   fare üzerindeyken / klavye odağında durur (bkz. main.js › initBreakingNews) */
+.breaking-news__list.is-ticking {
+  scroll-behavior: auto;
 }
 
 .breaking-news__item {

@@ -64,6 +64,17 @@
   }
 }
 
+/* Tab içerikleri değişirken kısa geçiş */
+[data-bist-tiles],
+[data-crypto-rows],
+[data-money-rows] {
+  transition: opacity 0.18s ease;
+}
+
+.is-updating {
+  opacity: 0.35;
+}
+
 /* --------------------------------------------------------------------------
    PİYASA ÖZETİ — satır: asset · sparkline · değer
    -------------------------------------------------------------------------- */
@@ -186,6 +197,43 @@
 
 .money-row .market-row__value {
   width: auto;
+}
+
+/* Bar grafik — Figma "bar" (80×56): kesikli 0 ekseni + getiriye oranlı çubuk.
+   Çubuk boyu `--value` (0–1, en yüksek getiriye göre normalize) ile veriden gelir. */
+.money-bar {
+  position: relative;
+  width: 80px;
+  height: 56px;
+}
+
+.money-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  border-left: 1px dashed var(--color-border-strong);
+}
+
+.money-bar__fill {
+  position: absolute;
+  top: 18px;
+  width: max(4px, calc(var(--value, 0) * 36px));
+  height: 20px;
+  transition: width 0.3s ease;
+}
+
+.money-bar--up .money-bar__fill {
+  left: 41px;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  background: var(--color-bg-positive);
+}
+
+.money-bar--down .money-bar__fill {
+  right: 40px;
+  border-radius: var(--radius-xs) 0 0 var(--radius-xs);
+  background: var(--color-bg-negative);
 }
 
 /* --------------------------------------------------------------------------
