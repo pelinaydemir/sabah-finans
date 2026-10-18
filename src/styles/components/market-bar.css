@@ -1,0 +1,98 @@
+/* ==========================================================================
+   FİNANS BARI · Figma "finans barı" (154:44071)
+   Öğe: "Finance/Ticker Widget" (95:58443) + "Chart/Sparkline"
+   ========================================================================== */
+
+.market-bar {
+  border-bottom: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+}
+
+.market-bar__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--layout-gutter);
+}
+
+.ticker {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Öğeler arası 60px dikey ayraç */
+.ticker + .ticker::before {
+  content: "";
+  width: 1px;
+  height: 60px;
+  background: var(--color-border-default);
+}
+
+.ticker__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--radius-lg);
+  border-radius: var(--radius-lg);
+  filter: drop-shadow(var(--shadow-ticker));
+  transition: background-color 0.15s ease;
+}
+
+.ticker__link:hover {
+  background: var(--color-bg-subtle);
+}
+
+.ticker__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+}
+
+.ticker__name {
+  color: var(--color-text-secondary);
+}
+
+.ticker__value {
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   SPARKLINE · Figma "Chart/Sparkline"
+   Figma'daki kırpma birebir: 78×51 pencere içinde 138px genişlikte grafik.
+   Düşüş grafiği Figma'da yatay çevrilmiş kopyadır (scaleX(-1)).
+   Canlı veriyle beslenirken bu bileşen <svg> path üretimiyle değiştirilebilir.
+   -------------------------------------------------------------------------- */
+.sparkline {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 78px;
+  aspect-ratio: 78 / 51;
+  overflow: hidden;
+}
+
+.sparkline img {
+  position: absolute;
+  width: 176.92%;   /* 138 / 78 */
+  max-width: none;
+  height: auto;
+}
+
+.sparkline--up img {
+  top: 19.6%;       /* 10 / 51  */
+  left: -34.6%;     /* -27 / 78 */
+}
+
+.sparkline--down img {
+  top: 43.9%;       /* 22.38 / 51 */
+  left: 0;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1279px) {
+  .market-bar__list {
+    padding-block: var(--space-3);
+  }
+}

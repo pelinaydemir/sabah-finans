@@ -1,0 +1,130 @@
+/* ==========================================================================
+   KRİPTO PARALAR · Figma "Widget/Kripto Paralar" (153:43693)
+   Cihaz = Desktop | Tablet: 5 kolon · Mobile: Coin / Fiyat / 24 Saat
+   ========================================================================== */
+
+.crypto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.crypto__card {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg-plus);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.crypto__tabs {
+  width: 295px;
+  margin-bottom: var(--space-3);
+}
+
+/* --- Tablo ---------------------------------------------------------------- */
+.crypto-table th,
+.crypto-table td {
+  padding-inline: var(--space-2);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.crypto-table th:first-child {
+  width: 100%;
+  text-align: left;
+}
+
+/* table-header: bg-subtle, radius 8 */
+.crypto-table thead th {
+  padding-block: var(--space-2-5);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-tertiary);
+  font-weight: inherit;
+}
+
+.crypto-table thead th:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+.crypto-table thead th:last-child  { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+
+/* Figma kolon genişlikleri (170 / 130) + 16px kolon arası boşluk */
+.crypto-table thead th:not(:first-child):not(:last-child) { min-width: 186px; }
+.crypto-table thead th:last-child { min-width: 146px; }
+
+.crypto-table tbody tr {
+  height: 64px;
+}
+
+.crypto-table tbody tr + tr {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.crypto-table tbody tr:nth-child(even) {
+  background: var(--color-bg-row-alt);
+}
+
+.crypto-table tbody th {
+  font-weight: inherit;
+}
+
+.crypto-table td {
+  color: var(--color-text-secondary);
+}
+
+.crypto-table td.t-numeric-m-semibold {
+  color: var(--color-text-primary);
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.coin__name {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+}
+
+.coin__full {
+  color: var(--color-text-tertiary);
+}
+
+.crypto__footer {
+  padding: var(--space-3) var(--space-2) var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   Tablet: kolon genişlikleri daralır
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .crypto-table thead th:not(:first-child):not(:last-child) { min-width: 120px; }
+  .crypto-table thead th:last-child { min-width: 110px; }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile: Yüksek / Düşük gizlenir, başlık "24 Saat"
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .crypto__tabs {
+    width: 100%;
+  }
+
+  .crypto-table__hide-sm {
+    display: none;
+  }
+
+  .crypto-table th,
+  .crypto-table td {
+    padding-inline: var(--space-1);
+  }
+
+  .coin {
+    gap: var(--space-2);
+  }
+
+  .crypto-table thead th:not(:first-child):not(:last-child),
+  .crypto-table thead th:last-child {
+    min-width: 0;
+  }
+}

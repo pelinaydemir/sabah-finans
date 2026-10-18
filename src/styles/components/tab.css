@@ -1,0 +1,78 @@
+/* ==========================================================================
+   TAB · Figma "Tab" (98:33256)
+   Varyantlar: Seçili? = yes | no  ·  Boyut = Büyük (--lg) | Küçük (--sm)
+   Seçili durum: `.is-selected` (+ aria-selected / aria-current)
+   ========================================================================== */
+
+.tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: var(--space-2);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--color-text-brand-strong);
+}
+
+/* Seçili gösterge çubuğu */
+.tab.is-selected::after {
+  content: "";
+  position: absolute;
+  inset: auto var(--tab-padding-inline) 0; /* gösterge etiket genişliğinde */
+  height: 4px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-bg-brand-strong);
+}
+
+.tab.is-selected {
+  color: var(--color-text-brand-strong);
+}
+
+/* Boyut = Büyük — kategori navigasyonu */
+.tab--lg {
+  --tab-padding-inline: var(--space-4);
+  height: 48px;
+  padding-inline: var(--tab-padding-inline);
+  font-family: var(--font-family-display);
+  font-size: var(--text-h6-size);
+  line-height: var(--text-h6-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+.tab--lg.is-selected {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Boyut = Küçük — widget içi dönem / liste filtreleri */
+.tab--sm {
+  --tab-padding-inline: var(--space-3);
+  height: 42px;
+  padding-inline: var(--tab-padding-inline);
+  color: var(--color-text-tertiary);
+  font-size: var(--text-body-s-size);
+  line-height: var(--text-body-s-line-height);
+  font-weight: var(--font-weight-medium);
+}
+
+.tab--sm.is-selected {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Tab grubu: alt çizgi + (opsiyonel) eşit genişlik */
+.tabs {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.tabs--fill .tab,
+.crypto__tabs .tab {
+  flex: 1 0 0;
+}

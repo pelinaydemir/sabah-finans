@@ -1,0 +1,69 @@
+/* ==========================================================================
+   SON DAKİKA AKIŞ · Figma "Son dakika akış" (154:44049)
+   Yatay kaydırılabilir başlık şeridi; masaüstü/tablette ok butonları.
+   ========================================================================== */
+
+.breaking-news {
+  background: var(--color-bg-brand-strong);
+  color: var(--color-text-on-brand);
+}
+
+.breaking-news__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--layout-gutter);
+}
+
+.breaking-news__list {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+  scroll-behavior: smooth;
+}
+
+.breaking-news__item {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-4);
+  white-space: nowrap;
+}
+
+/* Kırmızı ayırıcı nokta (6px, bg-accent) */
+.breaking-news__item::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-bg-accent);
+}
+
+.breaking-news__item a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breaking-news__controls {
+  display: flex;
+  flex-shrink: 0;
+  gap: 9px;
+}
+
+@media (max-width: 1279px) {
+  .breaking-news__inner {
+    padding-block: var(--space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .breaking-news__inner {
+    padding-block: var(--space-3);
+  }
+
+  .breaking-news__controls {
+    display: none;
+  }
+}

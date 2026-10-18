@@ -1,0 +1,51 @@
+/* ==========================================================================
+   LOGO · Figma "Logo/Currency" (117:35656) & "Logo/Company" (123:34961)
+   SVG/PNG export'ları component'in kendisidir; kap yalnızca boyut ve
+   dairesel kırpma sağlar.
+   ========================================================================== */
+
+.logo-currency {
+  display: inline-flex;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-bg-surface);
+}
+
+.logo-currency img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-currency--18 { width: 18px; height: 18px; }
+.logo-currency--20 { width: 20px; height: 20px; }
+.logo-currency--24 { width: 24px; height: 24px; }
+.logo-currency--32 { width: 32px; height: 32px; }
+
+.logo-company {
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo-company--16 { width: 16px; height: 16px; }
+.logo-company--20 { width: 20px; height: 20px; }
+.logo-company--40 { width: 40px; height: 40px; }
+
+.logo-company--bordered {
+  border: 0.5px solid var(--color-border-default);
+}
+
+/* Logo'su olmayan kripto paralar için harf avatarı (Figma: Widget/Kripto Paralar > logo) */
+.coin-avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--coin-color, var(--color-bg-inverse));
+  color: var(--color-text-on-brand);
+}

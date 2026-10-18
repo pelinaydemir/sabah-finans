@@ -1,0 +1,254 @@
+/* ==========================================================================
+   MANŞET · Figma 95:68007
+   .news-hero    → "Haber Kartı/Görsel Üzeri" (93:57769)
+   .nav-number   → "nav-number" (95:67706) — Seçili = Evet | Hayır
+   .top-stories__list → "sidebar-cards" (card-featured, Property 1 = 2)
+   ========================================================================== */
+
+.top-stories {
+  display: grid;
+  grid-template-columns: minmax(0, 690fr) minmax(0, 335fr);
+  gap: var(--layout-column-gap);
+}
+
+.headline-slider {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* --- Haber Kartı / Görsel Üzeri ----------------------------------------- */
+.news-hero {
+  position: relative;
+  aspect-ratio: 690 / 517;
+  overflow: hidden;
+  border-radius: var(--radius-lg-plus);
+  isolation: isolate;
+}
+
+.news-hero__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--overlay-hero-scrim);
+}
+
+.news-hero__body {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--overlay-hero-blur);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--color-text-on-brand);
+}
+
+.news-hero__meta {
+  display: flex;
+  gap: var(--space-1-5);
+}
+
+.news-hero__dot {
+  color: var(--color-text-on-brand-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.news-hero__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.news-hero__tickers {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.news-hero__arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: var(--space-6);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.news-hero__arrows .icon-button {
+  pointer-events: auto;
+}
+
+/* --- nav-number ------------------------------------------------------------ */
+.nav-numbers {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  padding-block: var(--space-2-5);
+}
+
+.nav-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-number:hover {
+  border-color: var(--color-border-brand);
+  color: var(--color-text-brand);
+}
+
+/* Seçili = Evet */
+.nav-number[aria-current="true"] {
+  border-color: var(--color-border-brand);
+  background: var(--color-bg-brand-subtle);
+  color: var(--color-text-brand);
+}
+
+/* --- Yan liste ------------------------------------------------------------ */
+.top-stories__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 52px; /* nav-row yüksekliği: liste manşet görseliyle hizalı biter */
+}
+
+.top-stories__list > li + li {
+  padding-top: 13px;
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* --------------------------------------------------------------------------
+   Tablet + Mobil: manşet tam genişlik, altında 3 haber
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .top-stories {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+
+  .news-hero {
+    aspect-ratio: 4 / 3;
+  }
+
+  .news-hero__arrows,
+  .nav-numbers,
+  .top-stories__extra {
+    display: none;
+  }
+
+  .top-stories__list {
+    gap: var(--space-4);
+    padding-bottom: 0;
+  }
+
+  .top-stories__list > li + li {
+    padding-top: var(--space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .top-stories {
+    gap: var(--space-8);
+  }
+
+  .news-hero__body {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  /* Mobil manşet başlığı: Heading/H3/Bold (Typography · Scale = Mobile) */
+  .news-hero__title {
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line-height);
+    letter-spacing: var(--letter-spacing-heading);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Haber kolonları (Gündem / Şirket / KAP Haberleri) — Figma 95:83898
+   -------------------------------------------------------------------------- */
+.news-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.news-column__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.news-column__list > li + li {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* --------------------------------------------------------------------------
+   Kripto Haberleri — Figma 140:128284
+   Desktop: 3 kolon · Tablet/Mobil: yatay kaydırılan kart şeridi
+   -------------------------------------------------------------------------- */
+.crypto-news {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.crypto-news__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--layout-column-gap);
+}
+
+@media (max-width: 1279px) {
+  .crypto-news__list {
+    display: flex;
+    gap: var(--space-6);
+    margin-right: calc(-1 * var(--layout-page-padding));
+    padding-right: var(--layout-page-padding);
+    scroll-snap-type: x mandatory;
+  }
+
+  .crypto-news__list > li {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .crypto-news__list {
+    gap: var(--space-4);
+  }
+
+  .crypto-news__list > li {
+    flex-basis: 280px;
+  }
+}

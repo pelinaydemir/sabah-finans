@@ -1,0 +1,25 @@
+/* ==========================================================================
+   SECTION TITLE · Figma "Başlık" (95:84384)
+   Heading/H3/Bold + vuesax/linear/arrow-right (24px), tamamı link.
+   ========================================================================== */
+
+.section-title {
+  display: flex;
+  padding-block: var(--space-1-5);
+  color: var(--color-text-primary);
+}
+
+.section-title a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.section-title .icon {
+  color: var(--color-icon-primary);
+  transition: transform 0.15s ease;
+}
+
+.section-title a:hover .icon {
+  transform: translateX(3px);
+}

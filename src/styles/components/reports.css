@@ -1,0 +1,90 @@
+/* ==========================================================================
+   SEANS RAPORU / RAPORLAR VE ANALİZLER · Figma (153:43490)
+   Satır: "List/Rapor Satırı" (123:34998) — Tip = Seans Raporu | Analiz
+   ========================================================================== */
+
+.reports {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--layout-column-gap);
+}
+
+.reports__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* Kart içinde ayraçlı liste (Seans/Rapor/KAP ortak kabı) */
+.list-card {
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg-plus);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.list-card > li + li {
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* --- List / Rapor Satırı -------------------------------------------------- */
+.report-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+}
+
+.report-row__content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.report-row__title {
+  color: var(--color-text-primary);
+}
+
+/* Satırın tamamı tıklanabilir */
+.report-row__title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.report-row:hover .report-row__title {
+  color: var(--color-text-brand);
+}
+
+.report-row__overline {
+  color: var(--color-text-brand);
+}
+
+.report-row__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  color: var(--color-text-tertiary);
+}
+
+.report-row__chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--color-icon-secondary);
+}
+
+@media (max-width: 767px) {
+  .report-row--desktop-only {
+    display: none;
+  }
+
+  .reports {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--layout-section-gap);
+  }
+}

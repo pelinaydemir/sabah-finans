@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="80" height="56" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bar">
+<path id="axis" d="M40.5 0V1M40.5 56V55M40.5 3V5M40.5 7V9M40.5 11V13M40.5 15V17M40.5 19V21M40.5 23V25M40.5 27V29M40.5 31V33M40.5 35V37M40.5 39V41M40.5 43V45M40.5 47V49M40.5 51V53" stroke="#D4D4D4"/>
+<path id="bar-negative" d="M16 22C16 19.7909 17.7909 18 20 18H40V38H20C17.7909 38 16 36.2091 16 34V22Z" fill="#F04438"/>
+</g>
+</svg>

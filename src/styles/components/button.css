@@ -1,0 +1,105 @@
+/* ==========================================================================
+   BUTTON · Figma "Buttons" sayfası (component: button)
+   .btn            → metinli buton (radius-button = pill)
+     --positive    → CANLI BORSA (bg-positive)
+     --primary     → "Tüm döviz kurları" (bg-brand-strong)
+   .icon-button    → yalnız ikonlu yuvarlak buton
+     --subtle      → slider "önceki" (bg-subtle)
+     --brand       → slider "sonraki" (bg-brand-strong)
+     --outline-inverse --xs → son dakika okları (24px, beyaz çerçeve)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-on-brand);
+  font-family: var(--font-family-text);
+  font-size: var(--text-body-l-size);
+  line-height: var(--text-body-l-line-height);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn__icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-icon-on-brand);
+}
+
+.btn--positive {
+  padding-inline: var(--space-4) var(--space-6);
+  background: var(--color-bg-positive);
+}
+
+.btn--primary {
+  padding-inline: var(--space-6) var(--space-4);
+  background: var(--color-bg-brand-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Icon button
+   -------------------------------------------------------------------------- */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+.icon-button .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-button:hover {
+  filter: brightness(0.95);
+}
+
+.icon-button--subtle {
+  background: var(--color-bg-subtle);
+  color: var(--color-icon-disabled);
+}
+
+.icon-button--brand {
+  background: var(--color-bg-brand-strong);
+  color: var(--color-icon-on-brand);
+}
+
+.icon-button--outline-inverse {
+  border: 1px solid var(--color-border-inverse);
+  color: var(--color-icon-on-brand);
+}
+
+.icon-button--xs {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-button--xs .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.icon-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  filter: none;
+}
+
+/* Sola bakan ok için chevron-right yatay çevrilir (Figma'da da aynı yöntem) */
+.icon--flip {
+  transform: scaleX(-1);
+}

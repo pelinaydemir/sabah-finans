@@ -1,0 +1,154 @@
+/* ==========================================================================
+   HEADER · Figma "Header" (154:44034) — Cihaz = Desktop | Tablet | Mobile
+   Desktop: logo · ortada arama (710px) · CANLI BORSA
+   Tablet : logo · arama ikonu · CANLI BORSA (ikonlu)
+   Mobile : logo · arama ikonu · CANLI BORSA (ikonsuz, küçük)
+   Sticky: sayfa kaydırılırken üstte kalır.
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--color-border-on-brand);
+  background: var(--color-bg-brand-strong);
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 72px;
+  padding-inline: var(--layout-gutter);
+}
+
+.site-header__logo img {
+  width: auto;
+  height: 40px;
+}
+
+/* --- Search ---------------------------------------------------------------- */
+.search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  width: min(710px, 100% - 520px);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-6);
+  border-radius: var(--radius-pill);
+  background: var(--white-15);
+  transform: translate(-50%, -50%);
+}
+
+.search__input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-on-brand);
+  outline: none;
+}
+
+.search__input::placeholder {
+  color: var(--color-text-placeholder-inverse);
+  opacity: 1;
+}
+
+.search__input::-webkit-search-cancel-button {
+  filter: invert(1);
+}
+
+.search:focus-within {
+  box-shadow: 0 0 0 2px var(--white-80);
+}
+
+.search__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding-inline: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-brand-strong);
+  color: var(--color-icon-on-brand);
+}
+
+.search__icon {
+  width: 21px;
+  height: 21px;
+}
+
+/* --------------------------------------------------------------------------
+   Tablet
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .site-header__inner {
+    height: 64px;
+  }
+
+  .site-header__logo img {
+    height: 32px;
+  }
+
+  .search {
+    position: static;
+    width: auto;
+    margin-left: auto;
+    padding: 0;
+    background: none;
+    transform: none;
+  }
+
+  .search__input {
+    display: none;
+  }
+
+  .search__button {
+    background: transparent;
+  }
+
+  /* Arama ikonuna basınca header altında tam genişlik alan açılır */
+  .search.is-open .search__input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 48px;
+    padding-inline: var(--layout-gutter);
+    background: var(--color-bg-brand-strong);
+    border-top: 1px solid var(--color-border-on-brand);
+  }
+
+  .search:focus-within {
+    box-shadow: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .site-header__inner {
+    gap: var(--space-2);
+    height: 56px;
+  }
+
+  .site-header__logo img {
+    height: 28px;
+  }
+
+  .site-header__live {
+    height: 32px;
+    padding-inline: var(--space-3);
+    font-size: var(--text-body-s-size);
+    line-height: var(--text-body-s-line-height);
+  }
+
+  .site-header__live .btn__icon {
+    display: none;
+  }
+}

@@ -1,0 +1,112 @@
+/* ==========================================================================
+   LAYOUT — sayfa ızgarası ve responsive içerik sıralaması
+   Desktop (≥1280): ana kolon (fluid, maks. 1045) + yan kolon (335)
+   Tablet / Mobil : tek kolon. Ana kolon ile yan kolondaki bloklar
+                    `display: contents` ile tek akışa alınır ve
+                    Figma 768w / 375w frame'lerindeki sırayla dizilir.
+   ========================================================================== */
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--layout-sidebar-width);
+  align-items: start;
+  gap: var(--layout-column-gap);
+  max-width: calc(var(--layout-max-width) + 2 * var(--layout-gutter));
+  margin-inline: auto;
+  padding: var(--space-8) var(--layout-gutter) var(--space-16);
+}
+
+.page__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-section-gap);
+  min-width: 0;
+}
+
+/* Yan kolon: tek parça gri panel, bloklar arası 3px beyaz ayraç */
+.page__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-lg-plus);
+  background: var(--color-bg-subtle);
+}
+
+.page__sidebar > .widget {
+  margin-inline: var(--space-2);
+}
+
+.sidebar-divider {
+  height: 3px;
+  border: 0;
+  background: var(--color-bg-surface);
+}
+
+/* Ana kolondaki 3'lü haber ızgarası */
+.news-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--layout-column-gap);
+}
+
+/* --------------------------------------------------------------------------
+   TABLET + MOBİL — tek kolon akış
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  body {
+    background: var(--color-bg-canvas);
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--layout-section-gap);
+    padding: var(--space-8) var(--layout-page-padding) var(--space-12);
+  }
+
+  .page__main,
+  .page__sidebar,
+  .news-columns {
+    display: contents;
+  }
+
+  .page__sidebar > .widget {
+    margin-inline: 0;
+  }
+
+  /* Flex öğeleri içerik genişliğine göre taşmasın */
+  .page__main > *,
+  .page__sidebar > *,
+  .news-columns > * {
+    min-width: 0;
+  }
+
+  .sidebar-divider {
+    display: none;
+  }
+
+  /* Figma 768w / 375w içerik sırası */
+  [data-slot="top-stories"]  { order: 1; }
+  [data-slot="summary"]      { order: 2; }
+  [data-slot="gundem"]       { order: 3; }
+  [data-slot="sirket"]       { order: 4; }
+  [data-slot="kap-haber"]    { order: 5; }
+  [data-slot="money"]        { order: 6; }
+  [data-slot="ad-sidebar-1"] { order: 7; }
+  [data-slot="converter"]    { order: 8; }
+  [data-slot="bist"]         { order: 9; }
+  [data-slot="ad-sidebar-2"] { order: 10; }
+  [data-slot="stats"]        { order: 11; }
+  [data-slot="reports"]      { order: 12; }
+  [data-slot="kap"]          { order: 13; }
+  [data-slot="crypto"]       { order: 14; }
+  [data-slot="crypto-news"]  { order: 15; }
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding-top: var(--space-6);
+  }
+}

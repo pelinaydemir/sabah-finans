@@ -1,0 +1,104 @@
+/* ==========================================================================
+   KAP DUYURULARI · Figma "Widget/KAP Duyuruları" (153:43524)
+   Satır: "List/KAP Satırı" (125:36204) — tarih bloğu + duyuru + şirket
+   Desktop/Tablet: 2 kolon · Mobil: tek kolon (ilk 5 duyuru)
+   ========================================================================== */
+
+.kap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.kap__card {
+  display: flex;
+  gap: var(--space-5);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg-plus);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.kap__column {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.kap__column--secondary {
+  padding-left: var(--space-5);
+  border-left: 1px solid var(--color-border-default);
+}
+
+.kap__column > li + li {
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* --- List / KAP Satırı ---------------------------------------------------- */
+.kap-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+}
+
+.date-block {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  padding-block: var(--space-1-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-date);
+  color: var(--color-text-brand);
+}
+
+.kap-row__content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.kap-row__title {
+  color: var(--color-text-primary);
+}
+
+.kap-row__title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.kap-row:hover .kap-row__title {
+  color: var(--color-text-brand);
+}
+
+.kap-row__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  min-width: 0;
+  color: var(--color-text-tertiary);
+}
+
+.kap-row__code {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.kap-row__company {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .kap__column--secondary {
+    display: none;
+  }
+}

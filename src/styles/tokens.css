@@ -1,0 +1,217 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   Kaynak: Figma "proje-x" → Variables (Primitives + Semantic) & Styles
+   https://www.figma.com/design/Obf50BFcksCZuXTvLtuLkZ/proje-x
+
+   Katmanlar:
+   1. Primitive  → ham renk paleti (Figma: Brand/*, Slate/*, White/*, logo/*)
+   2. Semantic   → kullanım amacına göre isimlenmiş token'lar (Figma: color/*)
+                   Component'ler YALNIZCA semantic token kullanır.
+   3. Typography → aile, ağırlık, boyut/satır yüksekliği.
+                   Figma'daki "Typography · Scale" modları (Desktop / Tablet / Mobile)
+                   media query ile aynı değişken isimlerinin üzerine yazılır.
+   4. Radius, Effect, Spacing, Layout
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. PRIMITIVES
+     --------------------------------------------------------------------- */
+  --brand-primary-500: #292f89;   /* Brand/Primary/500 */
+  --brand-primary-900: #0c0f3a;   /* bg-brand-strong kaynağı */
+  --brand-secondary-500: #d51317; /* Brand/Secondary/500 (Sabah kırmızısı) */
+
+  --neutral-0: #ffffff;
+  --neutral-25: #fafafa;
+  --neutral-100: #f2f2f2;
+  --neutral-150: #ebebeb;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-700: #404040;
+  --neutral-900: #111722;
+
+  --slate-50: #f8fafc;   /* Slate/50  */
+  --slate-100: #f1f5f9;  /* Slate/100 */
+  --slate-200: #e2e8f0;  /* Slate/200 */
+
+  --green-50: #ecfdf3;
+  --green-500: #12b76a;
+  --green-700: #027a48;
+  --red-50: #fef3f2;
+  --red-500: #f04438;
+  --red-600: #d92d20;
+
+  --white-10: rgb(255 255 255 / 0.10); /* White/White 10% */
+  --white-15: rgb(255 255 255 / 0.15); /* White/White 15% */
+  --white-20: rgb(255 255 255 / 0.20); /* White/White 20% */
+  --white-60: rgb(255 255 255 / 0.60);
+  --white-80: rgb(255 255 255 / 0.80); /* White/White 80% */
+
+  /* ---------------------------------------------------------------------
+     2. SEMANTIC — Color
+     --------------------------------------------------------------------- */
+  /* Background */
+  --color-bg-canvas: var(--neutral-25);
+  --color-bg-surface: var(--neutral-0);
+  --color-bg-subtle: var(--neutral-100);
+  --color-bg-inverse: var(--neutral-900);
+  --color-bg-brand: var(--brand-primary-500);
+  --color-bg-brand-strong: var(--brand-primary-900);
+  --color-bg-brand-subtle: #f4f6ff;
+  --color-bg-accent: var(--brand-secondary-500);
+  --color-bg-positive: var(--green-500);
+  --color-bg-positive-subtle: var(--green-50);
+  --color-bg-negative: var(--red-500);
+  --color-bg-negative-subtle: var(--red-50);
+  --color-bg-row-alt: var(--slate-50);    /* Kripto tablosu zebra satır (Slate/50) */
+  --color-bg-date: var(--slate-100);      /* KAP tarih bloğu (Slate/100) */
+
+  /* Text */
+  --color-text-primary: var(--neutral-900);
+  --color-text-secondary: var(--neutral-700);
+  --color-text-tertiary: var(--neutral-500);
+  --color-text-brand: var(--brand-primary-500);
+  --color-text-brand-strong: var(--brand-primary-900);
+  --color-text-on-brand: var(--neutral-0);
+  --color-text-on-brand-secondary: var(--white-60);
+  --color-text-on-brand-muted: var(--white-80);
+  --color-text-positive: var(--green-700);
+  --color-text-negative: var(--red-600);
+  --color-text-placeholder-inverse: var(--slate-200);
+
+  /* Icon */
+  --color-icon-primary: var(--neutral-900);
+  --color-icon-secondary: var(--neutral-700);
+  --color-icon-tertiary: var(--neutral-500);
+  --color-icon-disabled: var(--neutral-400);
+  --color-icon-on-brand: var(--neutral-0);
+
+  /* Border */
+  --color-border-subtle: var(--neutral-100);
+  --color-border-default: var(--neutral-150);
+  --color-border-strong: var(--neutral-300);
+  --color-border-contrast: var(--neutral-900);
+  --color-border-brand: var(--brand-primary-500);
+  --color-border-inverse: var(--neutral-0);
+  --color-border-on-brand: var(--white-20);
+  --color-border-on-brand-subtle: var(--white-10);
+  --color-border-positive: var(--green-500);
+  --color-border-negative: var(--red-500);
+
+  /* ---------------------------------------------------------------------
+     3. TYPOGRAPHY  (Desktop modu varsayılan)
+     --------------------------------------------------------------------- */
+  --font-family-display: "Epilogue", system-ui, sans-serif;
+  --font-family-text: "Google Sans Flex", "Google Sans", system-ui, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --text-display-size: 40px;  --text-display-line-height: 48px;
+  --text-h2-size: 28px;       --text-h2-line-height: 36px;
+  --text-h3-size: 24px;       --text-h3-line-height: 32px;
+  --text-h4-size: 20px;       --text-h4-line-height: 28px;
+  --text-h5-size: 18px;       --text-h5-line-height: 24px;
+  --text-h6-size: 16px;       --text-h6-line-height: 24px;
+  --text-body-l-size: 18px;   --text-body-l-line-height: 28px;
+  --text-body-m-size: 16px;   --text-body-m-line-height: 24px;
+  --text-body-s-size: 14px;   --text-body-s-line-height: 20px;
+  --text-body-xs-size: 12px;  --text-body-xs-line-height: 16px;
+  --text-numeric-m-size: 16px; --text-numeric-m-line-height: 24px;
+  --text-overline-size: 12px; --text-overline-line-height: 16px;
+
+  /* Figma letter-spacing yüzde olarak tanımlı → em karşılığı */
+  --letter-spacing-display: -0.02em; /* -2% */
+  --letter-spacing-heading: 0.01em;  /*  1% */
+  --letter-spacing-overline: 0.06em; /*  6% */
+
+  /* ---------------------------------------------------------------------
+     4. RADIUS
+     --------------------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-lg: 8px;         /* radius/lg */
+  --radius-xl: 10px;        /* radius/xl */
+  --radius-lg-plus: 12px;   /* radius/lg-plus */
+  --radius-5xl: 28px;       /* radius/5xl */
+  --radius-pill: 99px;      /* radius/pill · radius-button */
+  --radius-full: 999px;     /* radius/full */
+
+  /* ---------------------------------------------------------------------
+     5. EFFECT  (Figma effect style: "Tab" → kart gölgesi)
+     --------------------------------------------------------------------- */
+  --shadow-card:
+    0 2px 3px rgb(161 161 161 / 0.05),
+    0 6px 6px rgb(161 161 161 / 0.04),
+    0 14px 8px rgb(161 161 161 / 0.02),
+    0 24px 10px rgb(161 161 161 / 0.01),
+    0 38px 11px rgb(161 161 161 / 0);
+  --shadow-ticker: 0 4px 10px rgb(0 0 0 / 0.05);
+
+  /* Haber kartı (Görsel Üzeri) overlay'leri */
+  --overlay-hero-scrim: linear-gradient(180deg, rgb(17 18 24 / 0) 50.12%, rgb(17 18 24 / 0.92) 100%);
+  --overlay-hero-blur: linear-gradient(180deg, rgb(50 50 50 / 0) 0%, #323232 100%);
+
+  /* Döviz & Altın Çevirici arka planı (marka lacivert → altın parıltı) */
+  --gradient-converter:
+    radial-gradient(120% 140% at 100% 0%, rgb(224 178 67 / 0.85) 0%, rgb(224 178 67 / 0.35) 45%, rgb(224 178 67 / 0) 100%),
+    linear-gradient(90deg, #1b1f5c 0%, var(--brand-primary-500) 100%);
+
+  /* ---------------------------------------------------------------------
+     6. SPACING — Figma auto-layout gap/padding değerlerinden türetilmiştir
+     --------------------------------------------------------------------- */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+
+  /* ---------------------------------------------------------------------
+     7. LAYOUT
+     Breakpoint'ler (media query'de değişken kullanılamadığı için referans):
+       mobile  :   0 – 767px   (Figma frame 375w)
+       tablet  : 768 – 1279px  (Figma frame 768w)
+       desktop : ≥ 1280px      (Figma frame 1920w, içerik 1400px)
+     --------------------------------------------------------------------- */
+  --layout-max-width: 1400px;
+  --layout-gutter: var(--space-10);       /* header/şerit yatay padding */
+  --layout-page-padding: var(--space-4);  /* içerik kenar boşluğu (mobil) */
+  --layout-sidebar-width: 335px;
+  --layout-column-gap: var(--space-5);
+  --layout-section-gap: var(--space-12);
+}
+
+/* Typography · Scale = Tablet  (Figma frame 768w) */
+@media (max-width: 1279px) {
+  :root {
+    --text-h2-size: 24px;      --text-h2-line-height: 32px;
+    --text-body-l-size: 16px;  --text-body-l-line-height: 24px;
+    --layout-gutter: var(--space-6);
+    --layout-page-padding: var(--space-6);
+    --layout-section-gap: var(--space-10);
+  }
+}
+
+/* Typography · Scale = Mobile  (Figma frame 375w) */
+@media (max-width: 767px) {
+  :root {
+    --text-h3-size: 20px;      --text-h3-line-height: 28px;
+    --text-h4-size: 18px;      --text-h4-line-height: 24px;
+    --text-h5-size: 16px;      --text-h5-line-height: 24px;
+    --layout-gutter: var(--space-4);
+    --layout-page-padding: var(--space-4);
+    --layout-section-gap: var(--space-8);
+  }
+}

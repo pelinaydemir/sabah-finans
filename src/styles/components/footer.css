@@ -1,0 +1,153 @@
+/* ==========================================================================
+   FOOTER · Figma "Footer" (154:44149) — Cihaz = Desktop | Tablet | Mobile
+   ========================================================================== */
+
+.site-footer {
+  background: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: calc(var(--layout-max-width) + 2 * var(--layout-gutter));
+  margin-inline: auto;
+  padding: var(--space-14) var(--layout-gutter) var(--space-8);
+}
+
+.site-footer__inner > * + * {
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-on-brand-subtle);
+}
+
+.site-footer__top {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.site-footer__brand {
+  display: flex;
+  flex: 0 0 280px;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-on-brand-secondary);
+}
+
+.site-footer__brand img {
+  width: 100%;
+  height: auto;
+}
+
+.site-footer__nav {
+  display: grid;
+  flex: 1 0 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-12);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* başlık + 4px boşluk + 12px gap (Figma) */
+}
+
+.footer-col__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-on-brand-muted);
+}
+
+.footer-col__list a:hover,
+.site-footer__more:hover {
+  color: var(--color-text-on-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-footer__legal,
+.site-footer__legal-more {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-on-brand-secondary);
+}
+
+.site-footer__legal h2 {
+  color: var(--color-text-on-brand);
+}
+
+.site-footer__more {
+  display: none;
+  color: var(--color-text-on-brand);
+  text-decoration: underline;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  color: var(--color-text-on-brand-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Tablet: marka üstte, 4 link kolonu altında
+   -------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+  .site-footer__inner {
+    padding-top: var(--space-10);
+  }
+
+  .site-footer__top {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .site-footer__brand {
+    flex-basis: auto;
+    max-width: 360px;
+  }
+
+  .site-footer__brand img {
+    width: 184px;
+  }
+
+  .site-footer__nav {
+    gap: var(--space-8) var(--space-6);
+  }
+
+  /* Yasal metin kısaltılır, devamı "Daha fazla…" bağlantısında */
+  .site-footer__more {
+    display: inline;
+  }
+
+  .site-footer__legal-more {
+    display: none;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile: 2×2 link ızgarası, kısaltılmış yasal metin
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .site-footer__inner {
+    gap: var(--space-6);
+    padding-block: var(--space-8) var(--space-6);
+  }
+
+  .site-footer__inner > * + * {
+    padding-top: var(--space-6);
+  }
+
+  .site-footer__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-4);
+  }
+
+}

@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sabah Finans – Canlı Borsa, Döviz, Altın ve Kripto</title>
+  <meta name="description" content="Canlı borsa ekranı, döviz kurları, altın fiyatları, kripto paralar ve son dakika ekonomi haberleri.">
+  <meta name="theme-color" content="#0c0f3a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Google+Sans+Flex:opsz,wght@6..144,400..600&display=swap">
+
+  <link rel="stylesheet" href="src/styles/main.css">
+  <script src="src/scripts/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link t-body-s-semibold" href="#main">İçeriğe geç</a>
+
+  <!-- ===================================================================
+       ÜST REKLAM ALANI · Figma 16:88249 (desktop 970×250) / 157:50558 (tablet 728×90) / 154:44791 (mobil 300×256)
+       =================================================================== -->
+  <aside class="ad-top" aria-label="Reklam">
+    <a class="ad-top__link" href="#">
+      <picture>
+        <source media="(min-width: 1280px)" srcset="src/assets/ads/ad-970x250.jpg" width="970" height="250">
+        <source media="(min-width: 768px)" srcset="src/assets/ads/ad-728x90.jpg" width="728" height="90">
+        <img class="ad-top__img" src="src/assets/ads/ad-300x256.jpg" width="300" height="256" alt="Reklam">
+      </picture>
+    </a>
+  </aside>
+
+  <!-- ===================================================================
+       HEADER · Figma component "Header" (154:44034) — Cihaz=Desktop | Tablet | Mobile
+       =================================================================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="/" aria-label="Sabah Finans ana sayfa">
+        <img src="src/assets/logos/logo-finans-inverse.svg" width="216" height="56" alt="Sabah Finans">
+      </a>
+
+      <form class="search" role="search" action="#">
+        <label class="visually-hidden" for="site-search">Sembol kodu, şirket adı veya haber ara</label>
+        <input class="search__input t-body-s-medium" id="site-search" type="search" name="q" placeholder="Sembol kodu, şirket adı veya haber ara" autocomplete="off">
+        <button class="search__button" type="submit" aria-label="Ara">
+          <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
+        </button>
+      </form>
+
+      <a class="btn btn--positive site-header__live" href="#">
+        <svg class="icon btn__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#status-up"/></svg>
+        <span class="btn__label">CANLI BORSA</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       SON DAKİKA AKIŞ · Figma component "Son dakika akış" (154:44049)
+       =================================================================== -->
+  <section class="breaking-news" aria-label="Son dakika haberleri">
+    <div class="breaking-news__inner">
+      <ul class="breaking-news__list scroll-x" data-scroller>
+        <li class="breaking-news__item"><a class="t-h6-semibold" href="#">Emtia fiyatları arz endişeleriyle yükselişini sürdürüyor</a></li>
+        <li class="breaking-news__item"><a class="t-h6-semibold" href="#">Asya piyasaları ABD faiz kararını beklerken karışık seyretti</a></li>
+        <li class="breaking-news__item"><a class="t-h6-semibold" href="#">Altın fiyatları güçlü dolar karşısında geriledi, yatırımcılar temkinli</a></li>
+        <li class="breaking-news__item"><a class="t-h6-semibold" href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></li>
+      </ul>
+      <div class="breaking-news__controls">
+        <button class="icon-button icon-button--outline-inverse icon-button--xs" type="button" data-scroll="prev" aria-label="Önceki haber">
+          <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+        </button>
+        <button class="icon-button icon-button--outline-inverse icon-button--xs" type="button" data-scroll="next" aria-label="Sonraki haber">
+          <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FİNANS BARI · Figma component "finans barı" (154:44071)
+       Her öğe: "Finance/Ticker Widget" (95:58443)
+       =================================================================== -->
+  <section class="market-bar" aria-label="Piyasa verileri">
+    <ul class="market-bar__list scroll-x">
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Euro</span>
+            <span class="ticker__value t-h6-semibold">41.1580</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Dolar</span>
+            <span class="ticker__value t-h6-semibold">38.4215</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">BIST 100</span>
+            <span class="ticker__value t-h6-semibold">38.4215</span>
+            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Ethereum</span>
+            <span class="ticker__value t-h6-semibold">4.652,00</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Sterlin</span>
+            <span class="ticker__value t-h6-semibold">48.652,00</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,15</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">BIST 100</span>
+            <span class="ticker__value t-h6-semibold">38.4215</span>
+            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Sterlin</span>
+            <span class="ticker__value t-h6-semibold">48.652,00</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,15</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">BIST 100</span>
+            <span class="ticker__value t-h6-semibold">38.4215</span>
+            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">Sterlin</span>
+            <span class="ticker__value t-h6-semibold">48.652,00</span>
+            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,15</span></span>
+          </span>
+          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
+        </a>
+      </li>
+      <li class="ticker">
+        <a class="ticker__link" href="#">
+          <span class="ticker__info">
+            <span class="ticker__name t-body-m-medium">BIST 100</span>
+            <span class="ticker__value t-h6-semibold">38.4215</span>
+            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span>
+          </span>
+          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================================================================
+       KATEGORİ NAVİGASYONU · Figma component "Tab" (98:33256) — Boyut=Büyük
+       =================================================================== -->
+  <nav class="category-nav" aria-label="Haber kategorileri">
+    <ul class="category-nav__list scroll-x">
+      <li><a class="tab tab--lg is-selected" href="#" aria-current="page"><span class="tab__label">Tüm Haberler</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Gündem</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Ekonomi</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Borsa</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Döviz/Emtia</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Altın</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Gümüş</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">Kripto Para</span></a></li>
+      <li><a class="tab tab--lg" href="#"><span class="tab__label">KAP</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================================================================
+       SAYFA İÇERİĞİ
+       Desktop: ana kolon (1045) + yan kolon (335)
+       Tablet/Mobil: tek kolon; sıralama layout.css içindeki `order` değerleriyle yönetilir.
+       =================================================================== -->
+  <main class="page" id="main">
+    <div class="page__main">
+
+      <!-- MANŞET · Figma 95:68007 — "Haber Kartı/Görsel Üzeri" + nav-number + card-featured (Property 1=2) -->
+      <section class="top-stories" aria-label="Manşet haberler" data-slot="top-stories">
+        <h1 class="visually-hidden">Sabah Finans – Piyasalar ve ekonomi haberleri</h1>
+
+        <div class="headline-slider" data-slider>
+          <article class="news-hero">
+            <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
+            <div class="news-hero__body">
+              <p class="news-hero__meta t-body-s-medium"><span>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time datetime="2026-10-18T09:49">11 dakika önce</time></p>
+              <h2 class="news-hero__title t-display-bold"><a href="#">New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
+              <ul class="news-hero__tickers" aria-label="İlgili hisseler">
+                <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li>
+                <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li>
+              </ul>
+            </div>
+            <div class="news-hero__arrows">
+              <button class="icon-button icon-button--subtle" type="button" data-slide="prev" aria-label="Önceki manşet">
+                <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+              </button>
+              <button class="icon-button icon-button--brand" type="button" data-slide="next" aria-label="Sonraki manşet">
+                <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <ol class="nav-numbers" aria-label="Manşet sayfaları">
+            <li><button class="nav-number t-body-s-medium" type="button" aria-current="true">1</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">2</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">3</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">4</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">5</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">6</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">7</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">8</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">9</button></li>
+            <li><button class="nav-number t-body-s-medium" type="button">10</button></li>
+          </ol>
+        </div>
+
+        <ul class="top-stories__list">
+          <li>
+            <article class="card-featured card-featured--compact">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="card-featured card-featured--compact">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="card-featured card-featured--compact">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li class="top-stories__extra">
+            <article class="card-featured card-featured--compact">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li class="top-stories__extra">
+            <article class="card-featured card-featured--compact">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- HABER KOLONLARI · Figma 95:83898 — "Başlık" + card-featured (Property 1=1 / 1=2) -->
+      <div class="news-columns">
+        <section class="news-column" aria-labelledby="gundem-title" data-slot="gundem">
+          <h2 class="section-title" id="gundem-title"><a href="#"><span class="t-h3-bold">Gündem Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <ul class="news-column__list">
+            <li>
+              <article class="card-featured">
+                <img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <section class="news-column" aria-labelledby="sirket-title" data-slot="sirket">
+          <h2 class="section-title" id="sirket-title"><a href="#"><span class="t-h3-bold">Şirket Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <ul class="news-column__list">
+            <li>
+              <article class="card-featured">
+                <img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <section class="news-column" aria-labelledby="kap-haber-title" data-slot="kap-haber">
+          <h2 class="section-title" id="kap-haber-title"><a href="#"><span class="t-h3-bold">KAP Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <ul class="news-column__list">
+            <li>
+              <article class="card-featured">
+                <img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card-featured card-featured--compact">
+                <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 yeni rekor kırdı</a></h3>
+                <div class="card-featured__meta">
+                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- REKLAM · Figma "ad-banner-1" (96:84436) — yalnızca desktop -->
+      <aside class="ad-inline" aria-label="Reklam" data-slot="ad-inline-1">
+        <a href="#"><img src="src/assets/ads/ad-728x90.jpg" width="728" height="90" alt="Reklam" loading="lazy"></a>
+      </aside>
+
+      <!-- DÖVİZ VE ALTIN ÇEVİRİCİ · Figma "Widget/Döviz ve Altın Çevirici" (150:44309) -->
+      <section class="converter" aria-labelledby="converter-title" data-slot="converter" data-converter data-rate="41.5612">
+        <h2 class="converter__title t-h3-bold" id="converter-title">Döviz ve Altın Çevirici</h2>
+        <div class="converter__card">
+          <div class="converter__fields">
+            <div class="field converter__field">
+              <label class="field__label t-body-s-regular" for="conv-amount">Miktar</label>
+              <input class="field__input t-h3-semibold" id="conv-amount" type="text" inputmode="decimal" value="1,00" data-converter-input>
+              <button class="currency-select" type="button" aria-haspopup="listbox" aria-label="Kaynak para birimi: USD ABD Doları">
+                <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/usd.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-semibold" data-currency-code>USD</span>
+                <span class="currency-select__name t-body-m-regular" data-currency-name>ABD Doları</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+            </div>
+
+            <button class="converter__swap" type="button" aria-label="Para birimlerini yer değiştir" data-converter-swap>
+              <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#swap-horizontal"/></svg>
+            </button>
+
+            <div class="field converter__field converter__field--to">
+              <label class="field__label t-body-s-regular" for="conv-result">Karşılığı</label>
+              <output class="field__input t-h3-semibold" id="conv-result" for="conv-amount" data-converter-output>41,56</output>
+              <button class="currency-select" type="button" aria-haspopup="listbox" aria-label="Hedef para birimi: TRY Türk Lirası">
+                <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/try.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-semibold" data-currency-code>TRY</span>
+                <span class="currency-select__name t-body-m-regular" data-currency-name>Türk Lirası</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="converter__result">
+            <div class="converter__rate">
+              <p class="t-h2-semibold" data-converter-rate>1 USD = 41,56<span class="converter__rate-fraction">12</span> TRY</p>
+              <div class="converter__meta">
+                <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,18</span></span>
+                <p class="t-body-s-medium"><span class="converter__meta-label">Alış</span> 41,5240 &nbsp;·&nbsp; <span class="converter__meta-label">Satış</span> 41,5984</p>
+              </div>
+            </div>
+            <a class="btn btn--primary converter__cta" href="#">
+              <span class="btn__label">Tüm döviz kurları</span>
+              <svg class="icon btn__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEANS RAPORU / RAPORLAR VE ANALİZLER · Figma "Widget/Seans Raporu / Raporlar ve Analizler" (153:43490)
+           Satır: "List/Rapor Satırı" (123:34998) — Tip=Seans Raporu | Analiz -->
+      <div class="reports" data-slot="reports">
+        <section class="reports__column" aria-labelledby="seans-title">
+          <h2 class="section-title" id="seans-title"><a href="#"><span class="t-h3-bold">Seans Raporu</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <ul class="list-card">
+            <li class="report-row">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt="">
+              <div class="report-row__content">
+                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-9,98</span> oranında düşüşle 13,53 liradan işlem gören hissede</a>
+                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <span class="badge t-body-xs-semibold">EREGL</span>
+            </li>
+            <li class="report-row">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt="">
+              <div class="report-row__content">
+                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-2,35</span> oranında düşüşle 8,72 liradan işlem gören hissede</a>
+                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <span class="badge t-body-xs-semibold">MNDTR</span>
+            </li>
+            <li class="report-row">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt="">
+              <div class="report-row__content">
+                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+9,96</span> oranında yükselişle 4,53 liradan işlem gören hissede</a>
+                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <span class="badge t-body-xs-semibold">PSGYO</span>
+            </li>
+            <li class="report-row report-row--desktop-only">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt="">
+              <div class="report-row__content">
+                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+4,12</span> oranında yükselişle 21,40 liradan işlem gören hissede</a>
+                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <span class="badge t-body-xs-semibold">KONKA</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="reports__column" aria-labelledby="analiz-title">
+          <h2 class="section-title" id="analiz-title"><a href="#"><span class="t-h3-bold">Raporlar ve Analizler</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <ul class="list-card">
+            <li class="report-row report-row--analysis">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt="">
+              <div class="report-row__content">
+                <span class="report-row__overline t-overline">Analiz</span>
+                <a class="report-row__title t-body-m-semibold" href="#">Haftalık Bülten</a>
+                <p class="report-row__meta t-body-s-regular"><span>Bizim Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </li>
+            <li class="report-row report-row--analysis">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt="">
+              <div class="report-row__content">
+                <span class="report-row__overline t-overline">Analiz</span>
+                <a class="report-row__title t-body-m-semibold" href="#">Akşam Bülteni</a>
+                <p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </li>
+            <li class="report-row report-row--analysis">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt="">
+              <div class="report-row__content">
+                <span class="report-row__overline t-overline">Analiz</span>
+                <a class="report-row__title t-body-m-semibold" href="#">Petrol Fiyatları – Brent</a>
+                <p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </li>
+            <li class="report-row report-row--analysis report-row--desktop-only">
+              <img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt="">
+              <div class="report-row__content">
+                <span class="report-row__overline t-overline">Analiz</span>
+                <a class="report-row__title t-body-m-semibold" href="#">Uluslararası Piyasalar – Eurotahvil</a>
+                <p class="report-row__meta t-body-s-regular"><span>İş Yatırım</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
+              </div>
+              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- KAP DUYURULARI · Figma "Widget/KAP Duyuruları" (153:43524) — Satır: "List/KAP Satırı" (125:36204) -->
+      <section class="kap" aria-labelledby="kap-title" data-slot="kap">
+        <h2 class="section-title" id="kap-title"><a href="#"><span class="t-h3-bold">KAP Duyuruları</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+        <div class="kap__card">
+          <ul class="kap__column">
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-02-16"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">16</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Özel Durum Açıklaması</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/thyao.svg" alt=""><span class="kap-row__code t-body-s-semibold">THYAO</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türk Hava Yolları A.O.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-02-15"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">15</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Sermaye Artırımı Kararı</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/akbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">AKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Akbank T.A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-02-14"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">14</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Temettü Dağıtım Kararı</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/eregl.svg" alt=""><span class="kap-row__code t-body-s-semibold">EREGL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Ereğli Demir ve Çelik Fabrikaları T.A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-02-13"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">13</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Yeni Savunma Sözleşmesi</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/asels.svg" alt=""><span class="kap-row__code t-body-s-semibold">ASELS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Aselsan Elektronik Sanayi ve Ticaret A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-02-12"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">12</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Yatırım Teşvik Belgesi</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/sasa.svg" alt=""><span class="kap-row__code t-body-s-semibold">SASA</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Sasa Polyester Sanayi A.Ş.</span></p>
+              </div>
+            </li>
+          </ul>
+          <ul class="kap__column kap__column--secondary">
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-01-28"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">28</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Yıllık Finansal Rapor Özeti</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/bimas.svg" alt=""><span class="kap-row__code t-body-s-semibold">BIMAS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">BİM Birleşik Mağazalar A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-01-25"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">25</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Kredi Derecelendirme Notu</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/ykbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">YKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Yapı ve Kredi Bankası A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-01-22"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">22</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Yönetim Kurulu Üye Değişikliği</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/garan.svg" alt=""><span class="kap-row__code t-body-s-semibold">GARAN</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türkiye Garanti Bankası A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-01-18"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">18</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Maden Ruhsatı Güncellemesi</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/kozal.svg" alt=""><span class="kap-row__code t-body-s-semibold">KOZAL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Koza Altın İşletmeleri A.Ş.</span></p>
+              </div>
+            </li>
+            <li class="kap-row">
+              <time class="date-block" datetime="2026-01-15"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">15</span></time>
+              <div class="kap-row__content">
+                <a class="kap-row__title t-body-m-semibold" href="#">Uluslararası Proje İhalesi</a>
+                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/enkai.svg" alt=""><span class="kap-row__code t-body-s-semibold">ENKAI</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Enka İnşaat ve Sanayi A.Ş.</span></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- REKLAM · Figma "ad-banner-1" (98:46409) — yalnızca desktop -->
+      <aside class="ad-inline" aria-label="Reklam" data-slot="ad-inline-2">
+        <a href="#"><img src="src/assets/ads/ad-728x90.jpg" width="728" height="90" alt="Reklam" loading="lazy"></a>
+      </aside>
+
+      <!-- KRİPTO PARALAR · Figma "Widget/Kripto Paralar" (153:43693) — Cihaz=Desktop | Tablet | Mobile -->
+      <section class="crypto" aria-labelledby="crypto-title" data-slot="crypto">
+        <h2 class="section-title" id="crypto-title"><a href="#"><span class="t-h3-bold">Kripto Paralar</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+        <div class="crypto__card">
+          <div class="tabs tabs--sm crypto__tabs" role="tablist" aria-label="Zaman aralığı">
+            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Günlük</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
+          </div>
+
+          <table class="crypto-table">
+            <caption class="visually-hidden">Kripto para fiyatları (USDT), günlük</caption>
+            <thead>
+              <tr class="t-overline">
+                <th scope="col">Coin</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col" class="crypto-table__hide-sm">Yüksek</th>
+                <th scope="col" class="crypto-table__hide-sm">Düşük</th>
+                <th scope="col"><span class="crypto-table__hide-sm">Son </span>24 Saat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/btc.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BTC/USDT</span><span class="coin__full t-body-xs-regular">Bitcoin</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 78.439,61</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 79.668,00</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 78.261,61</td>
+                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,54</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #627eea" aria-hidden="true">E</span><span class="coin__name"><span class="t-body-m-semibold">ETH/USDT</span><span class="coin__full t-body-xs-regular">Ethereum</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 2.474,67</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 2.511,40</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 2.463,00</td>
+                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,03</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #23292f" aria-hidden="true">X</span><span class="coin__name"><span class="t-body-m-semibold">XRP/USDT</span><span class="coin__full t-body-xs-regular">Ripple</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 2,3412</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 2,3890</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 2,3305</td>
+                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,12</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #14f195" aria-hidden="true">S</span><span class="coin__name"><span class="t-body-m-semibold">SOL/USDT</span><span class="coin__full t-body-xs-regular">Solana</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 182,45</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 186,20</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 180,90</td>
+                <td><span class="change-pill change-pill--down t-body-s-semibold">-%0,84</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #f3ba2f" aria-hidden="true">B</span><span class="coin__name"><span class="t-body-m-semibold">BNB/USDT</span><span class="coin__full t-body-xs-regular">Binance Coin</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 612,30</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 618,75</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 608,10</td>
+                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,42</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #0033ad" aria-hidden="true">A</span><span class="coin__name"><span class="t-body-m-semibold">ADA/USDT</span><span class="coin__full t-body-xs-regular">Cardano</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 0,7421</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,7510</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,7366</td>
+                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,65</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #c2a633" aria-hidden="true">D</span><span class="coin__name"><span class="t-body-m-semibold">DOGE/USDT</span><span class="coin__full t-body-xs-regular">Dogecoin</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 0,2214</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2289</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2198</td>
+                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,87</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="coin"><span class="coin-avatar t-body-xs-semibold" style="--coin-color: #2a5ada" aria-hidden="true">L</span><span class="coin__name"><span class="t-body-m-semibold">LINK/USDT</span><span class="coin__full t-body-xs-regular">Chainlink</span></span></span></th>
+                <td class="t-numeric-m-semibold">$ 16,82</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 17,05</td>
+                <td class="crypto-table__hide-sm t-body-m-regular">$ 16,61</td>
+                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,93</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="last-update crypto__footer t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span>Son güncelleme: <time datetime="2026-02-18T16:11">18.02.2026 16:11</time> · 15 dk gecikmeli</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- KRİPTO HABERLERİ · Figma 140:128284 — "Başlık" + card-featured (Property 1=1) ×3 -->
+      <section class="crypto-news" aria-labelledby="crypto-news-title" data-slot="crypto-news">
+        <h2 class="section-title" id="crypto-news-title"><a href="#"><span class="t-h3-bold">Kripto Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+        <ul class="crypto-news__list scroll-x">
+          <li>
+            <article class="card-featured">
+              <img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="card-featured">
+              <img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="card-featured">
+              <img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy">
+              <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
+              <div class="card-featured__meta">
+                <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         YAN KOLON · Figma 95:80626
+         ================================================================= -->
+    <aside class="page__sidebar" aria-label="Piyasa araçları">
+
+      <!-- PİYASA ÖZETİ · Figma "Piyasa Özeti" (152:43463) -->
+      <section class="widget" aria-labelledby="summary-title" data-slot="summary">
+        <header class="widget__header">
+          <h2 class="t-h5-semibold" id="summary-title">Piyasa Özeti</h2>
+          <span class="status-pill t-body-s-medium"><span class="status-pill__dot" aria-hidden="true"></span>BIST Açık</span>
+        </header>
+        <ul class="widget__card widget__card--rows">
+          <li class="market-row">
+            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
+            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
+            <span class="market-row__value"><span class="t-h6-semibold">41.456</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span>
+          </li>
+          <li class="market-row">
+            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
+            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
+            <span class="market-row__value"><span class="t-h6-semibold">38.4215</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span></span>
+          </li>
+          <li class="market-row">
+            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
+            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
+            <span class="market-row__value"><span class="t-h6-semibold">41.456</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span>
+          </li>
+          <li class="market-row">
+            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/silver.svg" alt=""></span><span class="t-body-m-medium">Gümüş</span></span>
+            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
+            <span class="market-row__value"><span class="t-h6-semibold">38.4215</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,18</span></span></span>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="sidebar-divider">
+
+      <!-- REKLAM · Figma "Sidebar/Ad Banner" (95:81139) -->
+      <aside class="ad-sidebar" aria-label="Reklam" data-slot="ad-sidebar-1">
+        <a href="#"><img src="src/assets/ads/ad-300x256.jpg" width="300" height="256" alt="Reklam" loading="lazy"></a>
+      </aside>
+
+      <hr class="sidebar-divider">
+
+      <!-- PARAMIN KARŞILIĞI NE OLURDU? · Figma (152:43567) -->
+      <section class="widget" aria-labelledby="money-title" data-slot="money">
+        <header class="widget__header">
+          <h2 class="t-h5-semibold" id="money-title">Paramın Karşılığı Ne Olurdu?</h2>
+        </header>
+        <div class="widget__card money">
+          <div class="tabs tabs--sm tabs--fill" role="tablist" aria-label="Zaman aralığı">
+            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Günlük</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Haftalık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Aylık</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Yıllık</span></button>
+          </div>
+
+          <div class="money__inputs">
+            <div class="field field--sm money__currency">
+              <span class="field__label t-body-s-regular" id="money-currency-label">Para birimi</span>
+              <button class="currency-select" type="button" aria-haspopup="listbox" aria-labelledby="money-currency-label money-currency-value">
+                <span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/try.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-medium" id="money-currency-value">TRY</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+            </div>
+            <div class="field field--sm money__amount">
+              <label class="field__label t-body-s-regular" for="money-amount">Miktar</label>
+              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="decimal" value="1.000">
+              <span class="field__suffix t-body-m-medium" aria-hidden="true">₺</span>
+            </div>
+          </div>
+
+          <div class="money__chart">
+            <div class="money__baseline" aria-hidden="true">
+              <span class="money__badge t-body-xs-semibold">1.000 ₺</span>
+              <img class="money__pointer" src="src/assets/charts/pointer.svg" width="24" height="5" alt="">
+            </div>
+            <ul class="money__rows">
+              <li class="money-row">
+                <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
+                <img class="money-row__bar" src="src/assets/charts/bar-gold.svg" width="80" height="56" alt="">
+                <span class="market-row__value"><span class="t-h6-semibold">1.012,30 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%1,23</span></span></span>
+              </li>
+              <li class="money-row">
+                <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
+                <img class="money-row__bar" src="src/assets/charts/bar-usd.svg" width="80" height="56" alt="">
+                <span class="market-row__value"><span class="t-h6-semibold">1.005,60 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,56</span></span></span>
+              </li>
+              <li class="money-row">
+                <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
+                <img class="money-row__bar" src="src/assets/charts/bar-eur.svg" width="80" height="56" alt="">
+                <span class="market-row__value"><span class="t-h6-semibold">991,80 ₺</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-%0,82</span></span></span>
+              </li>
+              <li class="money-row">
+                <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/bist100.png" alt=""></span><span class="t-body-m-medium">BIST 100</span></span>
+                <img class="money-row__bar" src="src/assets/charts/bar-bist.svg" width="80" height="56" alt="">
+                <span class="market-row__value"><span class="t-h6-semibold">1.003,40 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,34</span></span></span>
+              </li>
+            </ul>
+          </div>
+
+          <p class="footnote t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#info-circle"/></svg>
+            <span>16.10.2026 kapanışına göre. Yatırım tavsiyesi değildir.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- REKLAM · Figma "Sidebar/Ad Banner" (98:65637) -->
+      <aside class="ad-sidebar" aria-label="Reklam" data-slot="ad-sidebar-2">
+        <a href="#"><img src="src/assets/ads/ad-300x256.jpg" width="300" height="256" alt="Reklam" loading="lazy"></a>
+      </aside>
+
+      <hr class="sidebar-divider">
+
+      <!-- BIST ÖNE ÇIKANLAR · Figma "Widget/BIST Öne Çıkanlar – Alternatif" (152:43642) -->
+      <section class="widget" aria-labelledby="bist-title" data-slot="bist">
+        <header class="widget__header widget__header--link">
+          <h2 id="bist-title"><a class="widget__title-link t-h5-semibold" href="#">BIST Öne Çıkanlar<svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+        </header>
+        <div class="widget__card widget__card--stack">
+          <div class="tabs tabs--sm tabs--fill" role="tablist" aria-label="Hisse listesi">
+            <button class="tab tab--sm is-selected" type="button" role="tab" aria-selected="true"><span class="tab__label">Yükselen</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">Düşen</span></button>
+            <button class="tab tab--sm" type="button" role="tab" aria-selected="false" tabindex="-1"><span class="tab__label">En Aktif</span></button>
+          </div>
+
+          <ul class="stock-tiles">
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20 logo-company--bordered" src="src/assets/logos/company/celha.png" alt=""><span class="t-body-s-semibold">CELHA</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%7,15</span><span class="t-body-xs-regular">8,76 ₺</span></span></a></li>
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/hubvc.png" alt=""><span class="t-body-s-semibold">HUBVC</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%5,88</span><span class="t-body-xs-regular">156,30 ₺</span></span></a></li>
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/kozal.svg" alt=""><span class="t-body-s-semibold">KOZAL</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%4,52</span><span class="t-body-xs-regular">289,40 ₺</span></span></a></li>
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/pekgy.png" alt=""><span class="t-body-s-semibold">PEKGY</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%3,24</span><span class="t-body-xs-regular">42,58 ₺</span></span></a></li>
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/enkai.svg" alt=""><span class="t-body-s-semibold">ENKAI</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%2,97</span><span class="t-body-xs-regular">53,15 ₺</span></span></a></li>
+            <li><a class="stock-tile" href="#"><span class="stock-tile__top"><img class="logo-company logo-company--20" src="src/assets/logos/company/asels.svg" alt=""><span class="t-body-s-semibold">ASELS</span></span><span class="stock-tile__values"><span class="t-h6-semibold is-positive">+%2,41</span><span class="t-body-xs-regular">148,20 ₺</span></span></a></li>
+          </ul>
+
+          <hr class="divider">
+
+          <div class="breadth">
+            <p class="breadth__counts">
+              <span><span class="t-h6-semibold is-positive">149</span> <span class="t-body-s-regular">Yükselen</span></span>
+              <span><span class="t-body-s-regular">Düşen</span> <span class="t-h6-semibold is-negative">444</span></span>
+            </p>
+            <div class="ratio-bar" role="img" aria-label="Yükselen %25,1, düşen %74,9">
+              <span class="ratio-bar__segment ratio-bar__segment--up" style="--value: 251"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--down" style="--value: 749"></span>
+            </div>
+            <p class="breadth__percent t-body-xs-semibold"><span class="is-positive">%25,1</span><span class="is-negative">%74,9</span></p>
+          </div>
+
+          <hr class="divider">
+
+          <p class="last-update t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span>Son güncelleme: <time datetime="2026-10-16T17:59">16.10.2026 17:59</time></span>
+          </p>
+        </div>
+      </section>
+
+      <hr class="sidebar-divider">
+
+      <!-- HİSSE İSTATİSTİKLERİ · Figma "Widget/Hisse İstatistikleri" (152:43687) -->
+      <section class="widget" aria-labelledby="stats-title" data-slot="stats">
+        <header class="widget__header">
+          <h2 class="t-h5-semibold" id="stats-title">Hisse İstatistikleri</h2>
+        </header>
+        <div class="widget__card widget__card--stack widget__card--roomy">
+          <div class="breadth breadth--roomy">
+            <p class="t-body-s-medium">Hisselerin <span class="is-negative">%87’si düşüşte</span></p>
+            <div class="ratio-bar ratio-bar--lg" role="img" aria-label="69 yükselen, 10 değişmeyen, 552 düşen">
+              <span class="ratio-bar__segment ratio-bar__segment--up" style="--value: 69"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--flat"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--down" style="--value: 552"></span>
+            </div>
+            <dl class="legend">
+              <div class="legend__item">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--up" aria-hidden="true"></span>Yükselen</dt>
+                <dd class="t-h6-semibold is-positive">69</dd>
+              </div>
+              <div class="legend__item legend__item--center">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--flat" aria-hidden="true"></span>Değişmeyen</dt>
+                <dd class="t-h6-semibold">10</dd>
+              </div>
+              <div class="legend__item legend__item--end">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--down" aria-hidden="true"></span>Düşen</dt>
+                <dd class="t-h6-semibold is-negative">552</dd>
+              </div>
+            </dl>
+          </div>
+
+          <hr class="divider">
+
+          <dl class="stats">
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem gören hisse</dt><dd class="t-numeric-m-semibold">631</dd></div>
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem hacmi (₺)</dt><dd class="t-numeric-m-semibold">152.015.139.268,00</dd></div>
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem hacmi (lot)</dt><dd class="t-numeric-m-semibold">9.899.001.370</dd></div>
+          </dl>
+
+          <hr class="divider">
+
+          <p class="last-update t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span>Son güncelleme: <time datetime="2026-10-16T17:59">16.10.2026 17:59</time></span>
+          </p>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER · Figma component "Footer" (154:44149) — Cihaz=Desktop | Tablet | Mobile
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="src/assets/logos/logo-finans-inverse.svg" width="216" height="56" alt="Sabah Finans">
+          <p class="t-body-s-regular">Döviz, altın, borsa ve kripto piyasalarını tek yerden takip edin.</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Alt menü">
+          <div class="footer-col">
+            <h2 class="footer-col__title t-overline">Döviz</h2>
+            <ul class="footer-col__list t-body-s-regular">
+              <li><a href="#">Dolar</a></li>
+              <li><a href="#">Euro</a></li>
+              <li><a href="#">Sterlin</a></li>
+              <li><a href="#">Frank</a></li>
+              <li><a href="#">Kanada Doları</a></li>
+              <li><a href="#">Riyal</a></li>
+              <li><a href="#">Yen</a></li>
+              <li><a href="#">Pariteler</a></li>
+              <li><a href="#">Merkez Bankası Kurları</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col__title t-overline">Altın</h2>
+            <ul class="footer-col__list t-body-s-regular">
+              <li><a href="#">Altın Fiyatları</a></li>
+              <li><a href="#">Gram Altın</a></li>
+              <li><a href="#">Çeyrek Altın</a></li>
+              <li><a href="#">Yarım Altın</a></li>
+              <li><a href="#">Cumhuriyet Altını</a></li>
+              <li><a href="#">Ons Altın</a></li>
+              <li><a href="#">22 Ayar Bilezik</a></li>
+              <li><a href="#">Gümüş Fiyatı</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col__title t-overline">Borsa</h2>
+            <ul class="footer-col__list t-body-s-regular">
+              <li><a href="#">Canlı Borsa</a></li>
+              <li><a href="#">Hisse Fiyatları</a></li>
+              <li><a href="#">Endeksler</a></li>
+              <li><a href="#">En Çok Yükselenler</a></li>
+              <li><a href="#">En Yüksek Hacim</a></li>
+              <li><a href="#">Geçmiş Kapanışlar</a></li>
+              <li><a href="#">KAP Haberleri</a></li>
+              <li><a href="#">Günün Özeti</a></li>
+              <li><a href="#">Dünya Borsa Endeksleri</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h2 class="footer-col__title t-overline">Kripto ve Araçlar</h2>
+            <ul class="footer-col__list t-body-s-regular">
+              <li><a href="#">Kripto Paralar</a></li>
+              <li><a href="#">Bitcoin</a></li>
+              <li><a href="#">Ethereum</a></li>
+              <li><a href="#">Ripple</a></li>
+              <li><a href="#">Teknik Analiz</a></li>
+              <li><a href="#">Mali Tablolar</a></li>
+              <li><a href="#">Tahvil Bono Repo</a></li>
+              <li><a href="#">VİOP / Varant</a></li>
+              <li><a href="#">Maaş Hesaplama</a></li>
+              <li><a href="#">Terimler Sözlüğü</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__legal">
+        <h2 class="t-overline">Yasal Uyarı</h2>
+        <p class="t-body-xs-regular">BİST verileri Foreks tarafından 15 dakika gecikmeli sağlanmaktadır. BİST piyasalarında oluşan tüm verilere ait telif hakları tamamen BİST’e ait olup, bu veriler tekrar yayınlanamaz. Foreks tarafından sağlanan Pay Piyasası, Borçlanma Araçları Piyasası, Vadeli İşlem ve Opsiyon Piyasası verileri BİST kaynaklı en az 15 dakika gecikmeli verilerdir. <a class="site-footer__more" href="#">Daha fazla…</a></p>
+        <div class="site-footer__legal-more">
+          <p class="t-body-xs-regular">SPK’nın 22 Nisan 2002 tarihli Resmi Gazete’de yayımlanan tebliği uyarınca yayımlanması istenen uyarı: "Burada yer alan yatırım bilgi, yorum ve tavsiyeleri yatırım danışmanlığı kapsamında değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri, mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır. Burada yer alan yorum ve tavsiyeler, yorum ve tavsiyede bulunanların kişisel görüşlerine dayanmaktadır. Bu görüşler, mali durumunuz ile risk ve getiri tercihlerinize uygun olmayabilir. Bu nedenle, sadece burada yer alan bilgilere dayanılarak yatırım kararı verilmesi, beklentilerinize uygun sonuçlar doğurmayabilir."</p>
+          <h2 class="t-overline">Veri Sağlayıcı Uyarısı</h2>
+          <p class="t-body-xs-regular">Finansal veriler Foreks A.Ş. tarafından sağlanmaktadır. Turkuvaz Media Group, yayınlanan verilerin doğruluğu ve tamlığı konusunda herhangi bir garanti vermez. Veri yayınında oluşabilecek aksaklıklardan, verinin eksik ve yanlış yayınlanmasından meydana gelebilecek herhangi bir zarardan Turkuvaz Media Group sorumlu değildir.</p>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom t-body-xs-regular">
+        <p>© 2026 Turkuvaz Haberleşme ve Yayıncılık A.Ş. Tüm hakları saklıdır.</p>
+        <p>BİST verileri 15 dk gecikmelidir.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

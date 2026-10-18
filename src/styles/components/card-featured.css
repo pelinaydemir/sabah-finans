@@ -1,0 +1,52 @@
+/* ==========================================================================
+   CARD FEATURED · Figma "card-featured" (98:33364)
+   Property 1 = 1 → görselli kart (varsayılan)
+   Property 1 = 2 → .card-featured--compact (yalnız başlık + meta)
+   ========================================================================== */
+
+.card-featured {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card-featured__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--space-1); /* görsel → başlık 12px (gap 8 + 4) */
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+}
+
+.card-featured__title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--color-text-primary);
+}
+
+.card-featured__title a:hover {
+  color: var(--color-text-brand);
+}
+
+/* Tüm kart tıklanabilir: başlık linki kartı kaplar, ticker-chip üstte kalır */
+.card-featured__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-featured__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.card-featured__meta .ticker-chip {
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,194 @@
+/* ==========================================================================
+   BASE — reset, Figma text style sınıfları, yardımcılar
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-text);
+  font-size: var(--text-body-m-size);
+  line-height: var(--text-body-m-line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-border-brand);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   TEXT STYLES — Figma "Text Styles" ile birebir eşleşir.
+   İsimlendirme: .t-{kategori}-{boyut}-{ağırlık}
+   Örn. Figma "Heading/H6/Semibold" → .t-h6-semibold
+   -------------------------------------------------------------------------- */
+
+/* Display/Large/Bold */
+.t-display-bold {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-line-height);
+  letter-spacing: var(--letter-spacing-display);
+}
+
+/* Heading/* (Epilogue) */
+.t-h2-semibold,
+.t-h3-bold,
+.t-h3-semibold,
+.t-h5-semibold,
+.t-h6-semibold,
+.t-h6-medium {
+  font-family: var(--font-family-display);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+.t-h2-semibold { font-size: var(--text-h2-size); line-height: var(--text-h2-line-height); font-weight: var(--font-weight-semibold); }
+.t-h3-bold     { font-size: var(--text-h3-size); line-height: var(--text-h3-line-height); font-weight: var(--font-weight-bold); }
+.t-h3-semibold { font-size: var(--text-h3-size); line-height: var(--text-h3-line-height); font-weight: var(--font-weight-semibold); }
+.t-h5-semibold { font-size: var(--text-h5-size); line-height: var(--text-h5-line-height); font-weight: var(--font-weight-semibold); }
+.t-h6-semibold { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-semibold); }
+.t-h6-medium   { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-medium); }
+
+/* Body/* (Google Sans Flex) */
+.t-body-l-semibold { font-size: var(--text-body-l-size); line-height: var(--text-body-l-line-height); font-weight: var(--font-weight-semibold); }
+
+.t-body-m-regular  { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-regular); }
+.t-body-m-medium   { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-medium); }
+.t-body-m-semibold { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-semibold); }
+
+.t-body-s-regular  { font-size: var(--text-body-s-size); line-height: var(--text-body-s-line-height); font-weight: var(--font-weight-regular); }
+.t-body-s-medium   { font-size: var(--text-body-s-size); line-height: var(--text-body-s-line-height); font-weight: var(--font-weight-medium); }
+.t-body-s-semibold { font-size: var(--text-body-s-size); line-height: var(--text-body-s-line-height); font-weight: var(--font-weight-semibold); }
+
+.t-body-xs-regular  { font-size: var(--text-body-xs-size); line-height: var(--text-body-xs-line-height); font-weight: var(--font-weight-regular); }
+.t-body-xs-medium   { font-size: var(--text-body-xs-size); line-height: var(--text-body-xs-line-height); font-weight: var(--font-weight-medium); }
+.t-body-xs-semibold { font-size: var(--text-body-xs-size); line-height: var(--text-body-xs-line-height); font-weight: var(--font-weight-semibold); }
+
+/* Numeric/M/Semibold */
+.t-numeric-m-semibold {
+  font-size: var(--text-numeric-m-size);
+  line-height: var(--text-numeric-m-line-height);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Overline */
+.t-overline {
+  font-size: var(--text-overline-size);
+  line-height: var(--text-overline-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-overline);
+  text-transform: uppercase;
+}
+
+/* Değişim yüzdesi renkleri (Seans Raporu, Hisse İstatistikleri vb. metin içi vurgular) */
+.is-positive { color: var(--color-text-positive); }
+.is-negative { color: var(--color-text-negative); }
+
+/* --------------------------------------------------------------------------
+   HELPERS
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-surface);
+  color: var(--color-text-brand-strong);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* Yatay kaydırma (mobil tab/ticker/kart şeritleri) — scrollbar gizli */
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

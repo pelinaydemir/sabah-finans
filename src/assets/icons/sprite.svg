@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Icon sprite — Figma "Icons" sayfasındaki vuesax/linear setinden export edilmiştir.
+    Geometri birebir korunmuş, yalnızca stroke/fill rengi `currentColor` yapılmıştır;
+    böylece ikon rengi CSS'teki color-icon-* token'larından gelir.
+    Kullanım: <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg>
+  -->
+
+  <!-- vuesax/linear/arrow-right · Figma 86:61059 — Başlık oku -->
+  <symbol id="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.43 5.93L20.5 12L14.43 18.07"/>
+    <path d="M3.5 12H20.33"/>
+  </symbol>
+
+  <!-- vuesax/linear/arrow-up · Figma 86:61066 — değişim göstergesi (artış) -->
+  <symbol id="arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18.07 9.57L12 3.5L5.93 9.57"/>
+    <path d="M12 20.5V3.67"/>
+  </symbol>
+
+  <!-- vuesax/linear/arrow-down · Figma 86:61107 — değişim göstergesi (düşüş) -->
+  <symbol id="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18.07 14.43L12 20.5L5.93 14.43"/>
+    <path d="M12 3.5V20.33"/>
+  </symbol>
+
+  <!-- vuesax/linear/arrow-right (chevron) · Figma 86:61119 — slider, liste satırı, buton -->
+  <symbol id="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.91 19.92L15.43 13.4C16.2 12.63 16.2 11.37 15.43 10.6L8.91 4.08"/>
+  </symbol>
+
+  <!-- vuesax/linear/arrow-down (chevron) · Figma 86:61100 — dropdown -->
+  <symbol id="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.92 8.95L13.4 15.47C12.63 16.24 11.37 16.24 10.6 15.47L4.08 8.95"/>
+  </symbol>
+
+  <!-- vuesax/linear/arrow-swap-horizontal · Figma 86:61158 — çevirici swap -->
+  <symbol id="swap-horizontal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.5 14.99L15.49 20.01"/>
+    <path d="M3.5 14.99H20.5"/>
+    <path d="M3.5 9.01L8.51 3.99"/>
+    <path d="M20.5 9.01H3.5"/>
+  </symbol>
+
+  <!-- vuesax/linear/status-up · Figma 86:67030 — CANLI BORSA butonu -->
+  <symbol id="status-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <path d="M6.88 18.15V16.08"/>
+    <path d="M12 18.15V14.01"/>
+    <path d="M17.12 18.15V11.93"/>
+    <path d="M17.12 5.85L16.66 6.39C14.11 9.37 10.69 11.48 6.88 12.43"/>
+    <path d="M14.19 5.85H17.12V8.77" stroke-linejoin="round"/>
+    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- vuesax/linear/info-circle · Figma 86:65171 — dipnot -->
+  <symbol id="info-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"/>
+    <path d="M12 8V13"/>
+    <path d="M11.9945 16H12.0035" stroke-width="2"/>
+  </symbol>
+
+  <!-- vuesax/linear/clock · Figma 86:66243 — son güncelleme -->
+  <symbol id="clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z"/>
+    <path d="M15.71 15.18L12.61 13.33C12.07 13.01 11.63 12.24 11.63 11.61V7.51"/>
+  </symbol>
+
+  <!-- Interface/Search_Magnifying_Glass · Header > Search > button (Figma 95:81418) -->
+  <symbol id="search" viewBox="14.222 5.333 21.333 21.333" fill="currentColor">
+    <path d="M28.1839 18.0381C27.8367 17.691 27.2739 17.691 26.9268 18.0381C26.5797 18.3853 26.5797 18.9481 26.9268 19.2952L27.5553 18.6667L28.1839 18.0381ZM32.2601 24.6285C32.6073 24.9757 33.1701 24.9757 33.5172 24.6285C33.8643 24.2814 33.8643 23.7186 33.5172 23.3715L32.8887 24L32.2601 24.6285ZM23.1109 20.4444V19.5556C20.1654 19.5556 17.7776 17.1677 17.7776 14.2222H16.8887H15.9998C15.9998 18.1496 19.1835 21.3333 23.1109 21.3333V20.4444ZM16.8887 14.2222H17.7776C17.7776 11.2767 20.1654 8.88889 23.1109 8.88889V8V7.11111C19.1835 7.11111 15.9998 10.2949 15.9998 14.2222H16.8887ZM23.1109 8V8.88889C26.0564 8.88889 28.4442 11.2767 28.4442 14.2222H29.3331H30.222C30.222 10.2949 27.0383 7.11111 23.1109 7.11111V8ZM29.3331 14.2222H28.4442C28.4442 17.1677 26.0564 19.5556 23.1109 19.5556V20.4444V21.3333C27.0383 21.3333 30.222 18.1496 30.222 14.2222H29.3331ZM27.5553 18.6667L26.9268 19.2952L32.2601 24.6285L32.8887 24L33.5172 23.3715L28.1839 18.0381L27.5553 18.6667Z"/>
+  </symbol>
+</svg>

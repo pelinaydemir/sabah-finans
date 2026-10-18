@@ -1,0 +1,22 @@
+/* ==========================================================================
+   KATEGORİ NAVİGASYONU · "Tab" (Boyut = Büyük) dizisi
+   Desktop: ortalanmış · Tablet/Mobil: sola hizalı, yatay kaydırma
+   ========================================================================== */
+
+.category-nav {
+  border-bottom: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+}
+
+.category-nav__list {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2) var(--layout-gutter) 0;
+}
+
+@media (max-width: 1279px) {
+  .category-nav__list {
+    justify-content: flex-start;
+    padding-inline: var(--layout-page-padding);
+  }
+}

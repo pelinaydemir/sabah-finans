@@ -1,0 +1,89 @@
+/* ==========================================================================
+   FIELD · Çevirici ve "Paramın Karşılığı" giriş alanları
+   Figma: from / to / amount-input / currency-select + floating-label
+   Dropdown içeriği Figma "Dropdown/Para Birimi" (127:36908) ile tanımlıdır.
+   ========================================================================== */
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+  transition: border-color 0.15s ease;
+}
+
+.field:focus-within {
+  border-color: var(--color-border-brand);
+}
+
+/* floating-label */
+.field__label {
+  position: absolute;
+  top: -11px;
+  left: var(--space-4);
+  padding-inline: var(--space-1);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.field__input {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.field__suffix {
+  color: var(--color-text-tertiary);
+}
+
+/* Küçük alan (Paramın Karşılığı) — h56, border-default */
+.field--sm {
+  height: 56px;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-color: var(--color-border-default);
+}
+
+.field--sm .field__label {
+  left: 7px;
+}
+
+/* currency-select */
+.currency-select {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1);
+  border-radius: var(--radius-lg);
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.currency-select:hover {
+  background: var(--color-bg-subtle);
+}
+
+.currency-select__code {
+  color: var(--color-text-primary);
+}
+
+.currency-select__name {
+  margin-left: calc(var(--space-1) - var(--space-2)); /* kod ↔ isim arası 4px */
+  color: var(--color-text-secondary);
+}
+
+.currency-select__chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--color-icon-primary);
+}

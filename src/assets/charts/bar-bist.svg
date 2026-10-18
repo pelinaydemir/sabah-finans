@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="80" height="56" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bar">
+<line id="axis" x1="40.5" x2="40.5" y2="56" stroke="#D4D4D4" stroke-dasharray="2 2"/>
+<path id="bar-positive" d="M41 18H47C49.2091 18 51 19.7909 51 22V34C51 36.2091 49.2091 38 47 38H41V18Z" fill="#12B76A"/>
+</g>
+</svg>

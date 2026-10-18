@@ -1,0 +1,170 @@
+/* ==========================================================================
+   INDICATORS — küçük veri gösterge atomları
+   .change        → "change-indicator" (artış / düşüş oku + değer)
+   .ticker-chip   → "button" 95:67467 (hisse kodu + değişim) — outline | solid
+   .change-pill   → kripto tablosu "change-pill"
+   .badge         → seans raporu "ticker-badge"
+   .status-pill   → Piyasa Özeti "status-pill" (BIST Açık)
+   .dot           → meta ayırıcı nokta (3px)
+   .news-meta     → haber kategorisi · zaman
+   .divider       → 1px yatay ayraç
+   .last-update / .footnote → widget alt bilgi satırı
+   ========================================================================== */
+
+/* --- change-indicator ---------------------------------------------------- */
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+.change__icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  padding: 1.6px;
+  border-radius: 16px;
+  color: var(--color-icon-on-brand);
+}
+
+.change__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.change--up { color: var(--color-text-positive); }
+.change--up .change__icon { background: var(--color-bg-positive); }
+
+.change--down { color: var(--color-text-negative); }
+.change--down .change__icon { background: var(--color-bg-negative); }
+
+/* --- ticker-chip ---------------------------------------------------------- */
+.ticker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-surface);
+  white-space: nowrap;
+  transition: border-color 0.15s ease;
+}
+
+.ticker-chip:hover {
+  border-color: var(--color-border-strong);
+}
+
+.ticker-chip__symbol {
+  color: var(--color-text-primary);
+  font-size: var(--text-body-s-size);
+  line-height: normal;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Görsel üzerinde kullanılan dolu varyant */
+.ticker-chip--solid {
+  border-color: transparent;
+  backdrop-filter: blur(20px);
+}
+
+/* --- change-pill ---------------------------------------------------------- */
+.change-pill {
+  display: inline-flex;
+  padding: var(--space-0-5) var(--space-2);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.change-pill--up {
+  background: var(--color-bg-positive-subtle);
+  color: var(--color-text-positive);
+}
+
+.change-pill--down {
+  background: var(--color-bg-negative-subtle);
+  color: var(--color-text-negative);
+}
+
+/* --- badge (ticker-badge) ------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+/* --- status-pill ---------------------------------------------------------- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  padding: var(--space-1) var(--space-2-5);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.status-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-bg-positive);
+}
+
+/* --- dot / news-meta ------------------------------------------------------ */
+.dot {
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+.news-meta__dot {
+  font-size: var(--text-body-s-size);
+  line-height: var(--text-body-s-line-height);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* --- divider -------------------------------------------------------------- */
+.divider {
+  height: 1px;
+  border: 0;
+  background: var(--color-border-default);
+}
+
+/* --- last-update / footnote ---------------------------------------------- */
+.last-update,
+.footnote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  color: var(--color-text-tertiary);
+}
+
+.last-update .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.footnote {
+  align-items: flex-start;
+}
+
+.footnote .icon {
+  width: 16px;
+  height: 16px;
+}
