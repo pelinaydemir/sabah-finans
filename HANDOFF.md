@@ -83,28 +83,36 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 
 | Figma component | Node | Kod (sınıf / dosya) | Varyant → modifier |
 |---|---|---|---|
-| Header | 154:44034 | `.site-header` · `header.css` | Cihaz=Desktop/Tablet/Mobile → media query |
-| Son dakika akış | 154:44049 | `.breaking-news` · `breaking-news.css` | Mobile'da oklar gizli |
-| finans barı + Finance/Ticker Widget | 154:44071 · 95:58443 | `.market-bar`, `.ticker` · `market-bar.css` | — |
+| Layout/Header | 154:44034 | `.site-header` · `header.css` | Cihaz=Desktop/Tablet/Mobile → media query |
+| Layout/Son Dakika Akışı | 154:44049 | `.breaking-news` · `breaking-news.css` | Mobile'da oklar gizli |
+| Layout/Finans Barı + Finance/Ticker | 154:44071 · 95:58443 | `.market-bar`, `.ticker` · `market-bar.css` | — |
 | Chart/Sparkline | — | `.sparkline--up / --down` | düşüş = yatay çevrilmiş grafik |
-| Tab | 98:33256 | `.tab--lg / --sm`, `.is-selected` | Seçili? · Boyut |
-| Başlık | 95:84384 | `.section-title` · `section-title.css` | — |
+| Navigation/Tab | 98:33256 | `.tab--lg / --sm`, `.is-selected` | Seçili · Boyut |
+| Section/Başlık | 95:84384 | `.section-title` · `section-title.css` | — |
 | Haber Kartı/Görsel Üzeri | 93:57769 | `.news-hero` · `top-stories.css` | Mobile: başlık H3 |
-| nav-number | 95:67706 | `.nav-number[aria-current]` | Seçili=Evet/Hayır |
-| card-featured | 98:33364 | `.card-featured` · `--compact` | Property 1 = 1 / 2 |
-| button (ticker chip) | 95:67467 | `.ticker-chip` · `--solid` | görsel üzerinde dolu |
+| Navigation/Sayfa Numarası | 95:67706 | `.nav-number[aria-current]` | Seçili=Evet/Hayır |
+| Card/Haber | 98:33364 | `.card-featured` · `--compact` | Görsel = Var / Yok |
+| Chip/Hisse | 95:67467 | `.ticker-chip` · `--solid` | görsel üzerinde dolu |
 | Logo/Currency | 117:35656 | `.logo-currency--{18,20,24,32}` | boyut |
 | Logo/Company | 123:34961 | `.logo-company--{16,20,40}` | boyut |
-| Piyasa Özeti | 152:43463 | `.widget` + `.market-row` · `widget.css` | Cihaz |
-| Paramın Karşılığı Ne Olurdu? | 152:43567 | `.widget` + `.money` | Cihaz |
+| Widget/Piyasa Özeti | 152:43463 | `.widget` + `.market-row` · `widget.css` | Cihaz |
+| Widget/Paramın Karşılığı Ne Olurdu? | 152:43567 | `.widget` + `.money` | Cihaz |
 | Widget/Döviz ve Altın Çevirici | 150:44309 | `.converter`, `.field`, `.currency-select` | Mobile: alanlar alt alta |
-| Widget/BIST Öne Çıkanlar – Alternatif | 152:43642 | `.stock-tiles`, `.breadth`, `.ratio-bar` | Cihaz |
+| Widget/BIST Öne Çıkanlar | 152:43642 | `.stock-tiles`, `.breadth`, `.ratio-bar` | Cihaz |
 | Widget/Hisse İstatistikleri | 152:43687 | `.legend`, `.stats` | Cihaz |
+| Dropdown/Para Birimi + Dropdown/Item | 127:36908 · 127:36907 | `.dropdown`, `.dropdown-item` · `dropdown.css` | Durum = Default / Hover / Seçili · kompakt varyant: `.dropdown--compact` |
 | Widget/Seans Raporu / Raporlar ve Analizler | 153:43490 | `.reports`, `.report-row` · `reports.css` | Tip=Seans Raporu / Analiz → `--analysis` |
 | List/KAP Satırı | 125:36204 | `.kap-row`, `.date-block` · `kap.css` | — |
 | Widget/Kripto Paralar | 153:43693 | `.crypto-table` · `crypto.css` | Mobile: Yüksek/Düşük gizli |
 | Sidebar/Ad Banner | 95:81139 | `.ad-sidebar` · `ad.css` | — |
-| Footer | 154:44149 | `.site-footer` · `footer.css` | Cihaz |
+| Layout/Footer | 154:44149 | `.site-footer` · `footer.css` | Cihaz |
+
+### Figma dosya düzeni
+
+- **Component adları** `Kategori/Ad` biçimindedir: `Layout/*`, `Navigation/*`, `Section/*`, `Card/*`, `Chip/*`, `List/*`, `Dropdown/*`, `Widget/*`, `Logo/*`, `Finance/*`, `Button`.
+- **Varyant özellikleri** Türkçe ve tutarlıdır: `Cihaz`, `Seçili = Evet/Hayır`, `Boyut`, `Görsel = Var/Yok`, `Tip`, `Durum`.
+- **Ekran katmanları** koddaki sınıf adlarıyla aynıdır (kebab-case): `top-stories`, `headline-slider`, `news-columns`, `news-column/gundem`, `story-list`, `sidebar`, `sidebar-divider`, `crypto-news`, `ad-inline`…
+- Her component'in açıklamasında **Ne için / Varyantlar / Kullanım / Kod** başlıkları ve bu dokümana bağlantı bulunur.
 
 ## 4. Responsive davranış (yalnız boyut değil, içerik)
 
