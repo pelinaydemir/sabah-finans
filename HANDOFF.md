@@ -104,7 +104,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Widget/Seans Raporu / Raporlar ve Analizler | 153:43490 | `.reports`, `.report-row` · `reports.css` | Tip=Seans Raporu / Analiz → `--analysis` |
 | List/KAP Satırı | 125:36204 | `.kap-row`, `.date-block` · `kap.css` | — |
 | Widget/Kripto Paralar | 153:43693 | `.crypto-table` · `crypto.css` | Mobile: Yüksek/Düşük gizli |
-| Sidebar/Ad Banner | 95:81139 | `.ad-sidebar` · `ad.css` | — |
+| Sidebar/Ad Banner | 95:81139 | `.campaign-side` · `campaign.css` | — |
 | Layout/Footer | 154:44149 | `.site-footer` · `footer.css` | Cihaz |
 
 ### Figma dosya düzeni
@@ -170,7 +170,7 @@ Tüm veriler Figma'daki örnek içeriktir; canlı veriye bağlanırken:
 - **Kripto avatarları**: logosu olmayan coin'ler için harf avatarı, renk `--coin-color` ile verilir.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
-- **Reklamlar**: `.ad-*` kapları sabit ölçülü yer tutuculardır; ad server slot'larıyla değiştirilir.
+- **Reklamlar**: `.campaign-*` kapları sabit ölçülü yer tutuculardır; ad server slot'larıyla değiştirilir. Sınıf ve dosya adları bilinçli olarak `ad-*`/`ads/` yerine `campaign` seçildi: reklam engelleyiciler bu kalıpları gizlediği için demo sitede reklam alanları görünmüyordu.
 
 ## 8. Figma'dan bilinçli sapmalar
 

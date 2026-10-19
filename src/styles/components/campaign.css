@@ -1,13 +1,13 @@
 /* ==========================================================================
    REKLAM ALANLARI
-   .ad-top     → üst billboard (970×250 · 728×90 · 300×256, <picture> ile)
-   .ad-inline  → ana kolon "ad-banner-1" (728×90) — yalnızca desktop
-   .ad-sidebar → "Sidebar/Ad Banner" (335×290 kutu, 300×256 kreatif)
+   .campaign-top     → üst billboard (970×250 · 728×90 · 300×256, <picture> ile)
+   .campaign-inline  → ana kolon "ad-banner-1" (728×90) — yalnızca desktop
+   .campaign-side → "Sidebar/Ad Banner" (335×290 kutu, 300×256 kreatif)
                  desktop yan kolon + mobil akış; tablette gösterilmez
    Not: Reklam kreatifleri yer tutucudur, ad server tarafından doldurulur.
    ========================================================================== */
 
-.ad-top {
+.campaign-top {
   display: flex;
   justify-content: center;
   padding: var(--space-6) 10px;
@@ -15,58 +15,58 @@
   background: var(--color-bg-brand-strong);
 }
 
-.ad-top__img {
+.campaign-top__img {
   width: 970px;
   height: auto;
 }
 
-.ad-inline {
+.campaign-inline {
   display: flex;
   justify-content: center;
   padding-block: var(--space-4);
 }
 
-.ad-sidebar {
+.campaign-side {
   display: flex;
   justify-content: center;
   padding: 17px;
 }
 
-.ad-inline img {
+.campaign-inline img {
   width: 728px;
   height: auto;
 }
 
-.ad-sidebar img {
+.campaign-side img {
   width: 300px;
   height: auto;
 }
 
 @media (max-width: 1279px) {
-  .ad-top {
+  .campaign-top {
     padding: var(--space-4) var(--space-5) 17px;
   }
 
-  .ad-top__img {
+  .campaign-top__img {
     width: 728px;
   }
 
-  .ad-inline,
-  .ad-sidebar {
+  .campaign-inline,
+  .campaign-side {
     display: none;
   }
 }
 
 @media (max-width: 767px) {
-  .ad-top {
+  .campaign-top {
     padding: 33px var(--space-4) 34px;
   }
 
-  .ad-top__img {
+  .campaign-top__img {
     width: 300px;
   }
 
-  .ad-sidebar {
+  .campaign-side {
     display: flex;
   }
 }

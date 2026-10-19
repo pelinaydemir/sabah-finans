@@ -163,9 +163,17 @@
 }
 
 @media (max-width: 1279px) {
-  /* Tablet/mobil: çevirici alanları alt alta → liste alan genişliğinde, sağa hizalı */
+  /* Tablet/mobil: çevirici alanları alt alta → liste, alanın tam genişliğinde açılır */
+  .converter .select {
+    position: static;
+  }
+
   .converter .dropdown {
-    width: min(360px, calc(100vw - 2 * var(--layout-page-padding) - 32px));
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
   }
 }
 

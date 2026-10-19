@@ -100,10 +100,10 @@
   [data-slot="sirket"]       { order: 4; }
   [data-slot="kap-haber"]    { order: 5; }
   [data-slot="money"]        { order: 6; }
-  [data-slot="ad-sidebar-1"] { order: 7; }
+  [data-slot="campaign-side-1"] { order: 7; }
   [data-slot="converter"]    { order: 8; }
   [data-slot="bist"]         { order: 9; }
-  [data-slot="ad-sidebar-2"] { order: 10; }
+  [data-slot="campaign-side-2"] { order: 10; }
   [data-slot="stats"]        { order: 11; }
   [data-slot="reports"]      { order: 12; }
   [data-slot="kap"]          { order: 13; }

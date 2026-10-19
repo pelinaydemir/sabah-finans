@@ -51,7 +51,7 @@ src/
     ├── logos/                Logo/Currency, Logo/Company, marka logosu
     ├── charts/               Sparkline ve bar grafik export'ları
     ├── images/               Haber görselleri
-    └── ads/                  Reklam yer tutucuları
+    └── campaign/                  Reklam yer tutucuları
 ```
 
 ## Kurallar (kısaca)
