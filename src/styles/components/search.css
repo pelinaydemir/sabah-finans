@@ -347,9 +347,12 @@
     display: none;
   }
 
+  /* min-height: 0 → flex öğesi ekran yüksekliğine sığar ve kendi içinde kayar */
   .search-panel {
     position: static;
     flex: 1 1 auto;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
     max-height: none;
     padding: var(--space-2) calc(var(--layout-page-padding) - var(--space-3)) calc(var(--space-6) + env(safe-area-inset-bottom));
     border: 0;

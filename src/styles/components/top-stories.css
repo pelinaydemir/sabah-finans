@@ -263,8 +263,13 @@
 
   /* Haber numaraları → nokta (8px, seçili 12px) */
   .nav-numbers {
+    align-items: center;
     gap: 0;
     padding-block: 0;
+  }
+
+  .nav-numbers > li {
+    display: flex;
   }
 
   .nav-number,
@@ -289,7 +294,7 @@
   .nav-number[aria-current="true"]::before {
     width: 12px;
     height: 12px;
-    background: var(--color-bg-inverse);
+    background: var(--color-bg-brand); /* Brand/Primary/500 */
   }
 
   .nav-number__ring {
