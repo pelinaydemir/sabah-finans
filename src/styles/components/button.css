@@ -43,6 +43,22 @@
 .btn--primary {
   padding-inline: var(--space-6) var(--space-4);
   background: var(--color-bg-brand-strong);
+  transition: background-color 0.15s ease;
+}
+
+/* brand-strong çok koyu olduğu için parlaklık filtresi fark edilmiyor:
+   hover'da bir ton açık marka rengine geçer, ok sağa kayar */
+.btn--primary:hover {
+  background: var(--color-bg-brand);
+  filter: none;
+}
+
+.btn--primary .btn__icon {
+  transition: transform 0.15s ease;
+}
+
+.btn--primary:hover .btn__icon {
+  transform: translateX(2px);
 }
 
 /* --------------------------------------------------------------------------

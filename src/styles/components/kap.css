@@ -26,8 +26,20 @@
 }
 
 .kap__column--secondary {
+  position: relative;
   padding-left: var(--space-5);
-  border-left: 1px solid var(--color-border-default);
+}
+
+/* Orta ayırıcı: kartın üst ve alt çizgisinden 16px içeride biter
+   (kart dikey padding'i 4px olduğu için kolon içinde 12px) */
+.kap__column--secondary::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--space-4) - var(--space-1));
+  bottom: calc(var(--space-4) - var(--space-1));
+  left: 0;
+  width: 1px;
+  background: var(--color-border-default);
 }
 
 .kap__column > li + li {

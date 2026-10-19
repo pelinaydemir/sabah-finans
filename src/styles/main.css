@@ -20,6 +20,7 @@
 
 /* Organizma / widget */
 @import url("components/header.css");
+@import url("components/search.css");
 @import url("components/breaking-news.css");
 @import url("components/market-bar.css");
 @import url("components/category-nav.css");

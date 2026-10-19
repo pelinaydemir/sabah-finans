@@ -39,13 +39,34 @@
         <img src="src/assets/logos/logo-finans-inverse.svg" width="216" height="56" alt="Sabah Finans">
       </a>
 
-      <form class="search" role="search" action="#">
-        <label class="visually-hidden" for="site-search">Sembol kodu, şirket adı veya haber ara</label>
-        <input class="search__input t-body-s-medium" id="site-search" type="search" name="q" placeholder="Sembol kodu, şirket adı veya haber ara" autocomplete="off">
-        <button class="search__button" type="submit" aria-label="Ara">
+      <!-- ARAMA · Figma "Search/Arama" — Desktop: header'da alan + açılır panel
+           Tablet/Mobil: ikon → tam ekran arama görünümü (geri butonu / cihaz geri tuşu ile kapanır)
+           Panel içeriği main.js › initSearch ile üretilir. -->
+      <div class="search" data-search>
+        <button class="search__open" type="button" aria-label="Arama yap" aria-haspopup="dialog" data-search-open>
           <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
         </button>
-      </form>
+        <div class="search__layer" data-search-layer aria-label="Arama">
+          <form class="search__form" role="search" action="#" data-search-form>
+            <button class="search__back" type="button" aria-label="Aramayı kapat" data-search-close>
+              <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg>
+            </button>
+            <div class="search__field">
+              <svg class="icon search__lead" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search-normal"/></svg>
+              <label class="visually-hidden" for="site-search">Sembol kodu, şirket adı veya haber ara</label>
+              <input class="search__input t-body-s-medium" id="site-search" type="search" name="q" placeholder="Sembol kodu, şirket adı veya haber ara" autocomplete="off" spellcheck="false"
+                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-panel" enterkeyhint="search">
+              <button class="search__clear" type="button" aria-label="Aramayı temizle" data-search-clear hidden>
+                <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#close"/></svg>
+              </button>
+              <button class="search__button" type="submit" aria-label="Ara">
+                <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
+              </button>
+            </div>
+          </form>
+          <div class="search-panel" id="search-panel" data-search-panel hidden></div>
+        </div>
+      </div>
 
       <a class="btn btn--positive site-header__live" href="#">
         <svg class="icon btn__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#status-up"/></svg>
@@ -215,15 +236,20 @@
         <h1 class="visually-hidden">Sabah Finans – Piyasalar ve ekonomi haberleri</h1>
 
         <div class="headline-slider" data-slider aria-roledescription="carousel" aria-label="Manşet haberler">
-          <article class="news-hero" aria-live="polite" data-hero>
-            <img class="news-hero__img" data-hero-img src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
-            <div class="news-hero__body">
-              <p class="news-hero__meta t-body-s-medium"><span data-hero-category>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time data-hero-time datetime="2026-10-18T09:49">11 dakika önce</time></p>
-              <h2 class="news-hero__title t-display-bold"><a href="#" data-hero-title>New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
-              <ul class="news-hero__tickers" aria-label="İlgili hisseler" data-hero-tickers>
-                <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li>
-                <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li>
-              </ul>
+          <div class="headline-slider__stage">
+            <!-- İlk manşet HTML'de hazır (SEO); diğer 9 slayt main.js › initHeadlineSlider ile data.js'ten eklenir -->
+            <div class="headline-slider__track" data-hero-track aria-live="off">
+              <article class="news-hero is-active" role="group" aria-roledescription="slayt" aria-label="1 / 10">
+                <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time datetime="2026-10-18T09:49">11 dakika önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler">
+                    <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li>
+                    <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li>
+                  </ul>
+                </div>
+              </article>
             </div>
             <div class="news-hero__arrows">
               <button class="icon-button icon-button--subtle" type="button" data-slide="prev" aria-label="Önceki manşet">
@@ -233,8 +259,9 @@
                 <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
               </button>
             </div>
-          </article>
+          </div>
 
+          <!-- Desktop: numara + ilerleme halkası · Tablet/Mobil: Figma 188:25603 "Haber numaraları" (nokta) -->
           <ol class="nav-numbers" aria-label="Manşet sayfaları">
             <li><button class="nav-number t-body-s-medium" type="button" aria-label="1. manşet" aria-current="true">1</button></li>
             <li><button class="nav-number t-body-s-medium" type="button" aria-label="2. manşet">2</button></li>

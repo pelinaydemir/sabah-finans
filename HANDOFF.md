@@ -119,10 +119,10 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Bölüm | Desktop | Tablet | Mobile |
 |---|---|---|---|
 | Üst reklam | 970×250 | 728×90 | 300×256 (`<picture>`) |
-| Header arama | 710px ortalanmış input | ikon → tıklayınca header altında açılır | aynı |
+| Header arama | 710px ortalanmış input + açılır panel (2 kolon) | ikon → tam ekran arama görünümü (geri butonu / cihaz geri tuşu) | aynı |
 | CANLI BORSA | ikon + metin (Body/L) | ikon + metin (16px) | yalnız metin, 32px |
 | Kategori tab'ları | ortalanmış | sola hizalı, yatay kaydırma | aynı |
-| Manşet | görsel + 10'lu sayfalama + 5 haber yan listede | 4:3 görsel + altında 3 haber, sayfalama yok | aynı, başlık H3 |
+| Manşet | otomatik dönen slider, 10'lu numara + ilerleme halkası, 5 haber yan listede | 4:3 kart karoseli (Figma 188:25592): komşu kartlar 8px aralıkla görünür, altta nokta; altında 3 haber | aynı, başlık H3 |
 | Yan kolon | ayrı kolon (gri panel) | akışa karışır, her widget kendi gri panelinde | aynı |
 | Haber kolonları | 3 kolon | alt alta, Piyasa Özeti'nden sonra | aynı |
 | Çevirici | alanlar yan yana, swap ⇄ | alanlar alt alta, swap ⇅, tam genişlik buton | aynı |
@@ -141,10 +141,13 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 | Öğe | Durum | Uygulama |
 |---|---|---|
 | Tab | seçili | `.is-selected` + `aria-selected="true"`; ←/→ ile klavye gezinmesi |
-| nav-number | seçili | `aria-current="true"` |
+| nav-number | seçili / hover | `aria-current="true"`; üzerine gelmek manşeti değiştirir. Halka (`.nav-number__ring`) sıradaki manşete kalan süreyi gösterir (JS → `--progress`) |
+| Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare/klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
+| Son dakika | oklar | şeridi bir haber ileri/geri alır (başlık sol kenara hizalanır), sonra otomatik kayma sürer |
+| Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
 | ticker-chip, stock-tile | hover | çerçeve `--color-border-strong` |
-| Butonlar | hover | `brightness(1.08)` |
+| Butonlar | hover | `brightness(1.08)`; `btn--primary` (koyu lacivert) için zemin `--color-bg-brand`'e geçer, ok 2px kayar |
 | Input | focus | çerçeve `--color-border-brand` |
 | Tümü | focus-visible | 2px `--color-border-brand` outline |
 
@@ -170,6 +173,9 @@ Tüm veriler Figma'daki örnek içeriktir; canlı veriye bağlanırken:
 - **Kripto avatarları**: logosu olmayan coin'ler için harf avatarı, renk `--coin-color` ile verilir.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
+- **Arama**: `main.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri
+  `headlines`'tan üretir. Canlı ortamda `GET /search?q=` yanıtı aynı şablonlara (`symbolItem`, `newsItem`)
+  verilir; istek sürerken panelde mevcut sonuçlar korunmalı, ağ hatasında “Sonuç yok” yerine yeniden dene mesajı gösterilmelidir.
 - **Reklamlar**: `.campaign-*` kapları sabit ölçülü yer tutuculardır; ad server slot'larıyla değiştirilir. Sınıf ve dosya adları bilinçli olarak `ad-*`/`ads/` yerine `campaign` seçildi: reklam engelleyiciler bu kalıpları gizlediği için demo sitede reklam alanları görünmüyordu.
 
 ## 8. Figma'dan bilinçli sapmalar

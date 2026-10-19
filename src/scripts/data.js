@@ -114,3 +114,31 @@ export const coins = [
   { pair: 'DOGE/USDT', name: 'Dogecoin', logo: CUR + 'doge.svg', price: 0.2214, change: { daily: -1.87, weekly: -5.42, monthly: 9.18, yearly: 112.6 }, decimals: 4 },
   { pair: 'LINK/USDT', name: 'Chainlink', avatar: ['L', '#2a5ada'], price: 16.82, change: { daily: 0.93, weekly: 6.24, monthly: 12.7, yearly: 54.9 }, decimals: 2 },
 ];
+
+/* ---------------------------------------------------------------------------
+   Arama — hisse/endeks sembolleri ve "En Çok Arananlar"
+   Döviz, altın ve kripto sonuçları yukarıdaki `currencies` ve `coins` listelerinden
+   üretilir (bkz. main.js › buildSearchIndex). Canlı ortamda: GET /search?q=
+   --------------------------------------------------------------------------- */
+export const stocks = [
+  { code: 'THYAO', name: 'Türk Hava Yolları A.O.', logo: CO + 'thyao.svg', change: 0.18 },
+  { code: 'ASELS', name: 'Aselsan Elektronik Sanayi ve Ticaret A.Ş.', logo: CO + 'asels.svg', change: 2.41 },
+  { code: 'GARAN', name: 'Türkiye Garanti Bankası A.Ş.', logo: CO + 'garan.svg', change: -0.62 },
+  { code: 'AKBNK', name: 'Akbank T.A.Ş.', logo: CO + 'akbnk.svg', change: -0.38 },
+  { code: 'YKBNK', name: 'Yapı ve Kredi Bankası A.Ş.', logo: CO + 'ykbnk.svg', change: -1.24 },
+  { code: 'EREGL', name: 'Ereğli Demir ve Çelik Fabrikaları T.A.Ş.', logo: CO + 'eregl.svg', change: -9.98 },
+  { code: 'BIMAS', name: 'BİM Birleşik Mağazalar A.Ş.', logo: CO + 'bimas.svg', change: 0.84 },
+  { code: 'KOZAL', name: 'Koza Altın İşletmeleri A.Ş.', logo: CO + 'kozal.svg', change: 4.52 },
+  { code: 'SASA', name: 'Sasa Polyester Sanayi A.Ş.', logo: CO + 'sasa.svg', change: -0.21 },
+  { code: 'ENKAI', name: 'Enka İnşaat ve Sanayi A.Ş.', logo: CO + 'enkai.svg', change: 2.97 },
+  { code: 'PEKGY', name: 'Peker Gayrimenkul Yatırım Ortaklığı A.Ş.', logo: CO + 'pekgy.png', change: 3.24 },
+  { code: 'CELHA', name: 'Çelik Halat ve Tel Sanayii A.Ş.', logo: CO + 'celha.png', change: 7.15 },
+  { code: 'HUBVC', name: 'Hub Girişim Sermayesi Yatırım Ortaklığı A.Ş.', logo: CO + 'hubvc.png', change: 5.88 },
+  { code: 'MNDTR', name: 'Mondi Turkey Oluklu Mukavva Kağıt ve Ambalaj Sanayi A.Ş.', logo: CO + 'mndtr.svg', change: -2.35 },
+  { code: 'KONKA', name: 'Konya Kağıt Sanayi ve Ticaret A.Ş.', logo: CO + 'konka.svg', change: 1.06 },
+  { code: 'PSGYO', name: 'Pasifik Gayrimenkul Yatırım Ortaklığı A.Ş.', logo: CO + 'psgyo.svg', change: -0.94 },
+  { code: 'XU100', name: 'BIST 100 Endeksi', type: 'Endeks', logo: CUR + 'bist100.png', change: 0.34 },
+];
+
+/* Varsayılan durumda listelenen semboller (sıra = popülerlik) */
+export const popularSearches = ['THYAO', 'USD', 'GA', 'ASELS', 'BTC', 'XU100', 'EUR', 'GARAN'];

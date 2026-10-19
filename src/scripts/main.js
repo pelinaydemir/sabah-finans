@@ -7,7 +7,7 @@
  */
 import {
   headlines, currencies, currencyGroups, baseCurrencies,
-  moneyAssets, bistLists, coins, cryptoPeriods,
+  moneyAssets, bistLists, coins, cryptoPeriods, stocks, popularSearches,
 } from './data.js';
 
 const ICONS = 'src/assets/icons/sprite.svg';
@@ -74,66 +74,142 @@ const onTab = (group, handler) => {
 };
 
 /* ---------------------------------------------------------------------------
-   MANŞET — nav-number, oklar, klavye ve dokunmatik kaydırma
+   MANŞET — otomatik dönen slider
+   Desktop : slaytlar üst üste, geçişte çapraz solma. nav-number'ın üzerine
+             gelince / tıklayınca manşet değişir; aktif numaradaki halka
+             sıradaki manşete geçişe kalan süreyi gösterir.
+   Tablet/Mobil : yatay kaydırılan karosel (Figma 188:25592) — ortadaki kart
+             tam boy, komşu kartlar %90,7 ölçekli ve 8px aralıklı; altta nokta.
+   Otomatik geçiş fare/klavye odağı slider'dayken, dokunurken, sekme
+   arka plandayken ve slider ekranda değilken durur (WCAG 2.2.2).
+   "Hareketi azalt" tercihinde otomatik geçiş kapalıdır.
    --------------------------------------------------------------------------- */
+const AUTOPLAY_MS = 6000;
+
+const heroTickers = (tickers) => tickers.map(([symbol, change]) => `
+  <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">${symbol}</span>${changeIndicator(change, parseNum(change))}</a></li>`).join('');
+
+const heroSlide = (h, i) => `
+  <article class="news-hero" role="group" aria-roledescription="slayt" aria-label="${i + 1} / ${headlines.length}">
+    <img class="news-hero__img" src="${h.image}" width="1600" height="1066" alt="${h.alt}" loading="lazy">
+    <div class="news-hero__body">
+      <p class="news-hero__meta t-body-s-medium"><span>${h.category}</span><span class="news-hero__dot" aria-hidden="true">·</span><time>${h.time}</time></p>
+      <h2 class="news-hero__title t-display-bold"><a href="#">${h.title}</a></h2>
+      <ul class="news-hero__tickers" aria-label="İlgili hisseler">${heroTickers(h.tickers)}</ul>
+    </div>
+  </article>`;
+
 function initHeadlineSlider() {
   const slider = document.querySelector('[data-slider]');
   if (!slider) return;
 
-  const hero = slider.querySelector('[data-hero]');
-  const img = hero.querySelector('[data-hero-img]');
+  const track = slider.querySelector('[data-hero-track]');
   const numbers = [...slider.querySelectorAll('.nav-number')];
+  track.insertAdjacentHTML('beforeend', headlines.slice(1).map((h, i) => heroSlide(h, i + 1)).join(''));
+  const slides = [...track.children];
+  const count = slides.length;
   let current = 0;
 
-  const render = (h) => {
-    img.src = h.image;
-    img.alt = h.alt;
-    hero.querySelector('[data-hero-category]').textContent = h.category;
-    hero.querySelector('[data-hero-time]').textContent = h.time;
-    hero.querySelector('[data-hero-title]').textContent = h.title;
-    hero.querySelector('[data-hero-tickers]').innerHTML = h.tickers.map(([symbol, change]) => `
-      <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">${symbol}</span>${changeIndicator(change, parseNum(change))}</a></li>`).join('');
-  };
+  // İlerleme halkası (dekoratif) — CSS, slider'daki --progress (0…1) değerini çizer
+  numbers.forEach((n) => n.insertAdjacentHTML('afterbegin',
+    '<svg class="nav-number__ring" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16.25"/></svg>'));
 
-  const go = (index) => {
-    const next = (index + headlines.length) % headlines.length;
-    if (next === current) return;
-    current = next;
+  const isCarousel = () => !isDesktop();
+  const step = () => slides[1].offsetLeft - slides[0].offsetLeft;
+
+  const setActive = (index) => {
+    current = index;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === current);
+      slide.classList.toggle('is-before', i < current);
+      slide.inert = !isCarousel() && i !== current; // desktop: gizli slaytlar odak almaz
+    });
     numbers.forEach((n, i) => (i === current ? n.setAttribute('aria-current', 'true') : n.removeAttribute('aria-current')));
-
-    if (reducedMotion) { render(headlines[current]); return; }
-    hero.classList.add('is-changing');
-    setTimeout(() => {
-      render(headlines[current]);
-      hero.classList.remove('is-changing');
-    }, 200);
   };
 
-  numbers.forEach((n, i) => n.addEventListener('click', () => go(i)));
+  /* --- Otomatik geçiş ------------------------------------------------------ */
+  let elapsed = 0;
+  let last = null;
+  const hold = { pointer: false, focus: false, touch: false, offscreen: false };
+  const isHeld = () => document.hidden || Object.values(hold).some(Boolean);
+  const restart = () => { elapsed = 0; slider.style.setProperty('--progress', '0'); };
+
+  const go = (index, { scroll = true } = {}) => {
+    const next = (index + count) % count;
+    restart();
+    if (next === current) return;
+    setActive(next);
+    if (scroll && isCarousel()) track.scrollTo({ left: next * step(), behavior: reducedMotion ? 'auto' : 'smooth' });
+  };
+
+  const tick = (t) => {
+    if (last !== null && !isHeld()) {
+      elapsed += t - last;
+      if (elapsed >= AUTOPLAY_MS) go(current + 1);
+      slider.style.setProperty('--progress', (elapsed / AUTOPLAY_MS).toFixed(4));
+    }
+    last = t;
+    requestAnimationFrame(tick);
+  };
+
+  /* --- Desktop: numara (hover + tıklama), oklar, klavye -------------------- */
+  numbers.forEach((n, i) => {
+    n.addEventListener('click', () => go(i));
+    n.addEventListener('mouseenter', () => { if (!isCarousel()) go(i); });
+  });
   slider.querySelector('[data-slide="prev"]')?.addEventListener('click', () => go(current - 1));
   slider.querySelector('[data-slide="next"]')?.addEventListener('click', () => go(current + 1));
-
   slider.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') go(current + 1);
     if (e.key === 'ArrowLeft') go(current - 1);
   });
 
-  /* Dokunmatik: yatay kaydırma (tablet/mobilde oklar ve sayfalama gizlidir) */
-  let startX = null;
-  hero.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') startX = e.clientX; });
-  hero.addEventListener('pointerup', (e) => {
-    if (startX === null) return;
-    const dx = e.clientX - startX;
-    startX = null;
-    if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+  slider.addEventListener('mouseenter', () => { hold.pointer = true; });
+  slider.addEventListener('mouseleave', () => { hold.pointer = false; });
+  slider.addEventListener('focusin', () => { hold.focus = true; track.setAttribute('aria-live', 'polite'); });
+  slider.addEventListener('focusout', (e) => {
+    if (slider.contains(e.relatedTarget)) return;
+    hold.focus = false;
+    track.setAttribute('aria-live', 'off');
   });
 
-  /* Görselleri önceden yükle — geçişte boşluk olmasın */
-  [...new Set(headlines.map((h) => h.image))].forEach((src) => { new Image().src = src; });
+  /* --- Tablet/Mobil: kaydırma bitince aktif kartı eşitle ------------------- */
+  let settle;
+  track.addEventListener('scroll', () => {
+    if (!isCarousel()) return;
+    clearTimeout(settle);
+    settle = setTimeout(() => {
+      const index = Math.round(track.scrollLeft / step());
+      if (index !== current) { setActive(index); restart(); }
+    }, 120);
+  }, { passive: true });
+  track.addEventListener('touchstart', () => { hold.touch = true; }, { passive: true });
+  track.addEventListener('touchend', () => { hold.touch = false; restart(); });
+
+  // Yandaki (küçük) karta dokunmak önce o kartı ortaya getirir
+  track.addEventListener('click', (e) => {
+    const slide = e.target.closest('.news-hero');
+    if (!isCarousel() || !slide || slide.classList.contains('is-active')) return;
+    e.preventDefault();
+    go(slides.indexOf(slide));
+  });
+
+  matchMedia('(min-width: 1280px)').addEventListener('change', () => {
+    setActive(current);
+    if (isCarousel()) track.scrollTo({ left: current * step() });
+  });
+
+  new IntersectionObserver(([entry]) => { hold.offscreen = !entry.isIntersecting; }, { threshold: 0.3 }).observe(slider);
+
+  setActive(0);
+  if (!reducedMotion) requestAnimationFrame(tick);
 }
 
 /* ---------------------------------------------------------------------------
-   SON DAKİKA — yavaş otomatik kayma, hover/odakta durur, oklarla atlanır
+   SON DAKİKA — yavaş otomatik kayma, hover/odakta durur
+   Oklar: şeridi bir haber ileri/geri alır — sıradaki (önceki) başlık sol
+   kenara hizalanır, ardından otomatik kayma kaldığı yerden sürer.
+   Döngü kesintisizdir: liste bir kez kopyalanır, sona gelince başa sarar.
    --------------------------------------------------------------------------- */
 function initBreakingNews() {
   const list = document.querySelector('[data-scroller]');
@@ -143,6 +219,7 @@ function initBreakingNews() {
   let paused = false;
   let last = null;
   let pos = list.scrollLeft;
+  let target = null; // ok ile istenen konum
 
   // Kesintisiz döngü için öğeleri bir kez çoğalt (ekran okuyucudan gizli)
   const originals = [...list.children];
@@ -154,12 +231,25 @@ function initBreakingNews() {
   });
   list.classList.add('is-ticking');
 
-  const loopWidth = () => originals.at(-1).offsetLeft + originals.at(-1).offsetWidth + 16 - originals[0].offsetLeft;
+  const items = [...list.children];
+  const offset = (li) => li.offsetLeft - items[0].offsetLeft;
+  const loopWidth = () => offset(items[originals.length]);
+  const wrap = () => {
+    const w = loopWidth();
+    if (pos >= w) { pos -= w; if (target !== null) target -= w; }
+    if (pos < 0) { pos += w; if (target !== null) target += w; }
+  };
 
   const tick = (t) => {
-    if (last !== null && !paused) {
-      pos += (SPEED * (t - last)) / 1000;
-      if (pos >= loopWidth()) pos -= loopWidth();
+    if (last !== null) {
+      const dt = (t - last) / 1000;
+      if (target !== null) {
+        pos += (target - pos) * Math.min(1, dt * 8); // yumuşak yaklaşma
+        if (Math.abs(target - pos) < 0.5) { pos = target; target = null; }
+      } else if (!paused) {
+        pos += SPEED * dt;
+      }
+      wrap();
       list.scrollLeft = pos;
     }
     last = t;
@@ -176,11 +266,28 @@ function initBreakingNews() {
   list.addEventListener('touchstart', pause, { passive: true });
   list.addEventListener('touchend', () => setTimeout(resume, 2000));
 
+  const jump = (direction) => {
+    const from = target ?? pos;
+    if (direction > 0) {
+      const next = items.find((li) => offset(li) > from + 1);
+      target = next ? offset(next) : from;
+    } else {
+      // Başta isek döngünün kopya tarafına geçip oradan geri git
+      let base = from;
+      if (base < 1) { pos += loopWidth(); base += loopWidth(); }
+      const prev = items.filter((li) => offset(li) < base - 1).at(-1);
+      target = prev ? offset(prev) : 0;
+    }
+  };
+
   document.querySelectorAll('[data-scroll]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const delta = (btn.dataset.scroll === 'next' ? 1 : -1) * list.clientWidth * 0.6;
-      list.scrollTo({ left: Math.max(0, list.scrollLeft + delta), behavior: 'smooth' });
-      setTimeout(() => { pos = list.scrollLeft; }, 450);
+      const direction = btn.dataset.scroll === 'next' ? 1 : -1;
+      if (reducedMotion) {
+        list.scrollBy({ left: direction * list.clientWidth * 0.6 });
+        return;
+      }
+      jump(direction);
     });
   });
 
@@ -475,21 +582,269 @@ function initStickySidebar() {
 }
 
 /* ---------------------------------------------------------------------------
-   MOBİL/TABLET ARAMA — ikon ilk dokunuşta alanı açar
+   ARAMA
+   Desktop      : header'daki alan; odakta panel açılır (Dropdown dili:
+                  grup başlığı + 48px satır), 2 kolon — semboller | haberler.
+   Tablet/Mobil : arama ikonu tam ekran görünüm açar. Geri butonu, Esc ve
+                  cihazın geri tuşu (history) görünümü kapatır.
+   Durumlar     : varsayılan (son aramalar + en çok arananlar + popüler
+                  haberler) → yazarken (eşleşen semboller / haberler, eşleşme
+                  vurgulu) → sonuç yok (öneri çipleri).
+   Klavye       : ↑/↓ seçenekler arasında, Enter açar, Esc kapatır/temizler.
    --------------------------------------------------------------------------- */
+const RECENT_KEY = 'sf-recent-searches';
+const fold = (text) => text.toLocaleLowerCase('tr').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ı/g, 'i');
+const escapeHTML = (text) => text.replace(/[&<>"']/g, (ch) => `&#${ch.charCodeAt(0)};`);
+
+/* Eşleşen kısmı <mark> ile vurgular (aksan/ büyük-küçük harf duyarsız) */
+const highlight = (text, query) => {
+  const i = query ? fold(text).indexOf(fold(query)) : -1;
+  if (i < 0) return escapeHTML(text);
+  const end = i + query.length;
+  return `${escapeHTML(text.slice(0, i))}<mark>${escapeHTML(text.slice(i, end))}</mark>${escapeHTML(text.slice(end))}`;
+};
+
+function buildSearchIndex() {
+  const symbols = [
+    ...stocks.map((s) => ({ ...s, type: s.type || 'Hisse' })),
+    ...currencies.filter((c) => c.code !== 'TRY').map((c) => ({
+      code: c.label || `${c.code}/TRY`, name: c.label ? `${c.code}/TRY` : c.name, type: c.label ? 'Altın' : 'Döviz', logo: c.logo, change: c.change, key: c.code,
+    })),
+    ...coins.map((c) => ({ code: c.pair.split('/')[0], name: c.name, type: 'Kripto', logo: c.logo, avatar: c.avatar, change: c.change.daily })),
+  ].map((s) => ({ ...s, key: s.key || s.code, haystack: fold(`${s.code} ${s.name}`) }));
+  const news = headlines.map((h) => ({ ...h, haystack: fold(`${h.title} ${h.category}`) }));
+  return { symbols, news, byKey: Object.fromEntries(symbols.map((s) => [s.key, s])) };
+}
+
 function initSearch() {
-  const form = document.querySelector('.search');
-  if (!form) return;
-  const input = form.querySelector('.search__input');
+  const root = document.querySelector('[data-search]');
+  if (!root) return;
+
+  const layer = root.querySelector('[data-search-layer]');
+  const form = root.querySelector('[data-search-form]');
+  const input = root.querySelector('.search__input');
+  const clearBtn = root.querySelector('[data-search-clear]');
+  const panel = root.querySelector('[data-search-panel]');
+  const openBtn = root.querySelector('[data-search-open]');
+  const { symbols, news, byKey } = buildSearchIndex();
+  const isOverlay = () => !isDesktop();
+  const placeholder = { desktop: input.placeholder, overlay: 'Sembol kodu, şirket adı ara' };
+  let active = -1;
+
+  /* --- Son aramalar (yalnızca bu tarayıcıda) ------------------------------ */
+  const readRecent = () => { try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch { return []; } };
+  const writeRecent = (list) => { try { localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0, 6))); } catch { /* gizli sekme */ } };
+  const remember = (term) => {
+    const t = term.trim();
+    if (t) writeRecent([t, ...readRecent().filter((r) => fold(r) !== fold(t))]);
+  };
+
+  /* --- Şablonlar ---------------------------------------------------------- */
+  const symbolLogo = (s) => (s.logo
+    ? `<span class="logo-currency logo-currency--32"><img src="${s.logo}" alt=""></span>`
+    : `<span class="coin-avatar t-body-xs-semibold" style="--coin-color: ${s.avatar[1]}" aria-hidden="true">${s.avatar[0]}</span>`);
+
+  const symbolItem = (s, q) => `
+    <li><a class="search-item" href="#" role="option" data-search-option data-term="${s.code}">
+      ${symbolLogo(s)}
+      <span class="search-item__text">
+        <span class="search-item__code t-body-m-semibold">${highlight(s.code, q)}</span>
+        <span class="search-item__name t-body-s-regular">${highlight(s.name, q)}</span>
+      </span>
+      <span class="search-item__end">
+        <span class="search-item__type t-body-xs-medium">${s.type}</span>
+        ${changeIndicator(percent(s.change), s.change)}
+      </span>
+    </a></li>`;
+
+  const newsItem = (n, q) => `
+    <li><a class="search-news" href="#" role="option" data-search-option data-term="${escapeHTML(n.title)}">
+      <span class="search-news__text">
+        <span class="search-news__title t-body-m-semibold">${highlight(n.title, q)}</span>
+        <span class="news-meta"><span class="t-body-xs-medium">${n.category}</span><span class="news-meta__dot" aria-hidden="true">·</span><span class="t-body-xs-medium">${n.time}</span></span>
+      </span>
+      <img class="search-news__img" src="${n.image}" alt="" loading="lazy">
+    </a></li>`;
+
+  const group = (title, body, extra = '') => `
+    <section class="search-panel__group">
+      <header class="search-panel__head"><h2 class="t-overline">${title}</h2>${extra}</header>
+      ${body}
+    </section>`;
+
+  const list = (items) => `<ul class="search-panel__list" role="presentation">${items}</ul>`;
+
+  const renderDefault = () => {
+    const recent = readRecent();
+    const popular = popularSearches.map((k) => byKey[k]).filter(Boolean);
+    return `
+      ${recent.length ? group('Son aramalar', `<ul class="search-chips">${recent.map((r) => `
+        <li><button class="search-chip t-body-s-medium" type="button" data-search-option data-fill="${escapeHTML(r)}">${icon('clock')}${escapeHTML(r)}</button></li>`).join('')}</ul>`,
+        '<button class="search-panel__action t-body-s-semibold" type="button" data-search-clear-recent>Temizle</button>') : ''}
+      <div class="search-panel__columns">
+        ${group('En çok arananlar', list(popular.slice(0, 6).map((s) => symbolItem(s)).join('')))}
+        ${group('Popüler haberler', list(news.slice(0, 4).map((n) => newsItem(n)).join('')))}
+      </div>`;
+  };
+
+  const renderResults = (q) => {
+    const f = fold(q);
+    // Kod başı eşleşmeler önce (THY → THYAO), sonra ad içinde geçenler
+    const found = symbols.filter((s) => s.haystack.includes(f))
+      .sort((a, b) => Number(!fold(a.code).startsWith(f)) - Number(!fold(b.code).startsWith(f)));
+    const foundNews = news.filter((n) => n.haystack.includes(f));
+
+    if (!found.length && !foundNews.length) {
+      return `
+        <div class="search-empty" role="status">
+          <span class="search-empty__icon">${icon('search-normal')}</span>
+          <p class="t-h6-semibold">“${escapeHTML(q)}” için sonuç bulunamadı</p>
+          <p class="t-body-s-regular">Yazımı kontrol edin ya da sembol kodu (ör. THYAO) veya şirket adıyla arayın.</p>
+          <ul class="search-chips">${popularSearches.slice(0, 5).map((k) => `
+            <li><button class="search-chip t-body-s-medium" type="button" data-search-option data-fill="${byKey[k].code}">${byKey[k].code}</button></li>`).join('')}</ul>
+        </div>`;
+    }
+
+    const none = (text) => `<p class="search-panel__none t-body-s-regular">${text}</p>`;
+    return `
+      <p class="visually-hidden" role="status">${found.length} sembol, ${foundNews.length} haber bulundu</p>
+      <div class="search-panel__columns">
+        ${group(`Semboller <span class="search-panel__count">${found.length}</span>`, found.length ? list(found.slice(0, 6).map((s) => symbolItem(s, q)).join('')) : none('Eşleşen sembol yok'))}
+        ${group(`Haberler <span class="search-panel__count">${foundNews.length}</span>`, foundNews.length ? list(foundNews.slice(0, 4).map((n) => newsItem(n, q)).join('')) : none('Eşleşen haber yok'))}
+      </div>
+      <a class="search-panel__all t-body-m-semibold" href="#" data-search-option data-term="${escapeHTML(q)}">“${escapeHTML(q)}” için tüm sonuçları gör ${icon('arrow-right')}</a>`;
+  };
+
+  /* --- Durum -------------------------------------------------------------- */
+  const options = () => [...panel.querySelectorAll('[data-search-option]')];
+
+  const setActive = (index) => {
+    const opts = options();
+    opts.forEach((o) => o.classList.remove('is-active'));
+    if (!opts.length || index < 0) { active = -1; input.removeAttribute('aria-activedescendant'); return; }
+    active = (index + opts.length) % opts.length;
+    const el = opts[active];
+    el.id ||= `search-option-${active}`;
+    el.classList.add('is-active');
+    el.scrollIntoView({ block: 'nearest' });
+    input.setAttribute('aria-activedescendant', el.id);
+  };
+
+  const render = () => {
+    const q = input.value.trim();
+    clearBtn.hidden = !input.value;
+    panel.innerHTML = q ? renderResults(q) : renderDefault();
+    panel.dataset.state = q ? 'results' : 'default';
+    setActive(-1);
+  };
+
+  const isOpen = () => !panel.hidden;
+
+  const open = () => {
+    if (isOpen()) return;
+    openDropdown?.close(false);
+    render();
+    panel.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    if (isOverlay()) {
+      root.classList.add('is-open');
+      input.placeholder = placeholder.overlay;
+      layer.setAttribute('role', 'dialog');
+      layer.setAttribute('aria-modal', 'true');
+      document.documentElement.classList.add('is-search-open');
+      history.pushState({ search: true }, '', '#ara');
+      requestAnimationFrame(() => input.focus());
+    }
+  };
+
+  const close = ({ fromHistory = false } = {}) => {
+    if (!isOpen()) return;
+    panel.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+    setActive(-1);
+    if (root.classList.contains('is-open')) {
+      root.classList.remove('is-open');
+      input.placeholder = placeholder.desktop;
+      layer.removeAttribute('role');
+      layer.removeAttribute('aria-modal');
+      document.documentElement.classList.remove('is-search-open');
+      if (!fromHistory && history.state?.search) history.back();
+      openBtn.focus();
+    }
+  };
+
+  const choose = (el) => {
+    if (el.dataset.fill !== undefined) { // çip: aramayı doldurur
+      input.value = el.dataset.fill;
+      render();
+      input.focus();
+      return;
+    }
+    remember(el.dataset.term);
+    close();
+    // Canlı ortamda: sembol/haber detay sayfasına yönlendirme (href)
+  };
+
+  /* --- Olaylar ------------------------------------------------------------ */
+  openBtn.addEventListener('click', open);
+  root.querySelector('[data-search-close]').addEventListener('click', () => close());
+  input.addEventListener('focus', open);
+  input.addEventListener('input', () => { if (!isOpen()) open(); render(); });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    render();
+    input.focus();
+  });
 
   form.addEventListener('submit', (e) => {
-    const collapsed = getComputedStyle(input).display === 'none';
-    if (collapsed || (!input.value.trim() && form.classList.contains('is-open'))) {
+    e.preventDefault();
+    const opt = options()[active];
+    if (opt) { choose(opt); return; }
+    if (input.value.trim()) { remember(input.value); render(); } // Canlı ortamda: /arama?q=
+  });
+
+  panel.addEventListener('click', (e) => {
+    if (e.target.closest('[data-search-clear-recent]')) {
+      writeRecent([]);
+      render();
+      input.focus();
+      return;
+    }
+    const opt = e.target.closest('[data-search-option]');
+    if (!opt) return;
+    e.preventDefault();
+    choose(opt);
+  });
+
+  panel.addEventListener('mousemove', (e) => {
+    const opt = e.target.closest('[data-search-option]');
+    if (opt && !opt.classList.contains('is-active')) setActive(options().indexOf(opt));
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (!isOpen()) open(); setActive(active + 1); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+    if (e.key === 'Escape') {
       e.preventDefault();
-      form.classList.toggle('is-open');
-      if (form.classList.contains('is-open')) input.focus();
+      if (input.value) { input.value = ''; render(); } else { close(); input.blur(); }
     }
   });
+
+  // Desktop: dışarı tıklayınca / odak çıkınca panel kapanır
+  document.addEventListener('pointerdown', (e) => {
+    if (!isOverlay() && isOpen() && !root.contains(e.target)) close();
+  });
+  root.addEventListener('focusout', (e) => {
+    if (!isOverlay() && e.relatedTarget && !root.contains(e.relatedTarget)) close();
+  });
+
+  // Mobil: cihaz geri tuşu görünümü kapatır
+  window.addEventListener('popstate', () => { if (root.classList.contains('is-open')) close({ fromHistory: true }); });
+
+  // Kırılım değişirse (ör. tablet döndürme) açık durumu sıfırla
+  matchMedia('(min-width: 1280px)').addEventListener('change', () => close());
+  if (location.hash === '#ara') history.replaceState(null, '', location.pathname);
 }
 
 initTabs();

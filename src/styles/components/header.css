@@ -29,18 +29,32 @@
   height: 40px;
 }
 
-/* --- Search ---------------------------------------------------------------- */
+/* --- Search (alan) — panel stilleri: components/search.css --------------- */
 .search {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: min(710px, 100% - 520px);
+  transform: translate(-50%, -50%);
+}
+
+.search__open,
+.search__back,
+.search__lead {
+  display: none;
+}
+
+.search__field {
   display: flex;
   align-items: center;
-  width: min(710px, 100% - 520px);
+  gap: var(--space-1);
   padding: var(--space-1) var(--space-1) var(--space-1) var(--space-6);
   border-radius: var(--radius-pill);
   background: var(--white-15);
-  transform: translate(-50%, -50%);
+}
+
+.search__field:focus-within {
+  box-shadow: 0 0 0 2px var(--white-80);
 }
 
 .search__input {
@@ -57,18 +71,42 @@
   opacity: 1;
 }
 
+/* Tarayıcının kendi temizle ikonu yerine tasarımdaki "X" (search__clear) */
 .search__input::-webkit-search-cancel-button {
-  filter: invert(1);
+  appearance: none;
 }
 
-.search:focus-within {
-  box-shadow: 0 0 0 2px var(--white-80);
+.search__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-on-brand-secondary);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.search__clear[hidden] {
+  display: none;
+}
+
+.search__clear:hover {
+  background: var(--white-10);
+  color: var(--color-text-on-brand);
+}
+
+.search__clear .icon {
+  width: 20px;
+  height: 20px;
 }
 
 .search__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   height: 32px;
   padding-inline: 14px;
   border-radius: var(--radius-pill);
@@ -93,38 +131,21 @@
     height: 32px;
   }
 
+  /* Arama: header'da yalnız ikon; açılınca tam ekran görünüm (search.css) */
   .search {
     position: static;
     width: auto;
     margin-left: auto;
-    padding: 0;
-    background: none;
     transform: none;
   }
 
-  .search__input {
-    display: none;
-  }
-
-  .search__button {
-    background: transparent;
-  }
-
-  /* Arama ikonuna basınca header altında tam genişlik alan açılır */
-  .search.is-open .search__input {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: block;
-    height: 48px;
-    padding-inline: var(--layout-gutter);
-    background: var(--color-bg-brand-strong);
-    border-top: 1px solid var(--color-border-on-brand);
-  }
-
-  .search:focus-within {
-    box-shadow: none;
+  .search__open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-icon-on-brand);
   }
 }
 
