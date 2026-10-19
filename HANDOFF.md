@@ -142,11 +142,12 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 |---|---|---|
 | Tab | seçili | `.is-selected` + `aria-selected="true"`; ←/→ ile klavye gezinmesi |
 | nav-number | seçili / hover | `aria-current="true"`; üzerine gelmek manşeti değiştirir. Halka (`.nav-number__ring`) sıradaki manşete kalan süreyi gösterir (JS → `--progress`) |
-| Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare/klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
+| Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare manşet kartının üzerindeyken, klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
 | Son dakika | oklar | şeridi bir haber ileri/geri alır (başlık sol kenara hizalanır), sonra otomatik kayma sürer |
 | Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
-| ticker-chip, stock-tile | hover | çerçeve `--color-border-strong` |
+| ticker-chip | hover | çerçeve `--color-border-strong` |
+| stock-tile, kripto satırı | hover | zemin `--color-bg-brand-subtle` (çerçeve değişmez) |
 | Butonlar | hover | `brightness(1.08)`; `btn--primary` (koyu lacivert) için zemin `--color-bg-brand`'e geçer, ok 2px kayar |
 | Input | focus | çerçeve `--color-border-brand` |
 | Tümü | focus-visible | 2px `--color-border-brand` outline |

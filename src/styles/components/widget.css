@@ -253,11 +253,12 @@
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-lg);
   color: var(--color-text-primary);
-  transition: border-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
+/* Kripto tablosu satır hover'ı ile aynı: zemin brand-subtle, çerçeve değişmez */
 .stock-tile:hover {
-  border-color: var(--color-border-strong);
+  background: var(--color-bg-brand-subtle);
 }
 
 .stock-tile__top {

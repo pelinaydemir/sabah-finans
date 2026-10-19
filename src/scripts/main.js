@@ -164,25 +164,41 @@ function initHeadlineSlider() {
     if (e.key === 'ArrowLeft') go(current - 1);
   });
 
-  slider.addEventListener('mouseenter', () => { hold.pointer = true; });
-  slider.addEventListener('mouseleave', () => { hold.pointer = false; });
-  slider.addEventListener('focusin', () => { hold.focus = true; track.setAttribute('aria-live', 'polite'); });
+  // Yalnızca manşet kartının üzerindeyken durur; numaraya tıklayınca/üzerine gelince halka hemen dolmaya başlar
+  const stage = slider.querySelector('.headline-slider__stage');
+  stage.addEventListener('mouseenter', () => { hold.pointer = true; });
+  stage.addEventListener('mouseleave', () => { hold.pointer = false; });
+  // Klavye odağı durdurur; fareyle tıklanan numara (focus-visible değil) durdurmaz
+  slider.addEventListener('focusin', (e) => {
+    if (!e.target.matches(':focus-visible')) return;
+    hold.focus = true;
+    track.setAttribute('aria-live', 'polite');
+  });
   slider.addEventListener('focusout', (e) => {
     if (slider.contains(e.relatedTarget)) return;
     hold.focus = false;
     track.setAttribute('aria-live', 'off');
   });
 
-  /* --- Tablet/Mobil: kaydırma bitince aktif kartı eşitle ------------------- */
-  let settle;
-  track.addEventListener('scroll', () => {
+  /* --- Tablet/Mobil: karosel ---------------------------------------------
+     Kaydırma konumu karelere bağlıdır: parmak hareket ettikçe kartlar
+     311/343 ↔ 1 arasında ölçeklenir, nokta en yakın karta anında geçer.
+     Bırakınca scroll-snap kartı ortalar (tek seferde bir kart). */
+  const MIN_SCALE = 311 / 343;
+  let frame = null;
+  const paint = () => {
+    frame = null;
     if (!isCarousel()) return;
-    clearTimeout(settle);
-    settle = setTimeout(() => {
-      const index = Math.round(track.scrollLeft / step());
-      if (index !== current) { setActive(index); restart(); }
-    }, 120);
-  }, { passive: true });
+    const f = track.scrollLeft / step();
+    slides.forEach((slide, i) => {
+      const d = Math.min(1, Math.abs(i - f));
+      slide.style.transform = `scale(${1 - (1 - MIN_SCALE) * d})`;
+      slide.style.transformOrigin = i > f ? 'left center' : 'right center';
+    });
+    const index = Math.min(count - 1, Math.max(0, Math.round(f)));
+    if (index !== current) { setActive(index); restart(); }
+  };
+  track.addEventListener('scroll', () => { frame ??= requestAnimationFrame(paint); }, { passive: true });
   track.addEventListener('touchstart', () => { hold.touch = true; }, { passive: true });
   track.addEventListener('touchend', () => { hold.touch = false; restart(); });
 
@@ -196,12 +212,14 @@ function initHeadlineSlider() {
 
   matchMedia('(min-width: 1280px)').addEventListener('change', () => {
     setActive(current);
-    if (isCarousel()) track.scrollTo({ left: current * step() });
+    if (isCarousel()) { track.scrollTo({ left: current * step() }); paint(); return; }
+    slides.forEach((slide) => slide.style.removeProperty('transform'));
   });
 
   new IntersectionObserver(([entry]) => { hold.offscreen = !entry.isIntersecting; }, { threshold: 0.3 }).observe(slider);
 
   setActive(0);
+  paint();
   if (!reducedMotion) requestAnimationFrame(tick);
 }
 
