@@ -224,34 +224,30 @@ function initHeadlineSlider() {
 }
 
 /* ---------------------------------------------------------------------------
-   SON DAKİKA — yavaş otomatik kayma, hover/odakta durur
-   Oklar: şeridi bir haber ileri/geri alır — sıradaki (önceki) başlık sol
-   kenara hizalanır, ardından otomatik kayma kaldığı yerden sürer.
-   Döngü kesintisizdir: liste bir kez kopyalanır, sona gelince başa sarar.
+   SON DAKİKA
+   Desktop      : yavaş otomatik kayma (30px/sn), hover/odakta durur. Oklar şeridi
+                  bir haber ileri/geri alır, sonra otomatik kayma sürer. Döngü
+                  kesintisizdir: liste bir kez kopyalanır, sona gelince başa sarar.
+   Tablet/Mobil : otomatik kayma YOK — dokunmatikte parmakla kaydırma ile çakışır
+                  (WCAG 2.2.2). Şerit doğal yatay kaydırılır, her başlıkta durur
+                  (scroll-snap); tablet okları bir başlık ileri/geri alır.
    --------------------------------------------------------------------------- */
 function initBreakingNews() {
   const list = document.querySelector('[data-scroller]');
   if (!list) return;
 
   const SPEED = 30; // px / sn
+  const originals = [...list.children];
+  let clones = [];
+  let running = false;
   let paused = false;
   let last = null;
-  let pos = list.scrollLeft;
-  let target = null; // ok ile istenen konum
+  let pos = 0;
+  let target = null; // desktop: ok ile istenen konum
 
-  // Kesintisiz döngü için öğeleri bir kez çoğalt (ekran okuyucudan gizli)
-  const originals = [...list.children];
-  originals.forEach((li) => {
-    const clone = li.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.querySelector('a')?.setAttribute('tabindex', '-1');
-    list.append(clone);
-  });
-  list.classList.add('is-ticking');
-
-  const items = [...list.children];
-  const offset = (li) => li.offsetLeft - items[0].offsetLeft;
-  const loopWidth = () => offset(items[originals.length]);
+  const items = () => [...list.children];
+  const offset = (li) => li.offsetLeft - originals[0].offsetLeft;
+  const loopWidth = () => offset(clones[0]);
   const wrap = () => {
     const w = loopWidth();
     if (pos >= w) { pos -= w; if (target !== null) target -= w; }
@@ -259,6 +255,7 @@ function initBreakingNews() {
   };
 
   const tick = (t) => {
+    if (!running) return;
     if (last !== null) {
       const dt = (t - last) / 1000;
       if (target !== null) {
@@ -274,42 +271,74 @@ function initBreakingNews() {
     requestAnimationFrame(tick);
   };
 
+  const start = () => {
+    if (running || reducedMotion) return;
+    // Kesintisiz döngü için öğeleri bir kez çoğalt (ekran okuyucudan gizli)
+    clones = originals.map((li) => {
+      const clone = li.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelector('a')?.setAttribute('tabindex', '-1');
+      list.append(clone);
+      return clone;
+    });
+    list.classList.add('is-ticking');
+    running = true;
+    last = null;
+    pos = list.scrollLeft;
+    requestAnimationFrame(tick);
+  };
+
+  const stop = () => {
+    if (!running) return;
+    running = false;
+    target = null;
+    clones.forEach((c) => c.remove());
+    clones = [];
+    list.classList.remove('is-ticking');
+    list.scrollLeft = 0;
+  };
+
   const pause = () => { paused = true; };
   const resume = () => { paused = false; pos = list.scrollLeft; };
-
   list.addEventListener('mouseenter', pause);
   list.addEventListener('mouseleave', resume);
   list.addEventListener('focusin', pause);
   list.addEventListener('focusout', resume);
-  list.addEventListener('touchstart', pause, { passive: true });
-  list.addEventListener('touchend', () => setTimeout(resume, 2000));
 
+  /* Desktop (otomatik kayma açık): hedefi bir haber ileri/geri taşı */
   const jump = (direction) => {
     const from = target ?? pos;
     if (direction > 0) {
-      const next = items.find((li) => offset(li) > from + 1);
+      const next = items().find((li) => offset(li) > from + 1);
       target = next ? offset(next) : from;
     } else {
-      // Başta isek döngünün kopya tarafına geçip oradan geri git
       let base = from;
-      if (base < 1) { pos += loopWidth(); base += loopWidth(); }
-      const prev = items.filter((li) => offset(li) < base - 1).at(-1);
+      if (base < 1) { pos += loopWidth(); base += loopWidth(); } // döngünün kopya tarafından geri git
+      const prev = items().filter((li) => offset(li) < base - 1).at(-1);
       target = prev ? offset(prev) : 0;
     }
+  };
+
+  /* Tablet (otomatik kayma kapalı): doğal kaydırmayla bir başlık ileri/geri */
+  const step = (direction) => {
+    const x = list.scrollLeft;
+    const next = direction > 0
+      ? originals.find((li) => offset(li) > x + 1)
+      : originals.filter((li) => offset(li) < x - 1).at(-1);
+    list.scrollTo({ left: next ? offset(next) : (direction > 0 ? list.scrollWidth : 0), behavior: reducedMotion ? 'auto' : 'smooth' });
   };
 
   document.querySelectorAll('[data-scroll]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const direction = btn.dataset.scroll === 'next' ? 1 : -1;
-      if (reducedMotion) {
-        list.scrollBy({ left: direction * list.clientWidth * 0.6 });
-        return;
-      }
-      jump(direction);
+      running ? jump(direction) : step(direction);
     });
   });
 
-  if (!reducedMotion) requestAnimationFrame(tick);
+  const desktop = matchMedia('(min-width: 1280px)');
+  const sync = () => (desktop.matches ? start() : stop());
+  desktop.addEventListener('change', sync);
+  sync();
 }
 
 /* ---------------------------------------------------------------------------

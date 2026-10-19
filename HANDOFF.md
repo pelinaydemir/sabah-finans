@@ -121,6 +121,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Üst reklam | 970×250 | 728×90 | 300×256 (`<picture>`) |
 | Header arama | 710px ortalanmış input + açılır panel (2 kolon) | ikon → tam ekran arama görünümü (geri butonu / cihaz geri tuşu) | aynı |
 | CANLI BORSA | ikon + metin (Body/L) | ikon + metin (16px) | yalnız metin, 32px |
+| Finans barı | Finance/Ticker · Boyut=Varsayılan | aynı | Boyut=Kompakt: bar 100px (padding 8/6, etiket Body/S, sparkline 70×46) |
 | Kategori tab'ları | ortalanmış | sola hizalı, yatay kaydırma | aynı |
 | Manşet | otomatik dönen slider, 10'lu numara + ilerleme halkası, 5 haber yan listede | 4:3 kart karoseli (Figma 188:25592): komşu kartlar 8px aralıkla görünür, altta nokta; altında 3 haber | aynı, başlık H3 |
 | Yan kolon | ayrı kolon (gri panel) | akışa karışır, her widget kendi gri panelinde | aynı |
@@ -143,7 +144,7 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 | Tab | seçili | `.is-selected` + `aria-selected="true"`; ←/→ ile klavye gezinmesi |
 | nav-number | seçili / hover | `aria-current="true"`; üzerine gelmek manşeti değiştirir. Halka (`.nav-number__ring`) sıradaki manşete kalan süreyi gösterir (JS → `--progress`) |
 | Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare manşet kartının üzerindeyken, klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
-| Son dakika | oklar | şeridi bir haber ileri/geri alır (başlık sol kenara hizalanır), sonra otomatik kayma sürer |
+| Son dakika | otomatik kayma + oklar | Yalnız desktop: 30px/sn kayar, oklar bir haber ileri/geri alır. Tablet/mobilde otomatik kayma kapalı (dokunmatik kaydırmayla çakışır); şerit parmakla kaydırılır ve her başlıkta durur (scroll-snap), tablet okları bir başlık ilerletir |
 | Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
 | ticker-chip | hover | çerçeve `--color-border-strong` |

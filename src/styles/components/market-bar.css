@@ -1,6 +1,6 @@
 /* ==========================================================================
    FİNANS BARI · Figma "finans barı" (154:44071)
-   Öğe: "Finance/Ticker Widget" (95:58443) + "Chart/Sparkline"
+   Öğe: "Finance/Ticker" (212:7221) — Boyut = Varsayılan | Kompakt (mobil) + "Chart/Sparkline"
    ========================================================================== */
 
 .market-bar {
@@ -94,5 +94,27 @@
 @media (max-width: 1279px) {
   .market-bar__list {
     padding-block: var(--space-3);
+  }
+}
+
+/* Mobil · Finance/Ticker "Boyut = Kompakt" (Figma 212:7186) — bar 116 → 100px
+   padding 6 · etiket Body/S · sparkline 70×46 · içerik aralığı 16 */
+@media (max-width: 767px) {
+  .market-bar__list {
+    padding-block: var(--space-2);
+  }
+
+  .ticker__link {
+    gap: var(--space-4);
+    padding: var(--space-1-5);
+  }
+
+  .ticker__name {
+    font-size: var(--text-body-s-size);
+    line-height: var(--text-body-s-line-height);
+  }
+
+  .sparkline {
+    width: 70px;
   }
 }

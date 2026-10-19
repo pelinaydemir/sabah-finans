@@ -23,7 +23,7 @@
   min-width: 0;
 }
 
-/* Otomatik kayan şerit: JS listeyi kopyalayıp sürekli kaydırır,
+/* Otomatik kayan şerit (yalnız desktop): JS listeyi kopyalayıp sürekli kaydırır,
    fare üzerindeyken / klavye odağında durur (bkz. main.js › initBreakingNews) */
 .breaking-news__list.is-ticking {
   scroll-behavior: auto;
@@ -60,6 +60,16 @@
 @media (max-width: 1279px) {
   .breaking-news__inner {
     padding-block: var(--space-4);
+  }
+
+  /* Otomatik kayma yok: parmakla kaydırılır, her başlıkta durur */
+  .breaking-news__list {
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  .breaking-news__item {
+    scroll-snap-align: start;
   }
 }
 
