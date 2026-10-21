@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" preserveAspectRatio="xMidYMid slice">
-  <!-- Çevirici arka planı · referans görselden (2000×2000) yeniden çizildi:
-       zemin (sol lacivert → sağ mavi, ortada koyu mavi odak, altta kararma) + 16×14 grid,
-       çizgiler ortada en parlak (#5D6FED), kenarlara doğru söner. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <!-- Çevirici arka planı · referans görselden yeniden çizildi.
+       viewBox YOK: 1 birim = 1 CSS px. Böylece grid hücresi her kırılımda aynı boyuttadır
+       (26,25 × 30 px — mobil çeviricideki ölçü); zemin geçişleri ise kutuya göre (%) uzar.
+       Zemin: sol lacivert → sağ mavi, ortada koyu mavi odak, altta kararma.
+       Çizgiler: ortada en parlak (#6576F5), kenarlara doğru söner. -->
   <defs>
     <linearGradient id="base" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#031C48"/>
       <stop offset=".5" stop-color="#04126E"/>
       <stop offset="1" stop-color="#041A84"/>
     </linearGradient>
-    <radialGradient id="core" cx="1000" cy="1000" r="900" gradientUnits="userSpaceOnUse">
+    <radialGradient id="core" cx=".5" cy=".5" r=".45">
       <stop offset="0" stop-color="#02097B"/>
       <stop offset="1" stop-color="#02097B" stop-opacity="0"/>
     </radialGradient>
@@ -16,15 +18,22 @@
       <stop offset=".55" stop-color="#041851" stop-opacity="0"/>
       <stop offset="1" stop-color="#041851"/>
     </linearGradient>
-    <radialGradient id="line" cx="1000" cy="1000" r="1100" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#6576F5"/>
-      <stop offset=".35" stop-color="#4C61D6"/>
-      <stop offset=".7" stop-color="#2A40A8" stop-opacity=".9"/>
-      <stop offset="1" stop-color="#16307E" stop-opacity=".6"/>
+    <pattern id="cell" width="26.25" height="30" patternUnits="userSpaceOnUse">
+      <rect x="25.25" width="1" height="30" fill="#6576F5"/>
+      <rect y="29" width="26.25" height="1" fill="#6576F5"/>
+    </pattern>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".6">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".35" stop-color="#fff" stop-opacity=".7"/>
+      <stop offset=".7" stop-color="#fff" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".25"/>
     </radialGradient>
+    <mask id="fade" maskContentUnits="objectBoundingBox">
+      <rect width="1" height="1" fill="url(#glow)"/>
+    </mask>
   </defs>
-  <rect width="2000" height="2000" fill="url(#base)"/>
-  <rect width="2000" height="2000" fill="url(#core)"/>
-  <rect width="2000" height="2000" fill="url(#floor)"/>
-  <g fill="url(#line)"><rect x="124" y="0" width="2" height="2000"/><rect x="249" y="0" width="2" height="2000"/><rect x="374" y="0" width="2" height="2000"/><rect x="499" y="0" width="2" height="2000"/><rect x="624" y="0" width="2" height="2000"/><rect x="749" y="0" width="2" height="2000"/><rect x="874" y="0" width="2" height="2000"/><rect x="999" y="0" width="2" height="2000"/><rect x="1124" y="0" width="2" height="2000"/><rect x="1249" y="0" width="2" height="2000"/><rect x="1374" y="0" width="2" height="2000"/><rect x="1499" y="0" width="2" height="2000"/><rect x="1624" y="0" width="2" height="2000"/><rect x="1749" y="0" width="2" height="2000"/><rect x="1874" y="0" width="2" height="2000"/><rect x="0" y="142" width="2000" height="2"/><rect x="0" y="285" width="2000" height="2"/><rect x="0" y="428" width="2000" height="2"/><rect x="0" y="570" width="2000" height="2"/><rect x="0" y="713" width="2000" height="2"/><rect x="0" y="856" width="2000" height="2"/><rect x="0" y="999" width="2000" height="2"/><rect x="0" y="1142" width="2000" height="2"/><rect x="0" y="1285" width="2000" height="2"/><rect x="0" y="1428" width="2000" height="2"/><rect x="0" y="1570" width="2000" height="2"/><rect x="0" y="1713" width="2000" height="2"/><rect x="0" y="1856" width="2000" height="2"/></g>
+  <rect width="100%" height="100%" fill="url(#base)"/>
+  <rect width="100%" height="100%" fill="url(#core)"/>
+  <rect width="100%" height="100%" fill="url(#floor)"/>
+  <rect width="100%" height="100%" fill="url(#cell)" mask="url(#fade)"/>
 </svg>

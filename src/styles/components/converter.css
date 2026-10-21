@@ -164,11 +164,12 @@
    bu yüzden soldan sağa, altın parıltıya doğru güçlenir. */
 
 /* A · Grid zemin — referans görsel SVG'ye çevrildi (assets/patterns/converter-grid.svg):
-   lacivert → mavi zemin, ortada koyu odak, 16×14 grid; üstüne mevcut altın radyal parıltı. */
+   lacivert → mavi zemin, ortada koyu odak; grid hücresi her kırılımda 26,25×30 px (mobil ölçü);
+   üstüne mevcut altın radyal parıltı. */
 .converter--pattern-a {
   background:
     var(--gradient-converter-glow),
-    url("../../assets/patterns/converter-grid.svg") center / cover no-repeat;
+    url("../../assets/patterns/converter-grid.svg") 0 0 / 100% 100% no-repeat;
 }
 
 .converter--pattern-a::before {
