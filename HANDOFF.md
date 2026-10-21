@@ -178,7 +178,24 @@ Desktop, tablet ve mobilde **0 ihlal**. Bu tur için yapılan token/component de
 
 ## 7. Veri entegrasyonu notları
 
-Tüm veriler Figma'daki örnek içeriktir; canlı veriye bağlanırken:
+**Canlı veri (demo):** `src/scripts/live.js` sayfa açıldığında ve sekme görünürken dakikada bir
+ücretsiz, anahtarsız iki kaynaktan veri çeker; gelmezse `data.js` örnek verisi kalır.
+
+| Kaynak | Veri | Ekranda |
+|---|---|---|
+| [Truncgil Finans](https://finans.truncgil.com/v4/today.json) | USD, EUR, GBP, CHF, gram/çeyrek/yarım/tam/Cumhuriyet altın, gümüş, BIST 100 | finans barı, Piyasa Özeti, çevirici kurları, arama |
+| [CoinGecko](https://api.coingecko.com/api/v3/simple/price) | 8 coin fiyatı + 24 saat değişim | finans barı, kripto tablosu (Günlük) |
+
+- Ons altın kaynakta 0 geldiği için gram altın × 31,1035 ÷ USD ile türetilir.
+- Örnek veri kalanlar: BIST hisseleri, Brent, "Paramın Karşılığı" dönem getirileri, haftalık/aylık/yıllık kripto değişimleri.
+- "BIST Açık / Kapalı" rozeti hafta içi 10:00–18:00 (İstanbul) seans saatine göre hesaplanır (resmî tatiller hariç).
+- Prod'da `live.js`'in yerini kurumun veri servisi alır; DOM'da `[data-live="USD"]` gibi kancalar ve `livedata` olayı aynı kalır.
+
+**Büyük tutarlar (Paramın Karşılığı):** tutar alanı yazarken binlik ayırıcı ekler, en fazla 1 milyar kabul eder
+(üstünde uyarı gösterir). 100.000 ve üstü sonuçlar `Intl` compact biçimiyle kısaltılır (108,9 B · 1,012 Mr);
+tam değer `title` ve `aria-label`'da. Tutar ile para birimi aynı satırda kalır (`white-space: nowrap`).
+
+Örnek içerik notları; canlı veriye bağlanırken:
 
 - **Değişim göstergesi**: `change--up` / `change--down` sınıfı işarete göre seçilir.
 - **Oran çubukları**: segment genişliği inline `style="--value: N"` ile verilir (`flex-grow`).

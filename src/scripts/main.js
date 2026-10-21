@@ -9,6 +9,7 @@ import {
   headlines, currencies, currencyGroups, baseCurrencies,
   moneyAssets, bistLists, coins, cryptoPeriods, stocks, popularSearches,
 } from './data.js';
+import { startLive } from './live.js';
 
 const ICONS = 'src/assets/icons/sprite.svg';
 const icon = (id, cls = 'icon') => `<svg class="${cls}" aria-hidden="true"><use href="${ICONS}#${id}"/></svg>`;
@@ -24,6 +25,29 @@ const parseNum = (text) => Number(String(text).replace(/\./g, '').replace(',', '
 const signed = (value, digits = 2) => `${value > 0 ? '+' : value < 0 ? '-' : ''}${num(Math.abs(value), digits)}`;
 const percent = (value) => `${value > 0 ? '+' : value < 0 ? '-' : ''}%${num(Math.abs(value))}`;
 const dir = (value) => (value < 0 ? 'down' : 'up');
+/* Büyük tutarlar: 100.000 ve üstü kısaltılır (108,9 B · 1,012 Mr — 4 anlamlı basamak); tam değer title/aria-label'da */
+const COMPACT_FROM = 100_000;
+const compact = (value, digits = 2) => (Math.abs(value) >= COMPACT_FROM
+  ? new Intl.NumberFormat('tr-TR', { notation: 'compact', maximumSignificantDigits: 4 }).format(value)
+  : num(value, digits));
+const MAX_AMOUNT = 1_000_000_000; // 1 milyar — üstü anlamlı bir senaryo değil, düzeni de bozar
+
+/* Tam sayı tutar alanı: yazarken binlik ayırıcı ekler, imleç yerini korur, üst sınırı uygular */
+const formatIntegerInput = (input) => {
+  const caret = input.selectionStart ?? input.value.length;
+  const digitsRight = input.value.slice(caret).replace(/\D/g, '').length;
+  let digits = input.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '');
+  const capped = Number(digits || 0) > MAX_AMOUNT;
+  if (capped) digits = String(MAX_AMOUNT);
+  const formatted = digits ? num(Number(digits), 0) : '';
+  input.value = formatted;
+  // imleç: sağındaki rakam sayısı aynı kalacak şekilde
+  let pos = formatted.length, seen = 0;
+  while (pos > 0 && seen < digitsRight) { pos -= 1; if (/\d/.test(formatted[pos])) seen += 1; }
+  input.setSelectionRange(pos, pos);
+  return capped;
+};
+
 /* Tutar alanları: harf ve eksi işareti girilemez (inputmode=decimal mobil klavyeyi açar) */
 const sanitizeAmount = (input) => { const v = input.value.replace(/[^\d.,]/g, ''); if (v !== input.value) input.value = v; };
 
@@ -529,6 +553,7 @@ function initConverter() {
   });
 
   input.addEventListener('input', () => { sanitizeAmount(input); update(); });
+  document.addEventListener('livedata', update);
   input.addEventListener('blur', () => { input.value = num(parseNum(input.value)); });
   update();
 }
@@ -546,21 +571,27 @@ function initMoney() {
   const select = root.querySelector('[data-select="money"]');
   let period = 'daily';
 
+  const hint = root.querySelector('[data-money-hint]');
+
   const render = (animate = true) => {
     const amount = parseNum(amountInput.value);
     const symbol = SYMBOLS[select.dataset.value];
     const max = Math.max(...moneyAssets.map((a) => Math.abs(a.returns[period])));
 
     root.querySelector('[data-money-symbol]').textContent = symbol;
-    root.querySelector('[data-money-badge]').textContent = `${num(amount, 0)} ${symbol}`;
+    const badge = root.querySelector('[data-money-badge]');
+    badge.textContent = `${compact(amount, 0)} ${symbol}`;
+    badge.title = `${num(amount, 0)} ${symbol}`;
 
     const html = moneyAssets.map((a) => {
       const r = a.returns[period];
+      const value = amount * (1 + r / 100);
+      const full = `${num(value)} ${symbol}`;
       return `
         <li class="money-row">
           <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="${a.logo}" alt=""></span><span class="t-body-m-medium">${a.name}</span></span>
           <span class="money-bar money-bar--${dir(r)}" style="--value: ${(Math.abs(r) / max).toFixed(2)}" aria-hidden="true"><span class="money-bar__fill"></span></span>
-          <span class="market-row__value"><span class="t-h6-semibold">${num(amount * (1 + r / 100))} ${symbol}</span>${changeIndicator(percent(r), r)}</span>
+          <span class="market-row__value"><span class="money-row__amount t-h6-semibold" title="${full}" aria-label="${full}">${compact(value)} ${symbol}</span>${changeIndicator(percent(r), r)}</span>
         </li>`;
     }).join('');
 
@@ -576,8 +607,15 @@ function initMoney() {
   });
 
   onTab('money', (value) => { period = value; render(); });
-  amountInput.addEventListener('input', () => { sanitizeAmount(amountInput); render(false); });
-  amountInput.addEventListener('blur', () => { amountInput.value = num(parseNum(amountInput.value), 0); });
+  amountInput.addEventListener('input', () => {
+    const capped = formatIntegerInput(amountInput);
+    if (hint) hint.hidden = !capped;
+    render(false);
+  });
+  amountInput.addEventListener('blur', () => {
+    if (!amountInput.value) amountInput.value = '0';
+    if (hint) hint.hidden = true;
+  });
 }
 
 /* ---------------------------------------------------------------------------
@@ -605,7 +643,9 @@ function initCrypto() {
 
   const usd = (v, d) => `$ ${num(v, d)}`;
 
-  onTab('crypto', (period) => {
+  let current = 'daily';
+  const render = (period) => {
+    current = period;
     const { range } = cryptoPeriods[period];
     swapContent(body, coins.map((c) => {
       const change = c.change[period];
@@ -621,7 +661,10 @@ function initCrypto() {
           <td><span class="change-pill change-pill--${dir(change)} t-body-s-semibold">${percent(change)}</span></td>
         </tr>`;
     }).join(''));
-  });
+  };
+
+  onTab('crypto', render);
+  document.addEventListener('livedata', () => render(current));
 }
 
 /* ---------------------------------------------------------------------------
@@ -691,7 +734,8 @@ function initSearch() {
   const clearBtn = root.querySelector('[data-search-clear]');
   const panel = root.querySelector('[data-search-panel]');
   const openBtn = root.querySelector('[data-search-open]');
-  const { symbols, news, byKey } = buildSearchIndex();
+  let { symbols, news, byKey } = buildSearchIndex();
+  document.addEventListener('livedata', () => ({ symbols, news, byKey } = buildSearchIndex()));
   const isOverlay = () => !isDesktop();
   const placeholder = { desktop: input.placeholder, overlay: 'Sembol kodu, şirket adı ara' };
   let active = -1;
@@ -921,3 +965,4 @@ initBist();
 initCrypto();
 initStickySidebar();
 initSearch();
+startLive({ onUpdate: (detail) => document.dispatchEvent(new CustomEvent('livedata', { detail })) });

@@ -116,6 +116,11 @@
   background: var(--color-bg-positive);
 }
 
+/* Seans dışı (live.js › updateMarketStatus) */
+.status-pill--closed .status-pill__dot {
+  background: var(--color-icon-disabled);
+}
+
 /* --- dot / news-meta ------------------------------------------------------ */
 .dot {
   flex-shrink: 0;

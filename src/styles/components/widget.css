@@ -22,6 +22,22 @@
   color: var(--color-text-primary);
 }
 
+/* Widget başlığı · Figma: Desktop Heading/H5/Semibold (18) · Tablet/Mobil Heading/H4/Semibold (20 / 18) */
+.widget__title {
+  font-family: var(--font-family-display);
+  font-size: var(--text-h4-size);
+  line-height: var(--text-h4-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+@media (min-width: 1280px) {
+  .widget__title {
+    font-size: var(--text-h5-size);
+    line-height: var(--text-h5-line-height);
+  }
+}
+
 .widget__title-link {
   display: inline-flex;
   align-items: center;
@@ -160,7 +176,7 @@
 .money__baseline,
 .money-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 80px 92px;
+  grid-template-columns: minmax(0, 1fr) 80px minmax(92px, max-content);
   align-items: center;
   column-gap: var(--space-3);
 }
@@ -197,6 +213,17 @@
 
 .money-row .market-row__value {
   width: auto;
+}
+
+/* Tutar ve para birimi asla ayrı satıra düşmez (büyük değerler kısaltılır) */
+.money-row__amount {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.money__hint {
+  margin-top: calc(-1 * var(--space-2));
+  color: var(--color-text-negative);
 }
 
 /* Bar grafik — Figma "bar" (80×56): kesikli 0 ekseni + getiriye oranlı çubuk.

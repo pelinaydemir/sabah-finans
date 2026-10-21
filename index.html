@@ -103,7 +103,7 @@
        =================================================================== -->
   <section class="market-bar" aria-label="Piyasa verileri">
     <ul class="market-bar__list scroll-x">
-      <li class="ticker">
+      <li class="ticker" data-live="USD">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Dolar</span>
@@ -113,7 +113,7 @@
           <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="EUR">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Euro</span>
@@ -123,7 +123,7 @@
           <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="GBP">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Sterlin</span>
@@ -133,7 +133,7 @@
           <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="GA">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Gram Altın</span>
@@ -143,7 +143,7 @@
           <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="XU100">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">BIST 100</span>
@@ -153,7 +153,7 @@
           <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="BTC">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Bitcoin</span>
@@ -163,7 +163,7 @@
           <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="ETH">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Ethereum</span>
@@ -173,7 +173,7 @@
           <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="GG">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Gram Gümüş</span>
@@ -183,7 +183,7 @@
           <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="CHF">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">İsviçre Frangı</span>
@@ -193,7 +193,7 @@
           <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="ONS">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Ons Altın</span>
@@ -203,7 +203,7 @@
           <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
         </a>
       </li>
-      <li class="ticker">
+      <li class="ticker" data-live="BRENT">
         <a class="ticker__link" href="#">
           <span class="ticker__info">
             <span class="ticker__name t-body-m-medium">Brent Petrol</span>
@@ -804,26 +804,26 @@
       <!-- PİYASA ÖZETİ · Figma "Piyasa Özeti" (152:43463) -->
       <section class="widget" aria-labelledby="summary-title" data-slot="summary">
         <header class="widget__header">
-          <h2 class="t-h5-semibold" id="summary-title">Piyasa Özeti</h2>
-          <span class="status-pill t-body-s-medium"><span class="status-pill__dot" aria-hidden="true"></span>BIST Açık</span>
+          <h2 class="widget__title" id="summary-title">Piyasa Özeti</h2>
+          <span class="status-pill t-body-s-medium" data-market-status><span class="status-pill__dot" aria-hidden="true"></span><span data-market-status-label>BIST Açık</span></span>
         </header>
         <ul class="widget__card widget__card--rows">
-          <li class="market-row">
+          <li class="market-row" data-live="USD">
             <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
             <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
             <span class="market-row__value"><span class="t-h6-semibold">41,5612</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span>
           </li>
-          <li class="market-row">
+          <li class="market-row" data-live="EUR">
             <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
             <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
             <span class="market-row__value"><span class="t-h6-semibold">48,2140</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></span>
           </li>
-          <li class="market-row">
+          <li class="market-row" data-live="GA">
             <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
             <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
             <span class="market-row__value"><span class="t-h6-semibold">4.215,60</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,23</span></span></span>
           </li>
-          <li class="market-row">
+          <li class="market-row" data-live="GG">
             <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/silver.svg" alt=""></span><span class="t-body-m-medium">Gümüş</span></span>
             <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
             <span class="market-row__value"><span class="t-h6-semibold">52,40</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,82</span></span></span>
@@ -843,7 +843,7 @@
       <!-- PARAMIN KARŞILIĞI NE OLURDU? · Figma (152:43567) -->
       <section class="widget" aria-labelledby="money-title" data-slot="money">
         <header class="widget__header">
-          <h2 class="t-h5-semibold" id="money-title">Paramın Karşılığı Ne Olurdu?</h2>
+          <h2 class="widget__title" id="money-title">Paramın Karşılığı Ne Olurdu?</h2>
         </header>
         <div class="widget__card money" data-money>
           <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="money" data-controls="money-panel" aria-label="Zaman aralığı">
@@ -866,10 +866,11 @@
             </div>
             <div class="field field--sm money__amount">
               <label class="field__label t-body-s-regular" for="money-amount">Miktar</label>
-              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="decimal" value="1.000" data-money-amount>
+              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="numeric" value="1.000" maxlength="13" autocomplete="off" aria-describedby="money-hint" data-money-amount>
               <span class="field__suffix t-body-m-medium" aria-hidden="true" data-money-symbol>₺</span>
             </div>
           </div>
+          <p class="money__hint t-body-xs-medium" id="money-hint" role="status" data-money-hint hidden>En fazla 1 milyar girilebilir.</p>
 
           <div class="money__chart">
             <div class="money__baseline" aria-hidden="true">
@@ -919,7 +920,7 @@
       <!-- BIST ÖNE ÇIKANLAR · Figma "Widget/BIST Öne Çıkanlar – Alternatif" (152:43642) -->
       <section class="widget" aria-labelledby="bist-title" data-slot="bist">
         <header class="widget__header widget__header--link">
-          <h2 id="bist-title"><a class="widget__title-link t-h5-semibold" href="#">BIST Öne Çıkanlar<svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+          <h2 id="bist-title"><a class="widget__title-link widget__title" href="#">BIST Öne Çıkanlar<svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
         </header>
         <div class="widget__card widget__card--stack">
           <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="bist" data-controls="bist-panel" aria-label="Hisse listesi">
@@ -967,7 +968,7 @@
       <!-- HİSSE İSTATİSTİKLERİ · Figma "Widget/Hisse İstatistikleri" (152:43687) -->
       <section class="widget" aria-labelledby="stats-title" data-slot="stats">
         <header class="widget__header">
-          <h2 class="t-h5-semibold" id="stats-title">Hisse İstatistikleri</h2>
+          <h2 class="widget__title" id="stats-title">Hisse İstatistikleri</h2>
         </header>
         <div class="widget__card widget__card--stack widget__card--roomy">
           <div class="breadth breadth--roomy">

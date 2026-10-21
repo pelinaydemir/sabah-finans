@@ -57,9 +57,15 @@
   gap: 9px;
 }
 
+/* Tablet + Mobil (Figma: sağ padding 0, ok yok) — şerit ekranın sağ kenarına kadar uzanır */
 @media (max-width: 1279px) {
   .breaking-news__inner {
     padding-block: var(--space-4);
+    padding-right: 0;
+  }
+
+  .breaking-news__controls {
+    display: none;
   }
 
   /* Otomatik kayma yok: parmakla kaydırılır, her başlıkta durur */
@@ -78,7 +84,9 @@
     padding-block: var(--space-3);
   }
 
-  .breaking-news__controls {
-    display: none;
+  /* Figma Cihaz=Mobile: 14/24 */
+  .breaking-news__item a {
+    font-size: var(--text-body-s-size);
+    line-height: 24px;
   }
 }
