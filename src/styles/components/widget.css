@@ -172,47 +172,34 @@
   flex: 1 0 0;
 }
 
-/* Grafik: satırlar ve rozet aynı 3 kolonlu ızgarayı paylaşır */
-.money__baseline,
+/* Satır (Figma görünüm 2): üstte varlık + karşılık + değişim, altta tam genişlik oran çubuğu */
 .money-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 80px minmax(92px, max-content);
-  align-items: center;
-  column-gap: var(--space-3);
-}
-
-.money__baseline {
-  grid-template-rows: 24px 5px;
-}
-
-.money__badge {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: center;
-  padding: var(--space-1) 5px;
-  border-radius: var(--radius-xs);
-  background: var(--color-bg-subtle);
-  color: var(--color-text-secondary);
-  white-space: nowrap;
-}
-
-.money__pointer {
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: center;
-  transform: rotate(180deg) scaleY(-1);
-}
-
-.money-row {
-  height: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
 }
 
 .money-row + .money-row {
   border-top: 1px solid var(--color-border-default);
 }
 
-.money-row .market-row__value {
-  width: auto;
+.money-row__top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.money-row__top .market-row__asset {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.money-row__value {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 /* Tutar ve para birimi asla ayrı satıra düşmez (büyük değerler kısaltılır) */
@@ -226,40 +213,42 @@
   color: var(--color-text-negative);
 }
 
-/* Bar grafik — Figma "bar" (80×56): kesikli 0 ekseni + getiriye oranlı çubuk.
-   Çubuk boyu `--value` (0–1, en yüksek getiriye göre normalize) ile veriden gelir. */
+/* Oran çubuğu — ortadaki çizgi girilen miktar (0 noktası); dolgu `--value` (0–1, dönemin en
+   büyük değişimine göre normalize) ile sağa (artış) veya sola (azalış) uzar. */
 .money-bar {
   position: relative;
-  width: 80px;
-  height: 56px;
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-bg-subtle);
 }
 
 .money-bar::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 40px;
-  border-left: 1px dashed var(--color-border-strong);
+  top: -2px;
+  bottom: -2px;
+  left: 50%;
+  width: 1px;
+  background: var(--color-text-tertiary);
 }
 
 .money-bar__fill {
   position: absolute;
-  top: 18px;
-  width: max(4px, calc(var(--value, 0) * 36px));
-  height: 20px;
+  top: 0;
+  height: 100%;
+  width: max(6px, calc(var(--value, 0) * 50%));
+  border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 .money-bar--up .money-bar__fill {
-  left: 41px;
-  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  left: calc(50% + 0.5px);
   background: var(--color-bg-positive);
 }
 
 .money-bar--down .money-bar__fill {
-  right: 40px;
-  border-radius: var(--radius-xs) 0 0 var(--radius-xs);
+  right: calc(50% + 0.5px);
   background: var(--color-bg-negative);
 }
 

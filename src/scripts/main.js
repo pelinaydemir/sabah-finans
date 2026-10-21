@@ -652,9 +652,6 @@ function initMoney() {
     const max = Math.max(...moneyAssets.map((a) => Math.abs(a.returns[period])));
 
     root.querySelector('[data-money-symbol]').textContent = symbol;
-    const badge = root.querySelector('[data-money-badge]');
-    badge.textContent = `${compact(amount, 0)} ${symbol}`;
-    badge.title = `${num(amount, 0)} ${symbol}`;
 
     const html = moneyAssets.map((a) => {
       const r = a.returns[period];
@@ -662,9 +659,11 @@ function initMoney() {
       const full = `${num(value)} ${symbol}`;
       return `
         <li class="money-row">
-          <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="${a.logo}" alt=""></span><span class="t-body-m-medium">${a.name}</span></span>
+          <div class="money-row__top">
+            <span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="${a.logo}" alt=""></span><span class="t-body-m-medium">${a.name}</span></span>
+            <span class="money-row__value"><span class="money-row__amount t-body-m-semibold" title="${full}" aria-label="${full}">${compact(value)} ${symbol}</span>${changeIndicator(percent(r), r)}</span>
+          </div>
           <span class="money-bar money-bar--${dir(r)}" style="--value: ${(Math.abs(r) / max).toFixed(2)}" aria-hidden="true"><span class="money-bar__fill"></span></span>
-          <span class="market-row__value"><span class="money-row__amount t-h6-semibold" title="${full}" aria-label="${full}">${compact(value)} ${symbol}</span>${changeIndicator(percent(r), r)}</span>
         </li>`;
     }).join('');
 
