@@ -22,7 +22,7 @@
   color: var(--color-text-primary);
 }
 
-/* Widget başlığı · Figma: Desktop Heading/H5/Semibold (18) · Tablet/Mobil Heading/H4/Semibold (20 / 18) */
+/* Widget başlığı · Figma: Desktop Heading/H5/Semibold (18) · Tablet/Mobil Heading/H4/Semibold (20) */
 .widget__title {
   font-family: var(--font-family-display);
   font-size: var(--text-h4-size);

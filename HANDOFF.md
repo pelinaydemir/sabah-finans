@@ -57,7 +57,8 @@ Aileler: **Epilogue** (display/heading) · **Google Sans Flex** (body/numeric). 
 | Display/Large/Bold | `.t-display-bold` | 40/48 | 40/48 | — (manşet H3'e düşer) |
 | Heading/H2/Semibold | `.t-h2-semibold` | 28/36 | 24/32 | 24/32 |
 | Heading/H3/Bold · Semibold | `.t-h3-bold` · `.t-h3-semibold` | 24/32 | 24/32 | 20/28 |
-| Heading/H5/Semibold | `.t-h5-semibold` | 18/24 | 18/24 | 16/24 |
+| Heading/H4/Semibold | `.widget__title` (tablet/mobil) | 20/28 | 20/28 | 20/28 (mobilde H3 ile eşit) |
+| Heading/H5/Semibold | `.t-h5-semibold`, `.widget__title` (desktop) | 18/24 | 18/24 | 16/24 |
 | Heading/H6/Semibold · Medium | `.t-h6-semibold` · `.t-h6-medium` | 16/24 | 16/24 | 16/24 |
 | Body/L/Semibold | `.t-body-l-semibold` | 18/28 | 16/24 | 16/24 |
 | Body/M · S · XS (Regular/Medium/Semibold) | `.t-body-{m,s,xs}-{regular,medium,semibold}` | 16/24 · 14/20 · 12/16 | aynı | aynı |
@@ -188,7 +189,7 @@ Desktop, tablet ve mobilde **0 ihlal**. Bu tur için yapılan token/component de
 
 - Ons altın kaynakta 0 geldiği için gram altın × 31,1035 ÷ USD ile türetilir.
 - Örnek veri kalanlar: BIST hisseleri, Brent, "Paramın Karşılığı" dönem getirileri, haftalık/aylık/yıllık kripto değişimleri.
-- "BIST Açık / Kapalı" rozeti hafta içi 10:00–18:00 (İstanbul) seans saatine göre hesaplanır (resmî tatiller hariç).
+- "BIST Açık / Kapalı" rozeti (Figma `Chip/Seans Durumu` · Durum = Açık | Kapalı) hafta içi 10:00–18:00 (İstanbul) seans saatine göre hesaplanır (resmî tatiller hariç).
 - Prod'da `live.js`'in yerini kurumun veri servisi alır; DOM'da `[data-live="USD"]` gibi kancalar ve `livedata` olayı aynı kalır.
 
 **Büyük tutarlar (Paramın Karşılığı):** tutar alanı yazarken binlik ayırıcı ekler, en fazla 1 milyar kabul eder
