@@ -110,6 +110,15 @@ export function startLive({ onUpdate } = {}) {
       paint(el, q[0] ?? current, q[1]);
     });
 
+    // Canlı kripto geldiyse tablo altındaki "Son güncelleme" satırı gerçek saati gösterir
+    if (crypto) {
+      const now = new Date();
+      const stamp = new Intl.DateTimeFormat('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(now).replace(',', '');
+      document.querySelectorAll('[data-live-updated="crypto"]').forEach((el) => {
+        el.innerHTML = `Son güncelleme: <time datetime="${now.toISOString()}">${stamp}</time> · CoinGecko`;
+      });
+    }
+
     const updated = Object.keys(quotes).length;
     if (updated) {
       document.documentElement.dataset.live = 'on';

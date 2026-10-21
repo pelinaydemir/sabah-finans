@@ -37,9 +37,11 @@
   white-space: nowrap;
 }
 
-/* Kırmızı ayırıcı nokta (6px, bg-accent) */
-.breaking-news__item::after {
+/* Kırmızı ayırıcı nokta (6px, bg-accent) — Figma 154:44035: nokta + metin tek grup, nokta önde.
+   Böylece kaydırırken her başlığın başında görünür (sona konunca uzun başlıklarda ekran dışında kalıyordu). */
+.breaking-news__item::before {
   content: "";
+  flex-shrink: 0;
   width: 6px;
   height: 6px;
   border-radius: 50%;

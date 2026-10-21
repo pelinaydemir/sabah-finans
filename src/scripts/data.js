@@ -104,15 +104,16 @@ export const cryptoPeriods = {
   yearly: { range: 0.62, label: 'yıllık' },
 };
 
+/* Kripto logoları: Figma Logo/Currency + cryptocurrency-icons (CC0, spothq/cryptocurrency-icons) */
 export const coins = [
   { pair: 'BTC/USDT', name: 'Bitcoin', logo: CUR + 'btc.svg', price: 78439.61, change: { daily: -1.54, weekly: 3.12, monthly: 8.45, yearly: 64.2 }, decimals: 2 },
   { pair: 'ETH/USDT', name: 'Ethereum', logo: CUR + 'eth.svg', price: 2474.67, change: { daily: -1.03, weekly: 1.94, monthly: -4.36, yearly: 12.8 }, decimals: 2 },
-  { pair: 'XRP/USDT', name: 'Ripple', avatar: ['X', '#23292f'], price: 2.3412, change: { daily: -1.12, weekly: -3.48, monthly: 11.2, yearly: 188.4 }, decimals: 4 },
-  { pair: 'SOL/USDT', name: 'Solana', avatar: ['S', '#14f195'], price: 182.45, change: { daily: -0.84, weekly: 4.65, monthly: 15.9, yearly: 92.1 }, decimals: 2 },
-  { pair: 'BNB/USDT', name: 'Binance Coin', avatar: ['B', '#f3ba2f'], price: 612.3, change: { daily: 0.42, weekly: 2.08, monthly: 5.31, yearly: 38.6 }, decimals: 2 },
-  { pair: 'ADA/USDT', name: 'Cardano', avatar: ['A', '#0033ad'], price: 0.7421, change: { daily: 0.65, weekly: -2.16, monthly: -7.84, yearly: 41.3 }, decimals: 4 },
+  { pair: 'XRP/USDT', name: 'Ripple', logo: CUR + 'xrp.svg', price: 2.3412, change: { daily: -1.12, weekly: -3.48, monthly: 11.2, yearly: 188.4 }, decimals: 4 },
+  { pair: 'SOL/USDT', name: 'Solana', logo: CUR + 'sol.svg', price: 182.45, change: { daily: -0.84, weekly: 4.65, monthly: 15.9, yearly: 92.1 }, decimals: 2 },
+  { pair: 'BNB/USDT', name: 'Binance Coin', logo: CUR + 'bnb.svg', price: 612.3, change: { daily: 0.42, weekly: 2.08, monthly: 5.31, yearly: 38.6 }, decimals: 2 },
+  { pair: 'ADA/USDT', name: 'Cardano', logo: CUR + 'ada.svg', price: 0.7421, change: { daily: 0.65, weekly: -2.16, monthly: -7.84, yearly: 41.3 }, decimals: 4 },
   { pair: 'DOGE/USDT', name: 'Dogecoin', logo: CUR + 'doge.svg', price: 0.2214, change: { daily: -1.87, weekly: -5.42, monthly: 9.18, yearly: 112.6 }, decimals: 4 },
-  { pair: 'LINK/USDT', name: 'Chainlink', avatar: ['L', '#2a5ada'], price: 16.82, change: { daily: 0.93, weekly: 6.24, monthly: 12.7, yearly: 54.9 }, decimals: 2 },
+  { pair: 'LINK/USDT', name: 'Chainlink', logo: CUR + 'link.svg', price: 16.82, change: { daily: 0.93, weekly: 6.24, monthly: 12.7, yearly: 54.9 }, decimals: 2 },
 ];
 
 /* ---------------------------------------------------------------------------

@@ -202,7 +202,7 @@ tam değer `title` ve `aria-label`'da. Tutar ile para birimi aynı satırda kal�
 - **Oran çubukları**: segment genişliği inline `style="--value: N"` ile verilir (`flex-grow`).
 - **Sparkline / bar grafikleri** şu an Figma export'u statik SVG'dir. Canlı veride aynı kutu
   ölçüleriyle (`.sparkline` 78×51, `.money-row__bar` 80×56) üretilen `<svg>` ile değiştirilmelidir.
-- **Kripto avatarları**: logosu olmayan coin'ler için harf avatarı, renk `--coin-color` ile verilir.
+- **Kripto logoları**: BTC/ETH/DOGE Figma `Logo/Kaynak Set`'ten; XRP, SOL, BNB, ADA, LINK [cryptocurrency-icons](https://github.com/spothq/cryptocurrency-icons) 0.18.1 (CC0) — Figma'da `Logo/Currency` varyantı olarak da eklendi. Yeni bir coin'in logosu yoksa harf avatarı (`.coin-avatar`, `--coin-color`) yedek olarak kalır.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
 - **Arama**: `main.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri
