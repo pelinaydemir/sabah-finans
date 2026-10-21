@@ -163,16 +163,16 @@
 /* Desen yalnız beyaz kartın dışında (başlık şeridi + kenarlar) görünür;
    bu yüzden soldan sağa, altın parıltıya doğru güçlenir. */
 
-/* A · Kare grid (40px) — referans: mavi tonlu ince çizgiler, bir odak noktasında en parlak,
-   uzaklaştıkça söner ama tamamen kaybolmaz. Odak sağ üst köşe (altın parıltı tarafı). */
+/* A · Grid zemin — referans görsel SVG'ye çevrildi (assets/patterns/converter-grid.svg):
+   lacivert → mavi zemin, ortada koyu odak, 16×14 grid; üstüne mevcut altın radyal parıltı. */
+.converter--pattern-a {
+  background:
+    var(--gradient-converter-glow),
+    url("../../assets/patterns/converter-grid.svg") center / cover no-repeat;
+}
+
 .converter--pattern-a::before {
-  background-image:
-    linear-gradient(rgb(118 136 255 / 0.9) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(118 136 255 / 0.9) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
-  -webkit-mask-image: radial-gradient(90% 180% at 100% 0%, #000 0%, rgb(0 0 0 / 0.45) 45%, rgb(0 0 0 / 0.18) 100%);
-  mask-image: radial-gradient(90% 180% at 100% 0%, #000 0%, rgb(0 0 0 / 0.45) 45%, rgb(0 0 0 / 0.18) 100%);
+  display: none;
 }
 
 /* B · Grafik: başlık şeridinde sağa doğru yükselen trend çizgisi + soluk dikey çizgiler */

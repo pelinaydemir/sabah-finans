@@ -165,8 +165,10 @@
         eğik bir elips olarak tanımlar; CSS radial-gradient bunu çizemediği için aynı matris
         SVG objectBoundingBox gradyanına aktarıldı. Böylece her kırılımda Figma ile birebir aynıdır.
         gradientTransform = Figma gradientTransform'un tersi. */
+  --gradient-converter-glow:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3CradialGradient id='g' gradientTransform='matrix(-0.99902 1.99803 -0.48313 -3.13217 1.74109 0.56707)'%3E%3Cstop offset='0' stop-color='%23e0b243' stop-opacity='.85'/%3E%3Cstop offset='.45' stop-color='%23e0b243' stop-opacity='.35'/%3E%3Cstop offset='1' stop-color='%23e0b243' stop-opacity='0'/%3E%3C/radialGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
   --gradient-converter:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3CradialGradient id='g' gradientTransform='matrix(-0.99902 1.99803 -0.48313 -3.13217 1.74109 0.56707)'%3E%3Cstop offset='0' stop-color='%23e0b243' stop-opacity='.85'/%3E%3Cstop offset='.45' stop-color='%23e0b243' stop-opacity='.35'/%3E%3Cstop offset='1' stop-color='%23e0b243' stop-opacity='0'/%3E%3C/radialGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat,
+    var(--gradient-converter-glow),
     linear-gradient(90deg, #1b1f5c 0%, var(--brand-primary-500) 100%);
 
   /* ---------------------------------------------------------------------
