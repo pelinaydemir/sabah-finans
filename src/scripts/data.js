@@ -13,15 +13,15 @@ const CO = 'src/assets/logos/company/';
    Manşet (Haber Kartı/Görsel Üzeri) — nav-number 1…10
    --------------------------------------------------------------------------- */
 export const headlines = [
-  { category: 'Dünya', time: '11 dakika önce', title: 'New York Fed imalat endeksi temmuzda beklentileri geçti', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası önünde dalgalanan ABD bayrağı', tickers: [['THYO', '+0,18'], ['ISCTR', '-0,45']] },
+  { category: 'Dünya', time: '11 dakika önce', title: 'New York Fed imalat endeksi temmuzda beklentileri geçti', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası önünde dalgalanan ABD bayrağı', tickers: [['THYAO', '+0,18'], ['ISCTR', '-0,45']] },
   { category: 'Altın', time: '24 dakika önce', title: 'Gram altın güvenli liman talebiyle yeni zirveyi test ediyor', image: 'news-gold.jpg', alt: 'Kasada dizili külçe altınlar', tickers: [['KOZAL', '+2,14'], ['PEKGY', '+1,02']] },
   { category: 'Avrupa', time: '38 dakika önce', title: 'Avrupa Merkez Bankası faiz kararı öncesi piyasalar temkinli', image: 'news-eu.jpg', alt: 'Avrupa Komisyonu binası önünde AB bayrakları', tickers: [['GARAN', '-0,62'], ['AKBNK', '-0,38']] },
   { category: 'Borsa', time: '52 dakika önce', title: 'BIST 100 endeksi bankacılık satışlarıyla günü ekside kapattı', image: 'news-market.jpg', alt: 'Düşüşü gösteren kırmızı borsa grafiği', tickers: [['YKBNK', '-1,24'], ['ISCTR', '-0,45']] },
-  { category: 'Ekonomi', time: '1 saat önce', title: 'Merkez Bankası rezervleri haftalık bazda 2,1 milyar dolar arttı', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası', tickers: [['THYO', '+0,18'], ['ASELS', '+0,92']] },
+  { category: 'Ekonomi', time: '1 saat önce', title: 'Merkez Bankası rezervleri haftalık bazda 2,1 milyar dolar arttı', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası', tickers: [['THYAO', '+0,18'], ['ASELS', '+0,92']] },
   { category: 'Emtia', time: '1 saat önce', title: 'Brent petrol arz endişeleriyle 70 doların üzerine çıktı', image: 'news-market.jpg', alt: 'Borsa ekranları', tickers: [['TUPRS', '+1,47'], ['PETKM', '+0,66']] },
-  { category: 'Şirket', time: '2 saat önce', title: 'Havacılık hisseleri yaz sezonu yolcu verileriyle pozitif ayrıştı', image: 'news-eu.jpg', alt: 'AB bayrakları', tickers: [['THYO', '+2,05'], ['PGSUS', '+1,80']] },
+  { category: 'Şirket', time: '2 saat önce', title: 'Havacılık hisseleri yaz sezonu yolcu verileriyle pozitif ayrıştı', image: 'news-eu.jpg', alt: 'AB bayrakları', tickers: [['THYAO', '+2,05'], ['PGSUS', '+1,80']] },
   { category: 'Kripto', time: '2 saat önce', title: 'Bitcoin ETF girişleri haftalık bazda rekor seviyeye ulaştı', image: 'news-gold.jpg', alt: 'Külçe altınlar', tickers: [['BTC', '+3,12'], ['ETH', '+1,94']] },
-  { category: 'Dünya', time: '3 saat önce', title: 'Asya piyasaları ABD faiz kararını beklerken karışık seyretti', image: 'hero-ny-fed.jpg', alt: 'ABD bayrağı', tickers: [['THYO', '+0,18'], ['ISCTR', '-0,45']] },
+  { category: 'Dünya', time: '3 saat önce', title: 'Asya piyasaları ABD faiz kararını beklerken karışık seyretti', image: 'hero-ny-fed.jpg', alt: 'ABD bayrağı', tickers: [['THYAO', '+0,18'], ['ISCTR', '-0,45']] },
   { category: 'KAP', time: '3 saat önce', title: 'Aselsan yeni savunma sözleşmesini KAP’a bildirdi', image: 'news-market.jpg', alt: 'Borsa ekranları', tickers: [['ASELS', '+4,21'], ['KONTR', '+1,10']] },
 ].map((h) => ({ ...h, image: IMG + h.image }));
 

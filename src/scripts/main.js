@@ -24,6 +24,8 @@ const parseNum = (text) => Number(String(text).replace(/\./g, '').replace(',', '
 const signed = (value, digits = 2) => `${value > 0 ? '+' : value < 0 ? '-' : ''}${num(Math.abs(value), digits)}`;
 const percent = (value) => `${value > 0 ? '+' : value < 0 ? '-' : ''}%${num(Math.abs(value))}`;
 const dir = (value) => (value < 0 ? 'down' : 'up');
+/* Tutar alanları: harf ve eksi işareti girilemez (inputmode=decimal mobil klavyeyi açar) */
+const sanitizeAmount = (input) => { const v = input.value.replace(/[^\d.,]/g, ''); if (v !== input.value) input.value = v; };
 
 /* change-indicator atomu */
 const changeIndicator = (text, value) => `
@@ -43,6 +45,13 @@ function swapContent(el, html) {
 function initTabs() {
   document.querySelectorAll('[role="tablist"]').forEach((list) => {
     const tabs = [...list.querySelectorAll('[role="tab"]')];
+    const panel = document.getElementById(list.dataset.controls);
+    tabs.forEach((t) => {
+      t.id ||= `${list.dataset.tabs}-tab-${t.dataset.tab}`;
+      if (panel) t.setAttribute('aria-controls', panel.id);
+    });
+    const label = () => panel?.setAttribute('aria-labelledby', tabs.find((t) => t.getAttribute('aria-selected') === 'true')?.id);
+    label();
 
     const select = (tab, focus = true) => {
       tabs.forEach((t) => {
@@ -52,6 +61,7 @@ function initTabs() {
         t.tabIndex = selected ? 0 : -1;
       });
       if (focus) tab.focus();
+      label();
       list.dispatchEvent(new CustomEvent('tabchange', { detail: tab.dataset.tab, bubbles: true }));
     };
 
@@ -90,20 +100,21 @@ const heroTickers = (tickers) => tickers.map(([symbol, change]) => `
   <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">${symbol}</span>${changeIndicator(change, parseNum(change))}</a></li>`).join('');
 
 const heroSlide = (h, i) => `
-  <article class="news-hero" role="group" aria-roledescription="slayt" aria-label="${i + 1} / ${headlines.length}">
+  <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="${i + 1} / ${headlines.length}">
     <img class="news-hero__img" src="${h.image}" width="1600" height="1066" alt="${h.alt}" loading="lazy">
     <div class="news-hero__body">
       <p class="news-hero__meta t-body-s-medium"><span>${h.category}</span><span class="news-hero__dot" aria-hidden="true">·</span><time>${h.time}</time></p>
       <h2 class="news-hero__title t-display-bold"><a href="#">${h.title}</a></h2>
       <ul class="news-hero__tickers" aria-label="İlgili hisseler">${heroTickers(h.tickers)}</ul>
     </div>
-  </article>`;
+  </div>`;
 
 function initHeadlineSlider() {
   const slider = document.querySelector('[data-slider]');
   if (!slider) return;
 
   const track = slider.querySelector('[data-hero-track]');
+  const prevBtn = slider.querySelector('[data-slide="prev"]');
   const numbers = [...slider.querySelectorAll('.nav-number')];
   track.insertAdjacentHTML('beforeend', headlines.slice(1).map((h, i) => heroSlide(h, i + 1)).join(''));
   const slides = [...track.children];
@@ -125,6 +136,12 @@ function initHeadlineSlider() {
       slide.inert = !isCarousel() && i !== current; // desktop: gizli slaytlar odak almaz
     });
     numbers.forEach((n, i) => (i === current ? n.setAttribute('aria-current', 'true') : n.removeAttribute('aria-current')));
+    // İlk manşette geri gidilecek bir şey yok: "önceki" pasif (Figma: icon-button subtle),
+    // sonrakilerde aktif (brand). aria-disabled → odak butonda kalır, klavyeyle kaybolmaz.
+    const atStart = current === 0;
+    prevBtn?.setAttribute('aria-disabled', String(atStart));
+    prevBtn?.classList.toggle('icon-button--subtle', atStart);
+    prevBtn?.classList.toggle('icon-button--brand', !atStart);
   };
 
   /* --- Otomatik geçiş ------------------------------------------------------ */
@@ -157,11 +174,11 @@ function initHeadlineSlider() {
     n.addEventListener('click', () => go(i));
     n.addEventListener('mouseenter', () => { if (!isCarousel()) go(i); });
   });
-  slider.querySelector('[data-slide="prev"]')?.addEventListener('click', () => go(current - 1));
+  prevBtn?.addEventListener('click', () => { if (current > 0) go(current - 1); });
   slider.querySelector('[data-slide="next"]')?.addEventListener('click', () => go(current + 1));
   slider.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') go(current + 1);
-    if (e.key === 'ArrowLeft') go(current - 1);
+    if (e.key === 'ArrowLeft' && current > 0) go(current - 1);
   });
 
   // Yalnızca manşet kartının üzerindeyken durur; numaraya tıklayınca/üzerine gelince halka hemen dolmaya başlar
@@ -511,7 +528,8 @@ function initConverter() {
     update();
   });
 
-  input.addEventListener('input', update);
+  input.addEventListener('input', () => { sanitizeAmount(input); update(); });
+  input.addEventListener('blur', () => { input.value = num(parseNum(input.value)); });
   update();
 }
 
@@ -558,7 +576,7 @@ function initMoney() {
   });
 
   onTab('money', (value) => { period = value; render(); });
-  amountInput.addEventListener('input', () => render(false));
+  amountInput.addEventListener('input', () => { sanitizeAmount(amountInput); render(false); });
   amountInput.addEventListener('blur', () => { amountInput.value = num(parseNum(amountInput.value), 0); });
 }
 
@@ -846,9 +864,9 @@ function initSearch() {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const opt = options()[active];
-    if (opt) { choose(opt); return; }
-    if (input.value.trim()) { remember(input.value); render(); } // Canlı ortamda: /arama?q=
+    // Aktif seçenek yoksa ilk sonuç açılır (ör. "thyao" + Enter → THYAO); sonuç yoksa panel açık kalır
+    const opt = options()[active] ?? (input.value.trim() ? panel.querySelector('.search-item, .search-news') : null);
+    if (opt) choose(opt);
   });
 
   panel.addEventListener('click', (e) => {
