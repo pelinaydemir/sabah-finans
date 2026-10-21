@@ -163,19 +163,16 @@
 /* Desen yalnız beyaz kartın dışında (başlık şeridi + kenarlar) görünür;
    bu yüzden soldan sağa, altın parıltıya doğru güçlenir. */
 
-/* A · Kare grid — başlığa doğru söner; referans Banner (214:37325): grid tüm zemine eşit yayılır; çizgiler
-   "overlay" karışımla açık zeminde (altın parıltı) belirginleşir, koyu lacivertte kendiliğinden
-   kaybolur. Derinliği maske değil, alttaki renk geçişi verir. */
+/* A · Kare grid (40px) — referans: mavi tonlu ince çizgiler, bir odak noktasında en parlak,
+   uzaklaştıkça söner ama tamamen kaybolmaz. Odak sağ üst köşe (altın parıltı tarafı). */
 .converter--pattern-a::before {
   background-image:
-    linear-gradient(rgb(255 255 255 / 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.5) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgb(118 136 255 / 0.9) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(118 136 255 / 0.9) 1px, transparent 1px);
+  background-size: 40px 40px;
   background-position: -1px -1px;
-  mix-blend-mode: overlay;
-  /* Başlığa (sol üst) doğru iyice siliklesir, uzaklaştıkça belirginleşir */
-  -webkit-mask-image: radial-gradient(70% 160% at 0% 0%, transparent 0%, rgb(0 0 0 / 0.08) 35%, rgb(0 0 0 / 0.55) 70%, #000 100%);
-  mask-image: radial-gradient(70% 160% at 0% 0%, transparent 0%, rgb(0 0 0 / 0.08) 35%, rgb(0 0 0 / 0.55) 70%, #000 100%);
+  -webkit-mask-image: radial-gradient(90% 180% at 100% 0%, #000 0%, rgb(0 0 0 / 0.45) 45%, rgb(0 0 0 / 0.18) 100%);
+  mask-image: radial-gradient(90% 180% at 100% 0%, #000 0%, rgb(0 0 0 / 0.45) 45%, rgb(0 0 0 / 0.18) 100%);
 }
 
 /* B · Grafik: başlık şeridinde sağa doğru yükselen trend çizgisi + soluk dikey çizgiler */
