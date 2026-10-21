@@ -147,6 +147,7 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 | Tab | seçili | `.is-selected` + `aria-selected="true"`; ←/→ ile klavye gezinmesi |
 | nav-number | seçili / hover | `aria-current="true"`; üzerine gelmek manşeti değiştirir. Halka (`.nav-number__ring`) sıradaki manşete kalan süreyi gösterir (JS → `--progress`) |
 | Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare manşet kartının üzerindeyken, klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
+| CANLI BORSA | ışık hüzmesi | Eğik beyaz hüzme (%45, blur) 4 sn'de soldan sağa ve geri gider; Figma referansı “Dark” (214:37235). `prefers-reduced-motion` ile kapalı |
 | Son dakika | otomatik kayma + oklar | Yalnız desktop: 30px/sn kayar, oklar bir haber ileri/geri alır. Tablet/mobilde otomatik kayma kapalı (dokunmatik kaydırmayla çakışır); şerit parmakla kaydırılır ve her başlıkta durur (scroll-snap), tablet okları bir başlık ilerletir |
 | Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
