@@ -11,9 +11,9 @@ Figma: <https://www.figma.com/design/Obf50BFcksCZuXTvLtuLkZ/proje-x>
 
 | Ad | Aralık | Figma frame | İçerik genişliği | Kenar boşluğu |
 |---|---|---|---|---|
-| Mobile | 0 – 767px | `Anasayfa - 375w` (154:44790) | fluid (343 @375) | 16px |
-| Tablet | 768 – 1279px | `Anasayfa - 768w` (157:50557) | fluid (720 @768) | 24px |
-| Desktop | ≥ 1280px | `Anasayfa - 1920W` (140:68268) | maks. 1400 (1045 + 20 + 335) | 40px |
+| Mobile | 0 – 767px | `Anasayfa · Mobile · 375` (214:24441) | fluid (343 @375) | 16px |
+| Tablet | 768 – 1279px | `Anasayfa · Tablet · 768` (214:24556) | fluid (720 @768) | 24px |
+| Desktop | ≥ 1280px | `Anasayfa · Desktop · 1920` (214:24331) | maks. 1400 (1045 + 20 + 335) | 40px |
 
 Desktop'ta ana kolon fluid'dir; 1280–1440 arasında daralır, 1400'ü geçmez.
 
@@ -91,7 +91,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Chart/Sparkline | — | `.sparkline--up / --down` | düşüş = yatay çevrilmiş grafik |
 | Navigation/Tab | 98:33256 | `.tab--lg / --sm`, `.is-selected` | Seçili · Boyut |
 | Section/Başlık | 95:84384 | `.section-title` · `section-title.css` | — |
-| Haber Kartı/Görsel Üzeri | 93:57769 | `.news-hero` · `top-stories.css` | Mobile: başlık H3 |
+| Haber Kartı/Görsel Üzeri | 214:24354 (frame) | `.news-hero` · `top-stories.css` | Mobile: başlık H3 |
 | Navigation/Sayfa Numarası | 95:67706 | `.nav-number[aria-current]` | Seçili=Evet/Hayır |
 | Card/Haber | 98:33364 | `.card-featured` · `--compact` | Görsel = Var / Yok |
 | Chip/Hisse | 95:67467 | `.ticker-chip` · `--solid` | görsel üzerinde dolu |
@@ -106,12 +106,12 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Widget/Seans Raporu / Raporlar ve Analizler | 153:43490 | `.reports`, `.report-row` · `reports.css` | Tip=Seans Raporu / Analiz → `--analysis` |
 | List/KAP Satırı | 125:36204 | `.kap-row`, `.date-block` · `kap.css` | — |
 | Widget/Kripto Paralar | 153:43693 | `.crypto-table` · `crypto.css` | Mobile: Yüksek/Düşük gizli |
-| Sidebar/Ad Banner | 95:81139 | `.campaign-side` · `campaign.css` | — |
+| Sidebar/Ad Banner | 214:24432 (örnek) | `.campaign-side` · `campaign.css` | — |
 | Layout/Footer | 154:44149 | `.site-footer` · `footer.css` | Cihaz |
 
 ### Figma dosya düzeni
 
-- **Sayfalar:** UI Components · Icons · Typography · Colors · Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Prototip · Etkileşimler (Present modunda 4 akış) · ↳ Tasarım Kararları (UX analizi ve kararlar).
+- **Sayfalar:** Base → ↳ UI Components · ↳ Icons · ↳ Typography · ↳ Colors ‖ Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Prototip · Etkileşimler (Present modunda 4 akış) · ↳ Tasarım Kararları (UX analizi ve kararlar).
 - **Component adları** `Kategori/Ad` biçimindedir: `Layout/*`, `Navigation/*`, `Section/*`, `Card/*`, `Chip/*`, `List/*`, `Dropdown/*`, `Widget/*`, `Logo/*`, `Finance/*`, `Button`.
 - **Varyant özellikleri** Türkçe ve tutarlıdır: `Cihaz`, `Seçili = Evet/Hayır`, `Boyut`, `Görsel = Var/Yok`, `Tip`, `Durum`.
 - **Ekran katmanları** koddaki sınıf adlarıyla aynıdır (kebab-case): `top-stories`, `headline-slider`, `news-columns`, `news-column/gundem`, `story-list`, `sidebar`, `sidebar-divider`, `crypto-news`, `ad-inline`…
@@ -126,7 +126,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | CANLI BORSA | ikon + metin (Body/L) | ikon + metin (16px) | yalnız metin, 32px |
 | Finans barı | Finance/Ticker · Boyut=Varsayılan | aynı | Boyut=Kompakt: bar 100px (padding 8/6, etiket Body/S, sparkline 70×46) |
 | Kategori tab'ları | ortalanmış | sola hizalı, yatay kaydırma | aynı |
-| Manşet | otomatik dönen slider, 10'lu numara + ilerleme halkası, 5 haber yan listede | 4:3 kart karoseli (Figma 188:25592): komşu kartlar 8px aralıkla görünür, altta nokta; altında 3 haber | aynı, başlık H3 |
+| Manşet | otomatik dönen slider, 10'lu numara + ilerleme halkası, 5 haber yan listede | 4:3 kart karoseli (Figma 214:24459): komşu kartlar 8px aralıkla görünür, altta nokta; altında 3 haber | aynı, başlık H3 |
 | Yan kolon | ayrı kolon (gri panel) | akışa karışır, her widget kendi gri panelinde | aynı |
 | Haber kolonları | 3 kolon | alt alta, Piyasa Özeti'nden sonra | aynı |
 | Çevirici | alanlar yan yana, swap ⇄; zemin `converter-bg-desktop.webp` (cover) | alanlar alt alta, swap ⇅, tam genişlik buton; desktop zemini sağ üste hizalı | `converter-bg-mobile.webp` |
@@ -147,7 +147,7 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 | Tab | seçili | `.is-selected` + `aria-selected="true"`; ←/→ ile klavye gezinmesi |
 | nav-number | seçili / hover | `aria-current="true"`; üzerine gelmek manşeti değiştirir. Halka (`.nav-number__ring`) sıradaki manşete kalan süreyi gösterir (JS → `--progress`) |
 | Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare manşet kartının üzerindeyken, klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
-| CANLI BORSA | ışık hüzmesi | Geniş, yumuşak beyaz hüzme (merkezde %35) ~3 sn'de soldan sağa geçer, ~4 sn bekler (göz yormayan ritim); Figma referansı “Dark” (214:37235). `prefers-reduced-motion` ile kapalı |
+| CANLI BORSA | ışık hüzmesi | Geniş, yumuşak beyaz hüzme (merkezde %35) ~3 sn'de soldan sağa geçer, ~4 sn bekler (göz yormayan ritim); referans: başka bir projedeki “Dark” canlı yayın butonu. `prefers-reduced-motion` ile kapalı |
 | Son dakika | otomatik kayma + oklar | Yalnız desktop: 30px/sn kayar, oklar bir haber ileri/geri alır. Tablet/mobilde otomatik kayma kapalı (dokunmatik kaydırmayla çakışır); şerit parmakla kaydırılır ve her başlıkta durur (scroll-snap), tablet okları bir başlık ilerletir |
 | Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
@@ -205,7 +205,7 @@ tam değer `title` ve `aria-label`'da. Tutar ile para birimi aynı satırda kal�
 - **Sparkline / bar grafikleri** şu an Figma export'u statik SVG'dir. Canlı veride aynı kutu
   ölçüleriyle (`.sparkline` 78×51, `.money-row__bar` 80×56) üretilen `<svg>` ile değiştirilmelidir.
 - **Kripto logoları**: BTC/ETH/DOGE Figma `Logo/Kaynak Set`'ten; XRP, SOL, BNB, ADA, LINK [cryptocurrency-icons](https://github.com/spothq/cryptocurrency-icons) 0.18.1 (CC0) — Figma'da `Logo/Currency` varyantı olarak da eklendi. Yeni bir coin'in logosu yoksa harf avatarı (`.coin-avatar`, `--coin-color`) yedek olarak kalır.
-- **Çevirici arka planı**: Figma kaynak kareleri Ekranlar › “Çevirici · A · desktop” (265:37594) ve “· mobile” (265:37737). Değişirse bu kareler desktop 2x / mobil 3x PNG olarak dışa aktarılıp WebP'ye (q≈92) çevrilir ve `src/assets/patterns/`'e konur; görsel yüklenemezse `--gradient-converter` görünür.
+- **Çevirici arka planı**: Figma `Widget/Döviz ve Altın Çevirici` (150:44309) varyantlarının görsel dolgusu. Değişirse Desktop varyantı 2x, Mobile varyantı 3x PNG olarak dışa aktarılıp WebP'ye (q≈92) çevrilir ve `src/assets/patterns/converter-bg-{desktop,mobile}.webp` olarak konur; görsel yüklenemezse `--gradient-converter` görünür.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
 - **Arama**: `main.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri

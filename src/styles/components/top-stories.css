@@ -1,6 +1,6 @@
 /* ==========================================================================
-   MANŞET · Figma 95:68007
-   .news-hero    → "Haber Kartı/Görsel Üzeri" (93:57769)
+   MANŞET · Figma 214:24352
+   .news-hero    → "Haber Kartı/Görsel Üzeri" (214:24354)
    .nav-number   → "nav-number" (95:67706) — Seçili = Evet | Hayır
    .top-stories__list → "sidebar-cards" (card-featured, Property 1 = 2)
    ========================================================================== */
@@ -213,7 +213,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Tablet + Mobil: manşet karoseli (Figma 188:25592) + altında 3 haber
+   Tablet + Mobil: manşet karoseli (Figma 214:24459) + altında 3 haber
    Kart oranı korunur (4:3); ortadaki kart sayfa kenar boşluğuyla hizalı,
    komşu kartlar 8px aralıkla kenardan görünür ve 311/343 oranında küçülür.
    -------------------------------------------------------------------------- */
@@ -331,7 +331,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Haber kolonları (Gündem / Şirket / KAP Haberleri) — Figma 95:83898
+   Haber kolonları (Gündem / Şirket / KAP Haberleri) — Figma 214:24390
    -------------------------------------------------------------------------- */
 .news-column {
   display: flex;
@@ -352,7 +352,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Kripto Haberleri — Figma 140:128284
+   Kripto Haberleri — Figma 214:24423
    Desktop: 3 kolon · Tablet/Mobil: yatay kaydırılan kart şeridi
    -------------------------------------------------------------------------- */
 .crypto-news {

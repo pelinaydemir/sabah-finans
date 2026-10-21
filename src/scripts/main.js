@@ -112,7 +112,7 @@ const onTab = (group, handler) => {
    Desktop : slaytlar üst üste, geçişte çapraz solma. nav-number'ın üzerine
              gelince / tıklayınca manşet değişir; aktif numaradaki halka
              sıradaki manşete geçişe kalan süreyi gösterir.
-   Tablet/Mobil : yatay kaydırılan karosel (Figma 188:25592) — ortadaki kart
+   Tablet/Mobil : yatay kaydırılan karosel (Figma 214:24459) — ortadaki kart
              tam boy, komşu kartlar %90,7 ölçekli ve 8px aralıklı; altta nokta.
    Otomatik geçiş fare/klavye odağı slider'dayken, dokunurken, sekme
    arka plandayken ve slider ekranda değilken durur (WCAG 2.2.2).

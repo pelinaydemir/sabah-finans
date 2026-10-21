@@ -4,8 +4,8 @@
    ========================================================================== */
 
 /* Arka plan: Figma "Widget/Döviz ve Altın Çevirici" görsel dolgusu — lacivert → mavi zemin,
-   kendi uzunluğu boyunca sönen grid çizgileri ve altın radyal parıltı (kaynak kareler 265:37594 /
-   265:37737; desktop 2x · mobil 3x WebP). Görsel yüklenemezse altındaki gradyan görünür. */
+   kendi uzunluğu boyunca sönen grid çizgileri ve altın radyal parıltı (Figma component görsel dolgusu;
+   desktop 2x · mobil 3x WebP). Görsel yüklenemezse altındaki gradyan görünür. */
 .converter {
   display: flex;
   flex-direction: column;
