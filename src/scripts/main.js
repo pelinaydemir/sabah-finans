@@ -554,10 +554,6 @@ function initConverter() {
 
   input.addEventListener('input', () => { sanitizeAmount(input); update(); });
   document.addEventListener('livedata', update);
-
-  // Keşif: arka plan deseni yalnız URL parametresiyle (?cevirici=a|b|c) — bkz. converter.css › KEŞİF
-  const pattern = new URLSearchParams(location.search).get('cevirici');
-  if (/^[abc]$/.test(pattern || '')) root.classList.add(`converter--pattern-${pattern}`);
   input.addEventListener('blur', () => { input.value = num(parseNum(input.value)); });
   update();
 }

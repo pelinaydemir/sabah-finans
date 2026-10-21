@@ -99,7 +99,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Logo/Company | 123:34961 | `.logo-company--{16,20,40}` | boyut |
 | Widget/Piyasa Özeti | 152:43463 | `.widget` + `.market-row` · `widget.css` | Cihaz |
 | Widget/Paramın Karşılığı Ne Olurdu? | 152:43567 | `.widget` + `.money` | Cihaz |
-| Widget/Döviz ve Altın Çevirici | 150:44309 | `.converter`, `.field`, `.currency-select` | Mobile: alanlar alt alta |
+| Widget/Döviz ve Altın Çevirici | 150:44309 | `.converter`, `.field`, `.currency-select` | Mobile: alanlar alt alta · arka plan görsel dolgu |
 | Widget/BIST Öne Çıkanlar | 152:43642 | `.stock-tiles`, `.breadth`, `.ratio-bar` | Cihaz |
 | Widget/Hisse İstatistikleri | 152:43687 | `.legend`, `.stats` | Cihaz |
 | Dropdown/Para Birimi + Dropdown/Item | 127:36908 · 127:36907 | `.dropdown`, `.dropdown-item` · `dropdown.css` | Durum = Default / Hover / Seçili · kompakt varyant: `.dropdown--compact` |
@@ -129,7 +129,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Manşet | otomatik dönen slider, 10'lu numara + ilerleme halkası, 5 haber yan listede | 4:3 kart karoseli (Figma 188:25592): komşu kartlar 8px aralıkla görünür, altta nokta; altında 3 haber | aynı, başlık H3 |
 | Yan kolon | ayrı kolon (gri panel) | akışa karışır, her widget kendi gri panelinde | aynı |
 | Haber kolonları | 3 kolon | alt alta, Piyasa Özeti'nden sonra | aynı |
-| Çevirici | alanlar yan yana, swap ⇄ | alanlar alt alta, swap ⇅, tam genişlik buton | aynı |
+| Çevirici | alanlar yan yana, swap ⇄; zemin `converter-bg-desktop.webp` (cover) | alanlar alt alta, swap ⇅, tam genişlik buton; desktop zemini sağ üste hizalı | `converter-bg-mobile.webp` |
 | Seans / Raporlar | 2 kolon, 4'er satır | 2 kolon, 4'er satır | alt alta, 3'er satır |
 | KAP Duyuruları | 2 kolon (10 kayıt) | 2 kolon | 1 kolon (5 kayıt) |
 | Kripto tablosu | 5 kolon | 5 kolon | Coin / Fiyat / 24 Saat |
@@ -205,6 +205,7 @@ tam değer `title` ve `aria-label`'da. Tutar ile para birimi aynı satırda kal�
 - **Sparkline / bar grafikleri** şu an Figma export'u statik SVG'dir. Canlı veride aynı kutu
   ölçüleriyle (`.sparkline` 78×51, `.money-row__bar` 80×56) üretilen `<svg>` ile değiştirilmelidir.
 - **Kripto logoları**: BTC/ETH/DOGE Figma `Logo/Kaynak Set`'ten; XRP, SOL, BNB, ADA, LINK [cryptocurrency-icons](https://github.com/spothq/cryptocurrency-icons) 0.18.1 (CC0) — Figma'da `Logo/Currency` varyantı olarak da eklendi. Yeni bir coin'in logosu yoksa harf avatarı (`.coin-avatar`, `--coin-color`) yedek olarak kalır.
+- **Çevirici arka planı**: Figma kaynak kareleri Ekranlar › “Çevirici · A · desktop” (265:37594) ve “· mobile” (265:37737). Değişirse bu kareler desktop 2x / mobil 3x PNG olarak dışa aktarılıp WebP'ye (q≈92) çevrilir ve `src/assets/patterns/`'e konur; görsel yüklenemezse `--gradient-converter` görünür.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
 - **Arama**: `main.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri
