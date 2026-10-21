@@ -39,7 +39,7 @@
 .crypto-table thead th {
   padding-block: var(--space-2-5);
   background: var(--color-bg-subtle);
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary); /* tertiary bg-subtle üzerinde 4,23:1 → secondary 9,2:1 */
   font-weight: inherit;
 }
 

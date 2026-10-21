@@ -261,7 +261,7 @@
     display: none;
   }
 
-  /* Haber numaraları → nokta (8px, seçili 12px) */
+  /* Haber numaraları → nokta (8px, seçili 12px, aralık 16px) */
   .nav-numbers {
     align-items: center;
     gap: 0;
@@ -272,11 +272,12 @@
     display: flex;
   }
 
+  /* Dokunma alanı 24×24 (WCAG 2.5.8); görünen nokta 8px / seçili 12px */
   .nav-number,
   .nav-number:hover,
   .nav-number[aria-current="true"] {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     border: 0;
     background: none;
     font-size: 0;

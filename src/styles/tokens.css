@@ -41,6 +41,7 @@
   --red-50: #fef3f2;
   --red-500: #f04438;
   --red-600: #d92d20;
+  --red-700: #b42318;
 
   --white-10: rgb(255 255 255 / 0.10); /* White/White 10% */
   --white-15: rgb(255 255 255 / 0.15); /* White/White 15% */
@@ -62,6 +63,7 @@
   --color-bg-accent: var(--brand-secondary-500);
   --color-bg-positive: var(--green-500);
   --color-bg-positive-subtle: var(--green-50);
+  --color-bg-positive-strong: var(--green-700); /* beyaz metinli yeşil yüzeyler (CANLI BORSA) — 5,4:1 */
   --color-bg-negative: var(--red-500);
   --color-bg-negative-subtle: var(--red-50);
   --color-bg-row-alt: var(--slate-50);    /* Kripto tablosu zebra satır (Slate/50) */
@@ -77,7 +79,7 @@
   --color-text-on-brand-secondary: var(--white-60);
   --color-text-on-brand-muted: var(--white-80);
   --color-text-positive: var(--green-700);
-  --color-text-negative: var(--red-600);
+  --color-text-negative: var(--red-700); /* Red/600 Red/50 üzerinde 4,44:1 idi → Red/700 5,9:1 (WCAG AA) */
   --color-text-placeholder-inverse: var(--slate-200);
 
   /* Icon */

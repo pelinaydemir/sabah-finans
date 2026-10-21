@@ -1,7 +1,7 @@
 /* ==========================================================================
    BUTTON · Figma "Buttons" sayfası (component: button)
    .btn            → metinli buton (radius-button = pill)
-     --positive    → CANLI BORSA (bg-positive)
+     --positive    → CANLI BORSA (bg-positive-strong — beyaz metinle AA kontrast)
      --primary     → "Tüm döviz kurları" (bg-brand-strong)
    .icon-button    → yalnız ikonlu yuvarlak buton
      --subtle      → slider "önceki" (bg-subtle)
@@ -37,7 +37,7 @@
 
 .btn--positive {
   padding-inline: var(--space-4) var(--space-6);
-  background: var(--color-bg-positive);
+  background: var(--color-bg-positive-strong);
 }
 
 .btn--primary {

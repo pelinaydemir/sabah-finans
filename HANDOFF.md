@@ -31,6 +31,7 @@ Kaynak: Figma **Variables** → `src/styles/tokens.css`. İki katman vardır:
 | `--color-bg-brand-strong` | `#0c0f3a` | Header, son dakika, birincil buton, seçili tab göstergesi |
 | `--color-bg-brand` | `#292f89` | Footer |
 | `--color-bg-accent` | `#d51317` | Son dakika ayırıcı nokta |
+| `--color-bg-positive-strong` | `#027a48` | Beyaz metinli yeşil yüzey (CANLI BORSA) |
 | `--color-bg-surface` | `#ffffff` | Kart yüzeyleri |
 | `--color-bg-subtle` | `#f2f2f2` | Yan kolon paneli, badge, tablo başlığı |
 | `--color-bg-canvas` | `#fafafa` | Tablet/mobil sayfa zemini |
@@ -163,6 +164,17 @@ kurallarla eklendi. Tasarım tarafında onaylanması önerilir.
 - Kripto verisi gerçek `<table>` (caption, `scope`); istatistikler `<dl>`.
 - Dekoratif ikon/grafikler `aria-hidden`; oran çubukları `role="img"` + açıklayıcı `aria-label`.
 - "İçeriğe geç" bağlantısı, `prefers-reduced-motion` desteği.
+
+### Erişilebilirlik kontrolü (axe-core 4.10, WCAG 2.2 AA + best practice)
+
+Desktop, tablet ve mobilde **0 ihlal**. Bu tur için yapılan token/component değişiklikleri (Figma'da da uygulandı):
+
+| Bulgu | Önce | Sonra |
+|---|---|---|
+| CANLI BORSA (beyaz metin) | `bg/positive` Green/500 — 2,62:1 | yeni `bg/positive-strong` → Green/700 — 5,4:1 (grafik/nokta gibi metinsiz yüzeyler Green/500'de kalır) |
+| Negatif değişim metni (change-pill vb.) | `text/negative` Red/600 — Red/50 üzerinde 4,44:1 | Red/700 — 5,9:1 |
+| Kripto tablo başlığı | `text/tertiary` bg-subtle üzerinde 4,23:1 | `text/secondary` — 9,2:1 |
+| Manşet noktaları (tablet/mobil) | 16×16 dokunma alanı | 24×24 (WCAG 2.5.8); görünen nokta aynı, aralık 16px |
 
 ## 7. Veri entegrasyonu notları
 
