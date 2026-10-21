@@ -128,11 +128,6 @@
     display: none;
   }
 
-  .crypto-table th,
-  .crypto-table td {
-    padding-inline: var(--space-1);
-  }
-
   .coin {
     gap: var(--space-2);
   }

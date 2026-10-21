@@ -149,6 +149,7 @@ Yeni bir blok eklenirken `data-slot` verip bu tabloya eklemek yeterlidir.
 | Manşet | otomatik geçiş | 6 sn (`AUTOPLAY_MS`). Fare manşet kartının üzerindeyken, klavye odağı slider'dayken, dokunurken, sekme arka plandayken veya slider ekranda değilken durur; `prefers-reduced-motion` ile kapalı |
 | CANLI BORSA | ışık hüzmesi | Geniş, yumuşak beyaz hüzme (merkezde %35) ~3 sn'de soldan sağa geçer, ~4 sn bekler (göz yormayan ritim); referans: başka bir projedeki “Dark” canlı yayın butonu. `prefers-reduced-motion` ile kapalı |
 | Son dakika | otomatik kayma + oklar | Yalnız desktop: 30px/sn kayar, oklar bir haber ileri/geri alır. Tablet/mobilde otomatik kayma kapalı (dokunmatik kaydırmayla çakışır); şerit parmakla kaydırılır ve her başlıkta durur (scroll-snap), tablet okları bir başlık ilerletir |
+| Dropdown (tablet/mobil) | bottom sheet | Liste ekranın altından açılır (Figma 286:24156): tutamaç, overlay #29293A %23, aşağı sürükleme / overlay / Esc ile kapanır; açıkken sayfa kaymaz. Dokunmatikte arama alanına otomatik odak verilmez (klavye listeyi kapatmasın) |
 | Arama | odak / yazıyor / sonuç yok | Varsayılan: son aramalar (localStorage) + en çok arananlar + popüler haberler. Yazarken semboller ve haberler filtrelenir, eşleşme `<mark>` ile vurgulanır. ↑/↓, Enter, Esc; `X` alanı temizler. Figma: “Arama · Search” bölümü |
 | Kartlar, rapor/KAP satırları | hover | başlık `--color-text-brand`; tüm satır tıklanabilir (stretched link) |
 | ticker-chip | hover | çerçeve `--color-border-strong` |

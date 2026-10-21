@@ -230,7 +230,11 @@ function initHeadlineSlider() {
   const paint = () => {
     frame = null;
     if (!isCarousel()) return;
-    const f = track.scrollLeft / step();
+    // Yerleşim henüz hazır değilse (adım 0) hesaplama yapılmaz — aksi halde NaN ile
+    // ilk nokta seçimi düşüyordu
+    const size = step();
+    if (!size) return;
+    const f = track.scrollLeft / size;
     slides.forEach((slide, i) => {
       const d = Math.min(1, Math.abs(i - f));
       slide.style.transform = `scale(${1 - (1 - MIN_SCALE) * d})`;
@@ -387,6 +391,22 @@ function initBreakingNews() {
    --------------------------------------------------------------------------- */
 let openDropdown = null;
 
+/* Tablet/Mobil: dropdown'lar bottom sheet olarak açılır (Figma 286:24156 "sheet").
+   Liste/arama/klavye davranışı aynı kalır; panel geçici olarak <body>'ye taşınır ki
+   kapsayıcıların overflow/transform'u etkilemesin, kapanınca yerine döner. */
+const isSheetMode = () => !isDesktop();
+let sheetOverlay = null;
+const getSheetOverlay = () => {
+  if (!sheetOverlay) {
+    sheetOverlay = document.createElement('div');
+    sheetOverlay.className = 'sheet-overlay';
+    sheetOverlay.hidden = true;
+    sheetOverlay.addEventListener('click', () => openDropdown?.close());
+    document.body.append(sheetOverlay);
+  }
+  return sheetOverlay;
+};
+
 function createDropdown({ select, items, groups, searchable, onChange }) {
   const trigger = select.querySelector('[data-select-trigger]');
   const id = `dd-${select.dataset.select}`;
@@ -442,9 +462,36 @@ function createDropdown({ select, items, groups, searchable, onChange }) {
     (search || list).setAttribute('aria-activedescendant', opts[active].id);
   };
 
+  // Bottom sheet tutamacı (dekoratif) — aşağı kaydırınca kapatır
+  const grabber = document.createElement('div');
+  grabber.className = 'dropdown__grabber';
+  grabber.setAttribute('aria-hidden', 'true');
+
+  const toSheet = () => {
+    panel.classList.add('dropdown--sheet');
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+    panel.setAttribute('aria-label', trigger.getAttribute('aria-label') || 'Para birimi seçin');
+    panel.prepend(grabber);
+    document.body.append(panel);
+    getSheetOverlay().hidden = false;
+    document.documentElement.classList.add('is-sheet-open');
+  };
+
+  const fromSheet = () => {
+    panel.classList.remove('dropdown--sheet');
+    ['role', 'aria-modal', 'aria-label'].forEach((a) => panel.removeAttribute(a));
+    panel.style.removeProperty('transform');
+    grabber.remove();
+    select.append(panel);
+    getSheetOverlay().hidden = true;
+    document.documentElement.classList.remove('is-sheet-open');
+  };
+
   const close = (returnFocus = true) => {
     if (panel.hidden) return;
     panel.hidden = true;
+    if (panel.classList.contains('dropdown--sheet')) fromSheet();
     trigger.setAttribute('aria-expanded', 'false');
     openDropdown = null;
     if (returnFocus) trigger.focus();
@@ -453,13 +500,34 @@ function createDropdown({ select, items, groups, searchable, onChange }) {
   const open = () => {
     openDropdown?.close(false);
     render();
+    const sheet = isSheetMode();
+    if (sheet) toSheet();
     panel.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
     openDropdown = { close, panel, select };
     const selectedIndex = options().findIndex((o) => o.getAttribute('aria-selected') === 'true');
     setActive(Math.max(0, selectedIndex));
-    (search || list).focus();
+    // Dokunmatikte arama alanına otomatik odak klavyeyi açıp listeyi kapatır → listeye odaklanılır
+    (sheet && matchMedia('(pointer: coarse)').matches ? list : (search || list)).focus({ preventScroll: true });
   };
+
+  // Aşağı sürükleyerek kapatma (tutamaç veya liste en üstteyken)
+  let dragY = null;
+  panel.addEventListener('touchstart', (e) => {
+    if (!panel.classList.contains('dropdown--sheet')) return;
+    if (e.target === grabber || list.scrollTop <= 0) dragY = e.touches[0].clientY;
+  }, { passive: true });
+  panel.addEventListener('touchmove', (e) => {
+    if (dragY === null) return;
+    const dy = Math.max(0, e.touches[0].clientY - dragY);
+    panel.style.transform = `translateY(${dy}px)`;
+  }, { passive: true });
+  panel.addEventListener('touchend', (e) => {
+    if (dragY === null) return;
+    const dy = e.changedTouches[0].clientY - dragY;
+    dragY = null;
+    if (dy > 80) close(); else panel.style.removeProperty('transform');
+  });
 
   const choose = (code) => {
     select.dataset.value = code;
@@ -495,8 +563,13 @@ function createDropdown({ select, items, groups, searchable, onChange }) {
 }
 
 document.addEventListener('pointerdown', (e) => {
-  if (openDropdown && !openDropdown.select.contains(e.target)) openDropdown.close(false);
+  if (!openDropdown || openDropdown.select.contains(e.target) || openDropdown.panel.contains(e.target)) return;
+  if (e.target === sheetOverlay) return; // overlay kendi click'iyle kapatır
+  openDropdown.close(false);
 });
+
+// Kırılım değişirse (döndürme vb.) açık dropdown kapanır — sheet/popover arası geçiş temiz kalsın
+matchMedia('(min-width: 1280px)').addEventListener('change', () => openDropdown?.close(false));
 
 /* ---------------------------------------------------------------------------
    DÖVİZ VE ALTIN ÇEVİRİCİ

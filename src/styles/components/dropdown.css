@@ -4,7 +4,8 @@
      .dropdown            → arama + gruplu liste (Döviz ve Altın Çevirici)
      .dropdown--compact   → yalnız liste (Paramın Karşılığı › Para birimi)
    Item durumları: Default | Hover (.is-active / :hover) | Seçili ([aria-selected="true"])
-   Konum: tetikleyici (.select) altına, sağ kenara hizalı açılır.
+   Konum: desktop'ta tetikleyici (.select) altına, sağ kenara hizalı açılır;
+   tablet/mobilde bottom sheet (aşağıda).
    ========================================================================== */
 
 .select {
@@ -162,18 +163,75 @@
   transition: transform 0.15s ease;
 }
 
-@media (max-width: 1279px) {
-  /* Tablet/mobil: çevirici alanları alt alta → liste, alanın tam genişliğinde açılır */
-  .converter .select {
-    position: static;
-  }
+/* --------------------------------------------------------------------------
+   BOTTOM SHEET · Tablet/Mobil (Figma 286:24156 "sheet" + "overlay")
+   Aynı dropdown paneli ekranın altından açılır: üst köşeler 16px, tutamaç,
+   karartılmış zemin. Liste kendi içinde kayar; aşağı sürükleyince kapanır.
+   -------------------------------------------------------------------------- */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgb(41 41 58 / 0.23);
+  animation: sheet-fade 0.2s ease-out;
+}
 
-  .converter .dropdown {
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    width: auto;
-    max-width: none;
+.sheet-overlay[hidden] {
+  display: none;
+}
+
+.is-sheet-open,
+.is-sheet-open body {
+  overflow: hidden;
+}
+
+.dropdown.dropdown--sheet {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 100;
+  gap: var(--space-4);
+  width: auto;
+  max-width: 600px;
+  max-height: min(80vh, 640px);
+  margin-inline: auto;
+  padding: var(--space-2) var(--space-4) calc(var(--space-6) + env(safe-area-inset-bottom));
+  border: 0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 24px rgb(17 23 34 / 0.12);
+  transform-origin: bottom center;
+  animation: sheet-up 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.2s ease;
+}
+
+.dropdown--sheet .dropdown__list {
+  flex: 1 1 auto;
+  max-height: none;
+  min-height: 0;
+  padding-right: 0;
+}
+
+.dropdown__grabber {
+  flex-shrink: 0;
+  align-self: center;
+  width: 36px;
+  height: 5px;
+  margin-top: 5px;
+  border-radius: 100px;
+  background: #ccc; /* Figma: fills · vibrant / primary */
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+}
+
+@keyframes sheet-fade {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-overlay,
+  .dropdown.dropdown--sheet {
+    animation: none;
   }
 }
 

@@ -14,9 +14,17 @@
   padding: var(--space-2) var(--layout-gutter) 0;
 }
 
+/* Tablet/Mobil: sekmenin kendi 16px yatay boşluğuyla birlikte metin sayfa kenar boşluğuna oturur
+   (Figma: tablet sol 8 → 8+16 = 24 · mobil sol 0 → 16) */
 @media (max-width: 1279px) {
   .category-nav__list {
     justify-content: flex-start;
-    padding-inline: var(--layout-page-padding);
+    padding-inline: var(--space-2) 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .category-nav__list {
+    padding-inline: 0;
   }
 }
