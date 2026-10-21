@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 343 420" preserveAspectRatio="xMidYMid slice">
+  <!-- Çevirici arka planı · Mobil — Figma "Çevirici · A · mobile" (265:37737) birebir.
+       Desktop zemini ortalanmış (−351px) · grid ≈40,2×46 · altın radyal parıltı -->
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1045" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#031C48"/><stop offset=".5" stop-color="#04126E"/><stop offset="1" stop-color="#041A84"/></linearGradient>
+    <radialGradient id="core" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(522.5 210) scale(470.25 189)"><stop offset="0" stop-color="#02097B"/><stop offset="1" stop-color="#02097B" stop-opacity="0"/></radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="420" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#041851" stop-opacity="0"/><stop offset="1" stop-color="#041851"/></linearGradient>
+    <!-- Her çizgi kendi uzunluğu boyunca söner: ortada #4A62F0, uçlarda şeffaf (Figma: radial, objectBoundingBox) -->
+    <radialGradient id="line" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#4A62F0"/>
+      <stop offset="1" stop-color="#2B388A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-171.336 420 -82.8952 -658.378 343 0)">
+      <stop offset="0" stop-color="#E0B243" stop-opacity=".7"/>
+      <stop offset=".505" stop-color="#E0B243" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#E0B243" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(-351 0)">
+    <rect width="1045" height="420" fill="url(#base)"/>
+    <rect width="1045" height="420" fill="url(#core)"/>
+    <rect width="1045" height="420" fill="url(#floor)"/>
+  </g>
+  <g fill="url(#line)"><rect x="12.85" width="1.533" height="420"/><rect x="53.088" width="1.533" height="420"/><rect x="93.325" width="1.533" height="420"/><rect x="133.562" width="1.533" height="420"/><rect x="173.799" width="1.533" height="420"/><rect x="214.037" width="1.533" height="420"/><rect x="254.274" width="1.533" height="420"/><rect x="294.511" width="1.533" height="420"/><rect x="334.748" width="1.533" height="420"/><rect x="-629.412" y="44.453" width="1601.82" height="1.533"/><rect x="-629.412" y="90.438" width="1601.82" height="1.533"/><rect x="-629.412" y="136.423" width="1601.82" height="1.533"/><rect x="-629.412" y="182.409" width="1601.82" height="1.533"/><rect x="-629.412" y="228.394" width="1601.82" height="1.533"/><rect x="-629.412" y="274.38" width="1601.82" height="1.533"/><rect x="-629.412" y="320.365" width="1601.82" height="1.533"/><rect x="-629.412" y="366.351" width="1601.82" height="1.533"/><rect x="-629.412" y="412.336" width="1601.82" height="1.533"/></g>
+  <rect width="343" height="420" fill="url(#glow)"/>
+</svg>

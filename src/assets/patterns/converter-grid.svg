@@ -1,40 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-  <!-- Çevirici arka planı · referans görselden yeniden çizildi.
-       viewBox YOK: 1 birim = 1 CSS px. Böylece grid hücresi her kırılımda aynı boyuttadır
-       (26,25 × 30 px — mobil çeviricideki ölçü); zemin geçişleri ise kutuya göre (%) uzar.
-       Zemin: sol lacivert → sağ mavi, ortada koyu mavi odak, altta kararma.
-       Çizgiler: #4A62F0, sağ üstte en parlak, sol alta doğru doğrusal söner. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1045 274" preserveAspectRatio="xMidYMid slice">
+  <!-- Çevirici arka planı · Desktop — Figma "Çevirici · A · desktop" (265:37594) birebir.
+       Zemin: lacivert → mavi + ortada koyu mavi odak + altta kararma · grid 26,25×30 · altın radyal parıltı -->
   <defs>
-    <linearGradient id="base" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#031C48"/>
-      <stop offset=".5" stop-color="#04126E"/>
-      <stop offset="1" stop-color="#041A84"/>
-    </linearGradient>
-    <radialGradient id="core" cx=".5" cy=".5" r=".45">
-      <stop offset="0" stop-color="#02097B"/>
-      <stop offset="1" stop-color="#02097B" stop-opacity="0"/>
+    <linearGradient id="base" x1="0" y1="0" x2="1045" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#031C48"/><stop offset=".5" stop-color="#04126E"/><stop offset="1" stop-color="#041A84"/></linearGradient>
+    <radialGradient id="core" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(522.5 137) scale(470.25 123.3)"><stop offset="0" stop-color="#02097B"/><stop offset="1" stop-color="#02097B" stop-opacity="0"/></radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="274" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#041851" stop-opacity="0"/><stop offset="1" stop-color="#041851"/></linearGradient>
+    <!-- Her çizgi kendi uzunluğu boyunca söner: ortada #4A62F0, uçlarda şeffaf (Figma: radial, objectBoundingBox) -->
+    <radialGradient id="line" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#4A62F0"/>
+      <stop offset="1" stop-color="#2B388A" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
-      <stop offset=".55" stop-color="#041851" stop-opacity="0"/>
-      <stop offset="1" stop-color="#041851"/>
-    </linearGradient>
-    <pattern id="cell" width="26.25" height="30" patternUnits="userSpaceOnUse">
-      <rect x="25.25" width="1" height="30" fill="#4A62F0"/>
-      <rect y="29" width="26.25" height="1" fill="#4A62F0"/>
-    </pattern>
-    <!-- Çizgi parlaklığı: sağ üst köşede tam, sol alta doğru doğrusal ve yumuşak söner -->
-    <linearGradient id="glow" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff"/>
-      <stop offset=".3" stop-color="#fff" stop-opacity=".6"/>
-      <stop offset=".6" stop-color="#fff" stop-opacity=".25"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
-    </linearGradient>
-    <mask id="fade" maskContentUnits="objectBoundingBox">
-      <rect width="1" height="1" fill="url(#glow)"/>
-    </mask>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-522 274 -252.553 -429.514 1045 0)">
+      <stop offset="0" stop-color="#E0B243" stop-opacity=".7"/>
+      <stop offset=".505" stop-color="#E0B243" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#E0B243" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="100%" height="100%" fill="url(#base)"/>
-  <rect width="100%" height="100%" fill="url(#core)"/>
-  <rect width="100%" height="100%" fill="url(#floor)"/>
-  <rect width="100%" height="100%" fill="url(#cell)" mask="url(#fade)"/>
+  <rect width="1045" height="274" fill="url(#base)"/>
+  <rect width="1045" height="274" fill="url(#core)"/>
+  <rect width="1045" height="274" fill="url(#floor)"/>
+  <g fill="url(#line)"><rect x="25.25" width="1" height="274"/><rect x="51.5" width="1" height="274"/><rect x="77.75" width="1" height="274"/><rect x="104" width="1" height="274"/><rect x="130.25" width="1" height="274"/><rect x="156.5" width="1" height="274"/><rect x="182.75" width="1" height="274"/><rect x="209" width="1" height="274"/><rect x="235.25" width="1" height="274"/><rect x="261.5" width="1" height="274"/><rect x="287.75" width="1" height="274"/><rect x="314" width="1" height="274"/><rect x="340.25" width="1" height="274"/><rect x="366.5" width="1" height="274"/><rect x="392.75" width="1" height="274"/><rect x="419" width="1" height="274"/><rect x="445.25" width="1" height="274"/><rect x="471.5" width="1" height="274"/><rect x="497.75" width="1" height="274"/><rect x="524" width="1" height="274"/><rect x="550.25" width="1" height="274"/><rect x="576.5" width="1" height="274"/><rect x="602.75" width="1" height="274"/><rect x="629" width="1" height="274"/><rect x="655.25" width="1" height="274"/><rect x="681.5" width="1" height="274"/><rect x="707.75" width="1" height="274"/><rect x="734" width="1" height="274"/><rect x="760.25" width="1" height="274"/><rect x="786.5" width="1" height="274"/><rect x="812.75" width="1" height="274"/><rect x="839" width="1" height="274"/><rect x="865.25" width="1" height="274"/><rect x="891.5" width="1" height="274"/><rect x="917.75" width="1" height="274"/><rect x="944" width="1" height="274"/><rect x="970.25" width="1" height="274"/><rect x="996.5" width="1" height="274"/><rect x="1022.75" width="1" height="274"/><rect y="29" width="1045" height="1"/><rect y="59" width="1045" height="1"/><rect y="89" width="1045" height="1"/><rect y="119" width="1045" height="1"/><rect y="149" width="1045" height="1"/><rect y="179" width="1045" height="1"/><rect y="209" width="1045" height="1"/><rect y="239" width="1045" height="1"/><rect y="269" width="1045" height="1"/></g>
+  <rect width="1045" height="274" fill="url(#glow)"/>
 </svg>

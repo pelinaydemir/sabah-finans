@@ -163,13 +163,25 @@
 /* Desen yalnız beyaz kartın dışında (başlık şeridi + kenarlar) görünür;
    bu yüzden soldan sağa, altın parıltıya doğru güçlenir. */
 
-/* A · Grid zemin — referans görsel SVG'ye çevrildi (assets/patterns/converter-grid.svg):
-   lacivert → mavi zemin, ortada koyu odak; grid hücresi her kırılımda 26,25×30 px (mobil ölçü);
-   üstüne mevcut altın radyal parıltı. */
+/* A · Grid zemin — Figma "Çevirici · A · desktop / mobile" (265:37594 · 265:37737) birebir SVG:
+   lacivert → mavi zemin, her çizgi kendi uzunluğu boyunca söner, altın radyal parıltı dahil.
+   Desktop + tablet: desktop SVG (cover → tablette hücre ≈40px) · Mobil: mobil SVG. */
 .converter--pattern-a {
-  background:
-    var(--gradient-converter-glow),
-    url("../../assets/patterns/converter-grid.svg") 0 0 / 100% 100% no-repeat;
+  background: url("../../assets/patterns/converter-grid.svg") center / cover no-repeat;
+}
+
+/* Tablet: cover kırpması altın parıltıyı kesmesin diye sağ üste hizalı */
+@media (max-width: 1279px) {
+  .converter--pattern-a {
+    background-position: 100% 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .converter--pattern-a {
+    background-image: url("../../assets/patterns/converter-grid-mobile.svg");
+    background-position: center;
+  }
 }
 
 .converter--pattern-a::before {
