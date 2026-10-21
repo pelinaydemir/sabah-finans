@@ -353,7 +353,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-1-5);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
 }
 
 .legend__dot {
@@ -378,8 +378,13 @@
   border-top: 1px solid var(--color-border-subtle);
 }
 
+/* Hiyerarşi: 1) başlık cümlesi (H4) 2) sayılar (H5) 3) ayrıntı satırları — etiket soluk, değer koyu */
+.breadth__headline {
+  color: var(--color-text-primary);
+}
+
 .stats dt {
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
 }
 
 .stats dd {

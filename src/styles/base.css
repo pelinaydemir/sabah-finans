@@ -86,6 +86,7 @@ table {
 .t-h2-semibold,
 .t-h3-bold,
 .t-h3-semibold,
+.t-h4-semibold,
 .t-h5-semibold,
 .t-h6-semibold,
 .t-h6-medium {
@@ -96,6 +97,7 @@ table {
 .t-h2-semibold { font-size: var(--text-h2-size); line-height: var(--text-h2-line-height); font-weight: var(--font-weight-semibold); }
 .t-h3-bold     { font-size: var(--text-h3-size); line-height: var(--text-h3-line-height); font-weight: var(--font-weight-bold); }
 .t-h3-semibold { font-size: var(--text-h3-size); line-height: var(--text-h3-line-height); font-weight: var(--font-weight-semibold); }
+.t-h4-semibold { font-size: var(--text-h4-size); line-height: var(--text-h4-line-height); font-weight: var(--font-weight-semibold); }
 .t-h5-semibold { font-size: var(--text-h5-size); line-height: var(--text-h5-line-height); font-weight: var(--font-weight-semibold); }
 .t-h6-semibold { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-semibold); }
 .t-h6-medium   { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-medium); }
