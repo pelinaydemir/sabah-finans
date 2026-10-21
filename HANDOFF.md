@@ -111,6 +111,7 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 
 ### Figma dosya düzeni
 
+- **Sayfalar:** UI Components · Icons · Typography · Colors · Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Prototip · Etkileşimler (Present modunda 4 akış) · ↳ Tasarım Kararları (UX analizi ve kararlar).
 - **Component adları** `Kategori/Ad` biçimindedir: `Layout/*`, `Navigation/*`, `Section/*`, `Card/*`, `Chip/*`, `List/*`, `Dropdown/*`, `Widget/*`, `Logo/*`, `Finance/*`, `Button`.
 - **Varyant özellikleri** Türkçe ve tutarlıdır: `Cihaz`, `Seçili = Evet/Hayır`, `Boyut`, `Görsel = Var/Yok`, `Tip`, `Durum`.
 - **Ekran katmanları** koddaki sınıf adlarıyla aynıdır (kebab-case): `top-stories`, `headline-slider`, `news-columns`, `news-column/gundem`, `story-list`, `sidebar`, `sidebar-divider`, `crypto-news`, `ad-inline`…
