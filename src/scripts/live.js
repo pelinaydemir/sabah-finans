@@ -1,9 +1,12 @@
 /**
  * CANLI VERİ (opsiyonel katman)
  *
- * Ücretsiz, anahtarsız ve tarayıcıdan çağrılabilen (CORS açık) iki kaynak:
+ * Ücretsiz, anahtarsız ve tarayıcıdan çağrılabilen (CORS açık) kaynaklar:
  *   - Truncgil Finans  → döviz, altın, gümüş, BIST 100   https://finans.truncgil.com/v4/today.json
- *   - CoinGecko        → kripto fiyat + 24 saat değişim   https://api.coingecko.com/api/v3/simple/price
+ *   - Binance          → kripto fiyat + 24 saat değişim   https://api.binance.com/api/v3/ticker/24hr
+ *     (yanıt vermezse yedek: CoinGecko /simple/price — oran sınırında CORS başlığı dönmediği için ikincil)
+ * Her istek başarısız olursa bir kez yeniden denenir. Truncgil yanıt vermezse döviz ve altın
+ * Binance paritelerinden türetilir (bkz. getFx).
  *
  * Akış: sayfa örnek veriyle (data.js) açılır → canlı veri gelirse aynı nesneler güncellenir
  * ve ekrandaki değerler yenilenir. Kaynak yanıt vermezse örnek veri kalır, hiçbir şey bozulmaz.
@@ -19,6 +22,7 @@ import { currencies, coins } from './data.js';
 const TRUNCGIL = 'https://finans.truncgil.com/v4/today.json';
 const COIN_IDS = { BTC: 'bitcoin', ETH: 'ethereum', XRP: 'ripple', SOL: 'solana', BNB: 'binancecoin', ADA: 'cardano', DOGE: 'dogecoin', LINK: 'chainlink' };
 const COINGECKO = `https://api.coingecko.com/api/v3/simple/price?ids=${Object.values(COIN_IDS).join(',')}&vs_currencies=usd&include_24hr_change=true`;
+const BINANCE = `https://api.binance.com/api/v3/ticker/24hr?symbols=${encodeURIComponent(JSON.stringify(Object.keys(COIN_IDS).map((s) => `${s}USDT`)))}`;
 const REFRESH_MS = 60_000;
 const ICONS = 'src/assets/icons/sprite.svg';
 
@@ -28,15 +32,62 @@ const FX_MAP = { USD: 'USD', EUR: 'EUR', GBP: 'GBP', CHF: 'CHF', GRA: 'GA', CEYR
 const fmt = (value, digits) => new Intl.NumberFormat('tr-TR', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(value);
 const signed = (value) => `${value > 0 ? '+' : value < 0 ? '-' : ''}${fmt(Math.abs(value), 2)}`;
 
-const getJSON = async (url) => {
+const fetchJSON = async (url, { bust = false } = {}) => {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 6000);
   try {
-    const res = await fetch(url, { signal: ctrl.signal, cache: 'no-store' });
+    // Önbellek URL parametresiyle aşılır (yalnız gereken kaynakta — Binance bilinmeyen parametreyi reddeder).
+    // `cache: 'no-store'` kullanılmaz: Cache-Control başlığı CORS ön isteğini (OPTIONS) tetikler.
+    const target = bust ? `${url}${url.includes('?') ? '&' : '?'}_=${Date.now()}` : url;
+    const res = await fetch(target, { signal: ctrl.signal });
     if (!res.ok) throw new Error(res.status);
     return await res.json();
   } finally {
     clearTimeout(timer);
+  }
+};
+
+/* Geçici ağ hatalarına karşı bir kez yeniden dener */
+const getJSON = async (url, opts) => {
+  try {
+    return await fetchJSON(url, opts);
+  } catch {
+    await new Promise((r) => setTimeout(r, 1500));
+    return fetchJSON(url, opts);
+  }
+};
+
+/* Döviz/altın: önce Truncgil; yanıt vermezse Binance'ten türetilir (aynı biçimde döner)
+   USD ≈ USDT/TRY · EUR = EUR/USDT × USD · Ons = PAXG (1 ons altına endeksli) · Gram = Ons × USD ÷ 31,1035
+   Yedekte gümüş, sterlin, frank ve BIST 100 yoktur; onlar örnek veride kalır. */
+const BINANCE_FX = `https://api.binance.com/api/v3/ticker/24hr?symbols=${encodeURIComponent(JSON.stringify(['USDTTRY', 'EURUSDT', 'PAXGUSDT']))}`;
+const getFx = async () => {
+  try {
+    return await getJSON(TRUNCGIL, { bust: true });
+  } catch {
+    const rows = Object.fromEntries((await getJSON(BINANCE_FX)).map((r) => [r.symbol, { p: Number(r.lastPrice), c: Number(r.priceChangePercent) }]));
+    const usd = rows.USDTTRY, eur = rows.EURUSDT, ons = rows.PAXGUSDT;
+    return {
+      USD: { Selling: usd.p, Change: +usd.c.toFixed(2) },
+      EUR: { Selling: eur.p * usd.p, Change: +(eur.c + usd.c).toFixed(2) },
+      GRA: { Selling: (ons.p * usd.p) / 31.1035, Change: +(ons.c + usd.c).toFixed(2) },
+      ONS: { Change: +ons.c.toFixed(2) },
+    };
+  }
+};
+
+/* Kripto: { BTC: { usd, change } } — önce Binance, olmazsa CoinGecko */
+const getCrypto = async () => {
+  try {
+    const rows = await getJSON(BINANCE);
+    const out = {};
+    rows.forEach((r) => { out[r.symbol.replace(/USDT$/, '')] = { usd: Number(r.lastPrice), change: Number(r.priceChangePercent) }; });
+    return { source: 'Binance', quotes: out };
+  } catch {
+    const data = await getJSON(COINGECKO);
+    const out = {};
+    Object.entries(COIN_IDS).forEach(([sym, id]) => { if (data[id]) out[sym] = { usd: data[id].usd, change: data[id].usd_24h_change ?? 0 }; });
+    return { source: 'CoinGecko', quotes: out };
   }
 };
 
@@ -94,11 +145,11 @@ export function startLive({ onUpdate } = {}) {
     }
 
     if (crypto) {
-      for (const [sym, id] of Object.entries(COIN_IDS)) {
-        const q = crypto[id];
+      for (const sym of Object.keys(COIN_IDS)) {
+        const q = crypto.quotes[sym];
         if (!q?.usd || !byPair[sym]) continue;
         byPair[sym].price = q.usd;
-        byPair[sym].change.daily = +(q.usd_24h_change ?? 0).toFixed(2);
+        byPair[sym].change.daily = +q.change.toFixed(2);
         quotes[sym] = [`$${fmt(q.usd, 2)}`, byPair[sym].change.daily];
       }
     }
@@ -115,7 +166,7 @@ export function startLive({ onUpdate } = {}) {
       const now = new Date();
       const stamp = new Intl.DateTimeFormat('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(now).replace(',', '');
       document.querySelectorAll('[data-live-updated="crypto"]').forEach((el) => {
-        el.innerHTML = `Son güncelleme: <time datetime="${now.toISOString()}">${stamp}</time> · CoinGecko`;
+        el.innerHTML = `Son güncelleme: <time datetime="${now.toISOString()}">${stamp}</time> · ${crypto.source}`;
       });
     }
 
@@ -127,7 +178,7 @@ export function startLive({ onUpdate } = {}) {
   };
 
   const load = async () => {
-    const [fx, crypto] = await Promise.allSettled([getJSON(TRUNCGIL), getJSON(COINGECKO)]);
+    const [fx, crypto] = await Promise.allSettled([getFx(), getCrypto()]);
     apply(fx.status === 'fulfilled' ? fx.value : null, crypto.status === 'fulfilled' ? crypto.value : null);
   };
 

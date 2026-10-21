@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Favicon · Sabah Finans: brand-primary-900 zemin, beyaz "f", Sabah kırmızısı nokta -->
+  <rect width="32" height="32" rx="8" fill="#0C0F3A"/>
+  <path d="M11.5 26V12.5A5.5 5.5 0 0 1 17 7h4v4h-4a1.5 1.5 0 0 0-1.5 1.5V14h5v4h-5v8z" fill="#FFF"/>
+  <circle cx="23.5" cy="23.5" r="2.5" fill="#D51317"/>
+</svg>

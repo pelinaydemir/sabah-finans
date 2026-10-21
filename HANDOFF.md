@@ -182,12 +182,12 @@ Desktop, tablet ve mobilde **0 ihlal**. Bu tur için yapılan token/component de
 ## 7. Veri entegrasyonu notları
 
 **Canlı veri (demo):** `src/scripts/live.js` sayfa açıldığında ve sekme görünürken dakikada bir
-ücretsiz, anahtarsız iki kaynaktan veri çeker; gelmezse `data.js` örnek verisi kalır.
+ücretsiz, anahtarsız kaynaklardan veri çeker (başarısız istek bir kez yeniden denenir); gelmezse `data.js` örnek verisi kalır.
 
 | Kaynak | Veri | Ekranda |
 |---|---|---|
 | [Truncgil Finans](https://finans.truncgil.com/v4/today.json) | USD, EUR, GBP, CHF, gram/çeyrek/yarım/tam/Cumhuriyet altın, gümüş, BIST 100 | finans barı, Piyasa Özeti, çevirici kurları, arama |
-| [CoinGecko](https://api.coingecko.com/api/v3/simple/price) | 8 coin fiyatı + 24 saat değişim | finans barı, kripto tablosu (Günlük) |
+| [Binance](https://api.binance.com/api/v3/ticker/24hr) · yedek [CoinGecko](https://api.coingecko.com/api/v3/simple/price) | 8 coin fiyatı + 24 saat değişim | finans barı, kripto tablosu (Günlük) |
 
 - Ons altın kaynakta 0 geldiği için gram altın × 31,1035 ÷ USD ile türetilir.
 - Örnek veri kalanlar: BIST hisseleri, Brent, "Paramın Karşılığı" dönem getirileri, haftalık/aylık/yıllık kripto değişimleri.
