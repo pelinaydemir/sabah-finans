@@ -163,7 +163,7 @@
 /* Desen yalnız beyaz kartın dışında (başlık şeridi + kenarlar) görünür;
    bu yüzden soldan sağa, altın parıltıya doğru güçlenir. */
 
-/* A · Kare grid — referans Banner (214:37325): grid tüm zemine eşit yayılır; çizgiler
+/* A · Kare grid — başlığa doğru söner; referans Banner (214:37325): grid tüm zemine eşit yayılır; çizgiler
    "overlay" karışımla açık zeminde (altın parıltı) belirginleşir, koyu lacivertte kendiliğinden
    kaybolur. Derinliği maske değil, alttaki renk geçişi verir. */
 .converter--pattern-a::before {
@@ -173,6 +173,9 @@
   background-size: 32px 32px;
   background-position: -1px -1px;
   mix-blend-mode: overlay;
+  /* Başlığa (sol üst) doğru iyice siliklesir, uzaklaştıkça belirginleşir */
+  -webkit-mask-image: radial-gradient(70% 160% at 0% 0%, transparent 0%, rgb(0 0 0 / 0.08) 35%, rgb(0 0 0 / 0.55) 70%, #000 100%);
+  mask-image: radial-gradient(70% 160% at 0% 0%, transparent 0%, rgb(0 0 0 / 0.08) 35%, rgb(0 0 0 / 0.55) 70%, #000 100%);
 }
 
 /* B · Grafik: başlık şeridinde sağa doğru yükselen trend çizgisi + soluk dikey çizgiler */
