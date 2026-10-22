@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sabah Finans – Canlı Borsa, Döviz, Altın ve Kripto</title>
+  <meta name="description" content="Canlı borsa ekranı, döviz kurları, altın fiyatları, kripto paralar ve son dakika ekonomi haberleri.">
+  <meta name="theme-color" content="#0c0f3a">
+  <link rel="icon" href="src/assets/logos/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700&family=Google+Sans+Flex:opsz,wght@6..144,400..600&display=swap">
+
+  <link rel="stylesheet" href="src/styles/main.css">
+  <script type="module" src="src/scripts/main.js"></script>
+</head>
+<body>
+  <a class="skip-link t-body-s-semibold" href="#main">İçeriğe geç</a>
+
+  <!-- ===================================================================
+       ÜST REKLAM ALANI · Figma ad-top: 214:24334 (desktop 970×250) / 214:24557 (tablet 728×90) / 214:24442 (mobil 300×256)
+       =================================================================== -->
+  <aside class="campaign-top" aria-label="Kampanya">
+    <a class="campaign-top__link" href="#">
+      <picture>
+        <source media="(min-width: 1280px)" srcset="src/assets/campaign/billboard.jpg" width="970" height="250">
+        <source media="(min-width: 768px)" srcset="src/assets/campaign/leaderboard.jpg" width="728" height="90">
+        <img class="campaign-top__img" src="src/assets/campaign/rectangle.jpg" width="300" height="256" alt="Kampanya görseli">
+      </picture>
+    </a>
+  </aside>
+
+  <!-- ===================================================================
+       HEADER · Figma component "Header" (154:44034) — Cihaz=Desktop | Tablet | Mobile
+       =================================================================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="/" aria-label="Sabah Finans ana sayfa">
+        <img src="src/assets/logos/logo-finans-inverse.svg" width="216" height="56" alt="Sabah Finans">
+      </a>
+
+      <!-- ARAMA · Figma "Search/Arama" — Desktop: header'da alan + açılır panel
+           Tablet/Mobil: ikon → tam ekran arama görünümü (geri butonu / cihaz geri tuşu ile kapanır)
+           Panel içeriği features/search.js ile üretilir. -->
+      <div class="search" data-search>
+        <button class="search__open" type="button" aria-label="Arama yap" aria-haspopup="dialog" data-search-open>
+          <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
+        </button>
+        <div class="search__layer" data-search-layer aria-label="Arama">
+          <form class="search__form" role="search" action="#" data-search-form>
+            <button class="search__back" type="button" aria-label="Aramayı kapat" data-search-close>
+              <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg>
+            </button>
+            <div class="search__field">
+              <svg class="icon search__lead" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search-normal"/></svg>
+              <label class="visually-hidden" for="site-search">Sembol kodu, şirket adı veya haber ara</label>
+              <input class="search__input t-body-s-medium" id="site-search" type="search" name="q" placeholder="Sembol kodu, şirket adı veya haber ara" autocomplete="off" spellcheck="false"
+                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-panel" enterkeyhint="search">
+              <button class="search__clear" type="button" aria-label="Aramayı temizle" data-search-clear hidden>
+                <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#close"/></svg>
+              </button>
+              <button class="search__button" type="submit" aria-label="Ara">
+                <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
+              </button>
+            </div>
+          </form>
+          <div class="search-panel" id="search-panel" data-search-panel hidden></div>
+        </div>
+      </div>
+
+      <a class="btn btn--positive site-header__live" href="#">
+        <svg class="icon btn__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#status-up"/></svg>
+        <span class="btn__label">CANLI BORSA</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       SON DAKİKA AKIŞ · Figma component "Son dakika akış" (154:44049)
+       =================================================================== -->
+  <section class="breaking-news" aria-label="Son dakika haberleri">
+    <div class="breaking-news__inner">
+      <ul class="breaking-news__list scroll-x" data-scroller>
+        <!-- @render breakingNews -->
+      </ul>
+      <div class="breaking-news__controls">
+        <button class="icon-button icon-button--outline-inverse icon-button--xs" type="button" data-scroll="prev" aria-label="Önceki haber">
+          <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+        </button>
+        <button class="icon-button icon-button--outline-inverse icon-button--xs" type="button" data-scroll="next" aria-label="Sonraki haber">
+          <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FİNANS BARI · Figma component "finans barı" (154:44071)
+       Her öğe: "Finance/Ticker" (212:7221) — mobilde Boyut=Kompakt
+       =================================================================== -->
+  <section class="market-bar" aria-label="Piyasa verileri">
+    <ul class="market-bar__list scroll-x">
+      <!-- @render marketBar -->
+    </ul>
+  </section>
+
+  <!-- ===================================================================
+       KATEGORİ NAVİGASYONU · Figma component "Tab" (98:33256) — Boyut=Büyük
+       =================================================================== -->
+  <nav class="category-nav" aria-label="Haber kategorileri">
+    <ul class="category-nav__list scroll-x">
+      <!-- @render categories -->
+    </ul>
+  </nav>
+
+  <!-- ===================================================================
+       SAYFA İÇERİĞİ
+       Desktop: ana kolon (1045) + yan kolon (335)
+       Tablet/Mobil: tek kolon; sıralama layout.css içindeki `order` değerleriyle yönetilir.
+       =================================================================== -->
+  <main class="page" id="main">
+    <div class="page__main">
+
+      <!-- MANŞET · Figma 214:24352 — "Haber Kartı/Görsel Üzeri" + nav-number + card-featured (Property 1=2) -->
+      <section class="top-stories" aria-label="Manşet haberler" data-slot="top-stories">
+        <h1 class="visually-hidden">Sabah Finans – Piyasalar ve ekonomi haberleri</h1>
+
+        <div class="headline-slider" data-slider aria-roledescription="carousel" aria-label="Manşet haberler">
+          <div class="headline-slider__stage">
+            <!-- 10 manşet derlemede data.js'ten üretilir (SEO: hepsi HTML'de); ilki aktif -->
+            <div class="headline-slider__track" data-hero-track aria-live="off">
+              <!-- @render heroSlides -->
+            </div>
+            <div class="news-hero__arrows">
+              <button class="icon-button icon-button--subtle" type="button" data-slide="prev" aria-label="Önceki manşet">
+                <svg class="icon icon--flip" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+              </button>
+              <button class="icon-button icon-button--brand" type="button" data-slide="next" aria-label="Sonraki manşet">
+                <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Desktop: numara + ilerleme halkası · Tablet/Mobil: Figma 214:24494 "Haber numaraları" (nokta) -->
+          <ol class="nav-numbers" aria-label="Manşet sayfaları">
+            <!-- @render navNumbers -->
+          </ol>
+        </div>
+
+        <ul class="top-stories__list">
+          <!-- @render topStories -->
+        </ul>
+      </section>
+
+      <!-- HABER KOLONLARI · Figma 214:24390 — "Başlık" + card-featured (Property 1=1 / 1=2) -->
+      <div class="news-columns">
+        <!-- @render newsColumns -->
+      </div>
+
+      <!-- REKLAM · Figma "ad-banner-1" (214:24415) — yalnızca desktop -->
+      <div class="campaign-inline" data-slot="campaign-inline-1">
+        <a href="#"><img src="src/assets/campaign/leaderboard.jpg" width="728" height="90" alt="Kampanya görseli" loading="lazy"></a>
+      </div>
+
+      <!-- DÖVİZ VE ALTIN ÇEVİRİCİ · Figma "Widget/Döviz ve Altın Çevirici" (150:44309) -->
+      <section class="converter" aria-labelledby="converter-title" data-slot="converter" data-converter>
+        <h2 class="converter__title t-h3-bold" id="converter-title">Döviz ve Altın Çevirici</h2>
+        <div class="converter__card">
+          <div class="converter__fields">
+            <div class="field converter__field">
+              <label class="field__label t-body-s-regular" for="conv-amount">Miktar</label>
+              <input class="field__input t-h3-semibold" id="conv-amount" type="text" inputmode="decimal" value="1,00" data-converter-input>
+              <div class="select" data-select="from" data-value="USD">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-label="Kaynak para birimi: USD ABD Doları">
+                <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/usd.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-semibold" data-currency-code>USD</span>
+                <span class="currency-select__name t-body-m-regular" data-currency-name>ABD Doları</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+              </div>
+            </div>
+
+            <button class="converter__swap" type="button" aria-label="Para birimlerini yer değiştir" data-converter-swap>
+              <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#swap-horizontal"/></svg>
+            </button>
+
+            <div class="field converter__field converter__field--to">
+              <label class="field__label t-body-s-regular" for="conv-result">Karşılığı</label>
+              <output class="field__input t-h3-semibold" id="conv-result" for="conv-amount" data-converter-output>41,56</output>
+              <div class="select" data-select="to" data-value="TRY">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-label="Hedef para birimi: TRY Türk Lirası">
+                <span class="logo-currency logo-currency--24"><img src="src/assets/logos/currency/try.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-semibold" data-currency-code>TRY</span>
+                <span class="currency-select__name t-body-m-regular" data-currency-name>Türk Lirası</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="converter__result">
+            <div class="converter__rate">
+              <p class="t-h2-semibold" data-converter-rate>1 USD = 41,56<span class="converter__rate-fraction">12</span> TRY</p>
+              <div class="converter__meta">
+                <span class="change change--up" data-converter-change><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,18</span></span>
+                <p class="t-body-s-medium" data-converter-spread><span class="converter__meta-label">Alış</span> 41,5240 &nbsp;·&nbsp; <span class="converter__meta-label">Satış</span> 41,5984</p>
+              </div>
+            </div>
+            <a class="btn btn--primary converter__cta" href="#">
+              <span class="btn__label">Tüm döviz kurları</span>
+              <svg class="icon btn__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEANS RAPORU / RAPORLAR VE ANALİZLER · Figma "Widget/Seans Raporu / Raporlar ve Analizler" (153:43490)
+           Satır: "List/Rapor Satırı" (123:34998) — Tip=Seans Raporu | Analiz -->
+      <div class="reports" data-slot="reports">
+        <section class="reports__column" aria-labelledby="seans-title">
+          <!-- @render sectionTitle id="seans-title" title="Seans Raporu" -->
+          <ul class="list-card">
+            <!-- @render sessionReports -->
+          </ul>
+        </section>
+
+        <section class="reports__column" aria-labelledby="analiz-title">
+          <!-- @render sectionTitle id="analiz-title" title="Raporlar ve Analizler" -->
+          <ul class="list-card">
+            <!-- @render analysisReports -->
+          </ul>
+        </section>
+      </div>
+
+      <!-- KAP DUYURULARI · Figma "Widget/KAP Duyuruları" (153:43524) — Satır: "List/KAP Satırı" (125:36204) -->
+      <section class="kap" aria-labelledby="kap-title" data-slot="kap">
+        <!-- @render sectionTitle id="kap-title" title="KAP Duyuruları" -->
+        <div class="kap__card">
+          <ul class="kap__column">
+            <!-- @render kapColumn index="0" -->
+          </ul>
+          <ul class="kap__column kap__column--secondary">
+            <!-- @render kapColumn index="1" -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- REKLAM · Figma "ad-banner-1" (214:24420) — yalnızca desktop -->
+      <div class="campaign-inline" data-slot="campaign-inline-2">
+        <a href="#"><img src="src/assets/campaign/leaderboard.jpg" width="728" height="90" alt="Kampanya görseli" loading="lazy"></a>
+      </div>
+
+      <!-- KRİPTO PARALAR · Figma "Widget/Kripto Paralar" (153:43693) — Cihaz=Desktop | Tablet | Mobile -->
+      <section class="crypto" aria-labelledby="crypto-title" data-slot="crypto">
+        <!-- @render sectionTitle id="crypto-title" title="Kripto Paralar" -->
+        <div class="crypto__card">
+          <div class="tabs tabs--sm crypto__tabs" role="tablist" data-tabs="crypto" data-controls="crypto-panel" aria-label="Zaman aralığı">
+            <!-- @render tabs set="period" -->
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="crypto-panel" tabindex="0">
+          <table class="crypto-table">
+            <caption class="visually-hidden">Kripto para fiyatları (USDT), günlük</caption>
+            <thead>
+              <tr class="t-overline">
+                <th scope="col">Coin</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col" class="crypto-table__hide-sm">Yüksek</th>
+                <th scope="col" class="crypto-table__hide-sm">Düşük</th>
+                <th scope="col"><span class="crypto-table__hide-sm">Son </span>24 Saat</th>
+              </tr>
+            </thead>
+            <tbody data-crypto-rows>
+              <!-- @render cryptoRows -->
+            </tbody>
+          </table>
+          </div>
+
+          <p class="last-update crypto__footer t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span data-live-updated="crypto">Son güncelleme: <time datetime="2026-02-18T16:11">18.02.2026 16:11</time> · 15 dk gecikmeli</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- KRİPTO HABERLERİ · Figma 214:24423 — "Başlık" + card-featured (Property 1=1) ×3 -->
+      <section class="crypto-news" aria-labelledby="crypto-news-title" data-slot="crypto-news">
+        <!-- @render sectionTitle id="crypto-news-title" title="Kripto Haberleri" -->
+        <ul class="crypto-news__list scroll-x">
+          <!-- @render cryptoNews -->
+        </ul>
+      </section>
+    </div>
+
+    <!-- =================================================================
+         YAN KOLON · Figma 214:24429
+         ================================================================= -->
+    <aside class="page__sidebar" aria-label="Piyasa araçları">
+
+      <!-- PİYASA ÖZETİ · Figma "Piyasa Özeti" (152:43463) -->
+      <section class="widget" aria-labelledby="summary-title" data-slot="summary">
+        <header class="widget__header">
+          <h2 class="widget__title" id="summary-title">Piyasa Özeti</h2>
+          <span class="status-pill t-body-s-medium" data-market-status><span class="status-pill__dot" aria-hidden="true"></span><span data-market-status-label>BIST Açık</span></span>
+        </header>
+        <ul class="widget__card widget__card--rows">
+          <!-- @render marketSummary -->
+        </ul>
+      </section>
+
+      <hr class="sidebar-divider">
+
+      <!-- REKLAM · Figma "Sidebar/Ad Banner" (214:24432) -->
+      <div class="campaign-side" data-slot="campaign-side-1">
+        <a href="#"><img src="src/assets/campaign/rectangle.jpg" width="300" height="256" alt="Kampanya görseli" loading="lazy"></a>
+      </div>
+
+      <hr class="sidebar-divider">
+
+      <!-- PARAMIN KARŞILIĞI NE OLURDU? · Figma (152:43567) -->
+      <section class="widget" aria-labelledby="money-title" data-slot="money">
+        <header class="widget__header">
+          <h2 class="widget__title" id="money-title">Paramın Karşılığı Ne Olurdu?</h2>
+        </header>
+        <div class="widget__card money" data-money>
+          <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="money" data-controls="money-panel" aria-label="Zaman aralığı">
+            <!-- @render tabs set="period" -->
+          </div>
+
+          <div class="money__inputs">
+            <div class="field field--sm money__currency">
+              <span class="field__label t-body-s-regular" id="money-currency-label">Para birimi</span>
+              <div class="select" data-select="money" data-value="TRY">
+                <button class="currency-select" type="button" aria-haspopup="listbox" aria-expanded="false" data-select-trigger aria-labelledby="money-currency-label money-currency-value">
+                <span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/try.svg" alt=""></span>
+                <span class="currency-select__code t-body-m-medium" id="money-currency-value">TRY</span>
+                <svg class="icon currency-select__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-down"/></svg>
+              </button>
+              </div>
+            </div>
+            <div class="field field--sm money__amount">
+              <label class="field__label t-body-s-regular" for="money-amount">Miktar</label>
+              <input class="field__input t-h6-semibold" id="money-amount" type="text" inputmode="numeric" value="1.000" maxlength="13" autocomplete="off" aria-describedby="money-hint" data-money-amount>
+              <span class="field__suffix t-body-m-medium" aria-hidden="true" data-money-symbol>₺</span>
+            </div>
+          </div>
+          <p class="money__hint t-body-xs-medium" id="money-hint" role="status" data-money-hint hidden>En fazla 1 milyar girilebilir.</p>
+
+          <!-- Figma "Widget/Paramın Karşılığı Ne Olurdu?" · görünüm 2: liste + tam genişlik oran çubuğu
+               Çubuğun ortasındaki çizgi = girilen miktar; sağa (yeşil) artış, sola (kırmızı) azalış. -->
+          <div class="money__chart">
+            <div class="tab-panel" role="tabpanel" id="money-panel" tabindex="0">
+            <ul class="money__rows" data-money-rows>
+              <!-- @render moneyRows -->
+            </ul>
+            </div>
+          </div>
+
+          <p class="footnote t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#info-circle"/></svg>
+            <span>16.10.2026 kapanışına göre. Yatırım tavsiyesi değildir.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- REKLAM · Figma "Sidebar/Ad Banner" (214:24435) -->
+      <div class="campaign-side" data-slot="campaign-side-2">
+        <a href="#"><img src="src/assets/campaign/rectangle.jpg" width="300" height="256" alt="Kampanya görseli" loading="lazy"></a>
+      </div>
+
+      <hr class="sidebar-divider">
+
+      <!-- BIST ÖNE ÇIKANLAR · Figma "Widget/BIST Öne Çıkanlar – Alternatif" (152:43642) -->
+      <section class="widget" aria-labelledby="bist-title" data-slot="bist">
+        <header class="widget__header widget__header--link">
+          <h2 id="bist-title"><a class="widget__title-link widget__title" href="#">BIST Öne Çıkanlar<svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
+        </header>
+        <div class="widget__card widget__card--stack">
+          <div class="tabs tabs--sm tabs--fill" role="tablist" data-tabs="bist" data-controls="bist-panel" aria-label="Hisse listesi">
+            <!-- @render tabs set="bist" -->
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="bist-panel">
+          <ul class="stock-tiles" data-bist-tiles>
+            <!-- @render bistTiles -->
+          </ul>
+          </div>
+
+          <hr class="divider">
+
+          <div class="breadth">
+            <p class="breadth__counts">
+              <span><span class="t-h6-semibold is-positive">149</span> <span class="t-body-s-regular">Yükselen</span></span>
+              <span><span class="t-body-s-regular">Düşen</span> <span class="t-h6-semibold is-negative">444</span></span>
+            </p>
+            <div class="ratio-bar" role="img" aria-label="Yükselen %25,1, düşen %74,9">
+              <span class="ratio-bar__segment ratio-bar__segment--up" style="--value: 251"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--down" style="--value: 749"></span>
+            </div>
+            <p class="breadth__percent t-body-xs-semibold"><span class="is-positive">%25,1</span><span class="is-negative">%74,9</span></p>
+          </div>
+
+          <hr class="divider">
+
+          <p class="last-update t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span>Son güncelleme: <time datetime="2026-10-16T17:59">16.10.2026 17:59</time></span>
+          </p>
+        </div>
+      </section>
+
+      <hr class="sidebar-divider">
+
+      <!-- HİSSE İSTATİSTİKLERİ · Figma "Widget/Hisse İstatistikleri" (152:43687) -->
+      <section class="widget" aria-labelledby="stats-title" data-slot="stats">
+        <header class="widget__header">
+          <h2 class="widget__title" id="stats-title">Hisse İstatistikleri</h2>
+        </header>
+        <div class="widget__card widget__card--stack widget__card--roomy">
+          <div class="breadth breadth--roomy">
+            <p class="breadth__headline t-h4-semibold">Hisselerin <span class="is-negative">%87’si düşüşte</span></p>
+            <div class="ratio-bar ratio-bar--lg" role="img" aria-label="69 yükselen, 10 değişmeyen, 552 düşen">
+              <span class="ratio-bar__segment ratio-bar__segment--up" style="--value: 69"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--flat"></span>
+              <span class="ratio-bar__segment ratio-bar__segment--down" style="--value: 552"></span>
+            </div>
+            <dl class="legend">
+              <div class="legend__item">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--up" aria-hidden="true"></span>Yükselen</dt>
+                <dd class="t-h5-semibold is-positive">69</dd>
+              </div>
+              <div class="legend__item legend__item--center">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--flat" aria-hidden="true"></span>Değişmeyen</dt>
+                <dd class="t-h5-semibold">10</dd>
+              </div>
+              <div class="legend__item legend__item--end">
+                <dt class="legend__label t-body-xs-regular"><span class="legend__dot legend__dot--down" aria-hidden="true"></span>Düşen</dt>
+                <dd class="t-h5-semibold is-negative">552</dd>
+              </div>
+            </dl>
+          </div>
+
+          <hr class="divider">
+
+          <dl class="stats">
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem gören hisse</dt><dd class="t-numeric-m-semibold">631</dd></div>
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem hacmi (₺)</dt><dd class="t-numeric-m-semibold">152.015.139.268,00</dd></div>
+            <div class="stats__row"><dt class="t-body-s-regular">İşlem hacmi (lot)</dt><dd class="t-numeric-m-semibold">9.899.001.370</dd></div>
+          </dl>
+
+          <hr class="divider">
+
+          <p class="last-update t-body-xs-regular">
+            <svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#clock"/></svg>
+            <span>Son güncelleme: <time datetime="2026-10-16T17:59">16.10.2026 17:59</time></span>
+          </p>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER · Figma component "Footer" (154:44149) — Cihaz=Desktop | Tablet | Mobile
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="src/assets/logos/logo-finans-inverse.svg" width="216" height="56" alt="Sabah Finans">
+          <p class="t-body-s-regular">Döviz, altın, borsa ve kripto piyasalarını tek yerden takip edin.</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Alt menü">
+          <!-- @render footerMenu -->
+        </nav>
+      </div>
+
+      <div class="site-footer__legal">
+        <h2 class="t-overline">Yasal Uyarı</h2>
+        <p class="t-body-xs-regular">BİST verileri Foreks tarafından 15 dakika gecikmeli sağlanmaktadır. BİST piyasalarında oluşan tüm verilere ait telif hakları tamamen BİST’e ait olup, bu veriler tekrar yayınlanamaz. Foreks tarafından sağlanan Pay Piyasası, Borçlanma Araçları Piyasası, Vadeli İşlem ve Opsiyon Piyasası verileri BİST kaynaklı en az 15 dakika gecikmeli verilerdir. <a class="site-footer__more" href="#">Daha fazla…</a></p>
+        <div class="site-footer__legal-more">
+          <p class="t-body-xs-regular">SPK’nın 22 Nisan 2002 tarihli Resmi Gazete’de yayımlanan tebliği uyarınca yayımlanması istenen uyarı: "Burada yer alan yatırım bilgi, yorum ve tavsiyeleri yatırım danışmanlığı kapsamında değildir. Yatırım danışmanlığı hizmeti, aracı kurumlar, portföy yönetim şirketleri, mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır. Burada yer alan yorum ve tavsiyeler, yorum ve tavsiyede bulunanların kişisel görüşlerine dayanmaktadır. Bu görüşler, mali durumunuz ile risk ve getiri tercihlerinize uygun olmayabilir. Bu nedenle, sadece burada yer alan bilgilere dayanılarak yatırım kararı verilmesi, beklentilerinize uygun sonuçlar doğurmayabilir."</p>
+          <h2 class="t-overline">Veri Sağlayıcı Uyarısı</h2>
+          <p class="t-body-xs-regular">Finansal veriler Foreks A.Ş. tarafından sağlanmaktadır. Turkuvaz Media Group, yayınlanan verilerin doğruluğu ve tamlığı konusunda herhangi bir garanti vermez. Veri yayınında oluşabilecek aksaklıklardan, verinin eksik ve yanlış yayınlanmasından meydana gelebilecek herhangi bir zarardan Turkuvaz Media Group sorumlu değildir.</p>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom t-body-xs-regular">
+        <p>© 2026 Turkuvaz Haberleşme ve Yayıncılık A.Ş. Tüm hakları saklıdır.</p>
+        <p>BİST verileri 15 dk gecikmelidir.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

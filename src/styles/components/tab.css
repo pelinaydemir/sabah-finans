@@ -12,6 +12,7 @@
   flex-shrink: 0;
   padding-top: var(--space-2);
   color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
   transition: color 0.15s ease;
 }
@@ -32,6 +33,7 @@
 
 .tab.is-selected {
   color: var(--color-text-brand-strong);
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Boyut = Büyük — kategori navigasyonu */
@@ -42,12 +44,7 @@
   font-family: var(--font-family-display);
   font-size: var(--text-h6-size);
   line-height: var(--text-h6-line-height);
-  font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-heading);
-}
-
-.tab--lg.is-selected {
-  font-weight: var(--font-weight-semibold);
 }
 
 /* Boyut = Küçük — widget içi dönem / liste filtreleri */
@@ -58,11 +55,6 @@
   color: var(--color-text-tertiary);
   font-size: var(--text-body-s-size);
   line-height: var(--text-body-s-line-height);
-  font-weight: var(--font-weight-medium);
-}
-
-.tab--sm.is-selected {
-  font-weight: var(--font-weight-semibold);
 }
 
 /* Tab grubu: alt çizgi + (opsiyonel) eşit genişlik */

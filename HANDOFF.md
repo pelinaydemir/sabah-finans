@@ -109,6 +109,25 @@ Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu
 | Sidebar/Ad Banner | 214:24432 (örnek) | `.campaign-side` · `campaign.css` | — |
 | Layout/Footer | 154:44149 | `.site-footer` · `footer.css` | Cihaz |
 
+### Kod mimarisi — component'lar kodda da tek kaynaktan
+
+Figma'daki component/instance mantığı kodda da aynıdır: her component'ın HTML'i **bir kez** yazılır.
+
+| Katman | Dosya | Görev |
+|---|---|---|
+| Şablon | `src/scripts/components/*.js` | Saf fonksiyonlar: veri → HTML (`newsCard`, `ticker`, `kapRow`, `cryptoRow`, `changeIndicator` …) |
+| İçerik | `content.js` · `data.js` | Editoryal örnek içerik · piyasa örnek verisi (API sözleşmesi niteliğinde) |
+| Sayfa | `src/page.html` → `index.html` | İskelet + `<!-- @render ad -->` işaretleri; `node scripts/build.mjs` doldurur |
+| Etkileşim | `features/*.js` | Tab, manşet, son dakika, dropdown/sheet, çevirici, Paramın Karşılığı, BIST, kripto, arama — yeniden çizim aynı şablonla |
+| Ortak | `core/format.js` · `core/dom.js` · `core/assets.js` | tr-TR biçimlendirme, kırılım/hareket tercihi, varlık yolları |
+
+Figma → şablon eşlemesi: Card/Haber → `newsCard` · Haber Kartı/Görsel Üzeri → `heroSlide` · Navigation/Sayfa Numarası → `navNumber` ·
+Finance/Ticker → `ticker` · Chip/Hisse → `tickerChip` · Change Indicator → `changeIndicator` · Navigation/Tab → `tabs` / `categoryTabs` ·
+Section/Başlık → `sectionTitle` · List/KAP Satırı → `kapRow` · List/Rapor Satırı → `sessionReportRow` / `analysisReportRow` ·
+Piyasa Özeti satırı → `marketRow` · Paramın Karşılığı satırı → `moneyRow` · BIST karosu → `stockTile` · Kripto satırı → `cryptoRow` · Footer kolonu → `footerCol`.
+Bir component değiştiğinde yalnızca şablonu güncelleyip `node scripts/build.mjs` çalıştırmak yeterlidir; React/Vue'ya
+taşınırken her şablon fonksiyonu doğrudan bir component'a karşılık gelir.
+
 ### Figma dosya düzeni
 
 - **Sayfalar:** Base → ↳ UI Components · ↳ Icons · ↳ Typography · ↳ Colors ‖ Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Prototip · Etkileşimler (Present modunda 4 akış) · ↳ Tasarım Kararları (UX analizi ve kararlar).
@@ -209,7 +228,7 @@ tam değer `title` ve `aria-label`'da. Tutar ile para birimi aynı satırda kal�
 - **Çevirici arka planı**: Figma `Widget/Döviz ve Altın Çevirici` (150:44309) varyantlarının görsel dolgusu. Değişirse Desktop varyantı 2x, Mobile varyantı 3x PNG olarak dışa aktarılıp WebP'ye (q≈92) çevrilir ve `src/assets/patterns/converter-bg-{desktop,mobile}.webp` olarak konur; görsel yüklenemezse `--gradient-converter` görünür.
 - **Çevirici**: `data-rate` attribute'u kur değeridir; para birimi dropdown'u Figma
   `Dropdown/Para Birimi` (127:36908) ve `Durum / Dropdown açık` (164:19700) ekranına göre eklenmelidir.
-- **Arama**: `main.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri
+- **Arama**: `features/search.js › buildSearchIndex` sembolleri `stocks`, `currencies` ve `coins`'ten, haberleri
   `headlines`'tan üretir. Canlı ortamda `GET /search?q=` yanıtı aynı şablonlara (`symbolItem`, `newsItem`)
   verilir; istek sürerken panelde mevcut sonuçlar korunmalı, ağ hatasında “Sonuç yok” yerine yeniden dene mesajı gösterilmelidir.
 - **Reklamlar**: `.campaign-*` kapları sabit ölçülü yer tutuculardır; ad server slot'larıyla değiştirilir. Sınıf ve dosya adları bilinçli olarak `ad-*`/`ads/` yerine `campaign` seçildi: reklam engelleyiciler bu kalıpları gizlediği için demo sitede reklam alanları görünmüyordu.

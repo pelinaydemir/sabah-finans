@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Bu dosya derlenir: src/page.html + src/scripts/components → `node scripts/build.mjs`. Elle düzenlemeyin. -->
 <html lang="tr">
 <head>
   <meta charset="utf-8">
@@ -42,7 +43,7 @@
 
       <!-- ARAMA · Figma "Search/Arama" — Desktop: header'da alan + açılır panel
            Tablet/Mobil: ikon → tam ekran arama görünümü (geri butonu / cihaz geri tuşu ile kapanır)
-           Panel içeriği main.js › initSearch ile üretilir. -->
+           Panel içeriği features/search.js ile üretilir. -->
       <div class="search" data-search>
         <button class="search__open" type="button" aria-label="Arama yap" aria-haspopup="dialog" data-search-open>
           <svg class="icon search__icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#search"/></svg>
@@ -104,116 +105,17 @@
        =================================================================== -->
   <section class="market-bar" aria-label="Piyasa verileri">
     <ul class="market-bar__list scroll-x">
-      <li class="ticker" data-live="USD">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Dolar</span>
-            <span class="ticker__value t-h6-semibold">41,5612</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="EUR">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Euro</span>
-            <span class="ticker__value t-h6-semibold">48,2140</span>
-            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span>
-          </span>
-          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="GBP">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Sterlin</span>
-            <span class="ticker__value t-h6-semibold">55,3405</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,09</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="GA">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Gram Altın</span>
-            <span class="ticker__value t-h6-semibold">4.215,60</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,23</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="XU100">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">BIST 100</span>
-            <span class="ticker__value t-h6-semibold">10.842,35</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,34</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="BTC">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Bitcoin</span>
-            <span class="ticker__value t-h6-semibold">$78.439,61</span>
-            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,54</span></span>
-          </span>
-          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="ETH">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Ethereum</span>
-            <span class="ticker__value t-h6-semibold">$2.474,67</span>
-            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,03</span></span>
-          </span>
-          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="GG">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Gram Gümüş</span>
-            <span class="ticker__value t-h6-semibold">52,40</span>
-            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,82</span></span>
-          </span>
-          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="CHF">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">İsviçre Frangı</span>
-            <span class="ticker__value t-h6-semibold">51,8720</span>
-            <span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,11</span></span>
-          </span>
-          <span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="ONS">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Ons Altın</span>
-            <span class="ticker__value t-h6-semibold">$3.312,40</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,94</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
-      <li class="ticker" data-live="BRENT">
-        <a class="ticker__link" href="#">
-          <span class="ticker__info">
-            <span class="ticker__name t-body-m-medium">Brent Petrol</span>
-            <span class="ticker__value t-h6-semibold">$70,84</span>
-            <span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,12</span></span>
-          </span>
-          <span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span>
-        </a>
-      </li>
+      <li class="ticker" data-live="USD"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Dolar</span><span class="ticker__value t-h6-semibold">41,5612</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="EUR"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Euro</span><span class="ticker__value t-h6-semibold">48,2140</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></span><span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="GBP"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Sterlin</span><span class="ticker__value t-h6-semibold">55,3405</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,09</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="GA"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Gram Altın</span><span class="ticker__value t-h6-semibold">4.215,60</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,23</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="XU100"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">BIST 100</span><span class="ticker__value t-h6-semibold">10.842,35</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,34</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="BTC"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Bitcoin</span><span class="ticker__value t-h6-semibold">$78.439,61</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,54</span></span></span><span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="ETH"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Ethereum</span><span class="ticker__value t-h6-semibold">$2.474,67</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,03</span></span></span><span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="GG"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Gram Gümüş</span><span class="ticker__value t-h6-semibold">52,40</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,82</span></span></span><span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="CHF"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">İsviçre Frangı</span><span class="ticker__value t-h6-semibold">51,8720</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,11</span></span></span><span class="sparkline sparkline--down" aria-hidden="true"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="ONS"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Ons Altın</span><span class="ticker__value t-h6-semibold">$3.312,40</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,94</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
+      <li class="ticker" data-live="BRENT"><a class="ticker__link" href="#"><span class="ticker__info"><span class="ticker__name t-body-m-medium">Brent Petrol</span><span class="ticker__value t-h6-semibold">$70,84</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,12</span></span></span><span class="sparkline sparkline--up" aria-hidden="true"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></a></li>
     </ul>
   </section>
 
@@ -248,17 +150,86 @@
 
         <div class="headline-slider" data-slider aria-roledescription="carousel" aria-label="Manşet haberler">
           <div class="headline-slider__stage">
-            <!-- İlk manşet HTML'de hazır (SEO); diğer 9 slayt main.js › initHeadlineSlider ile data.js'ten eklenir -->
+            <!-- 10 manşet derlemede data.js'ten üretilir (SEO: hepsi HTML'de); ilki aktif -->
             <div class="headline-slider__track" data-hero-track aria-live="off">
               <div class="news-hero is-active" role="group" aria-roledescription="slayt" aria-label="1 / 10">
                 <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası önünde dalgalanan ABD bayrağı">
                 <div class="news-hero__body">
                   <p class="news-hero__meta t-body-s-medium"><span>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time datetime="2026-10-18T09:49">11 dakika önce</time></p>
                   <h2 class="news-hero__title t-display-bold"><a href="#">New York Fed imalat endeksi temmuzda beklentileri geçti</a></h2>
-                  <ul class="news-hero__tickers" aria-label="İlgili hisseler">
-                    <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li>
-                    <li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li>
-                  </ul>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="2 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-gold.jpg" width="1600" height="1066" alt="Kasada dizili külçe altınlar" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Altın</span><span class="news-hero__dot" aria-hidden="true">·</span><time>24 dakika önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Gram altın güvenli liman talebiyle yeni zirveyi test ediyor</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">KOZAL</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,14</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">PEKGY</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,02</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="3 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-eu.jpg" width="1600" height="1066" alt="Avrupa Komisyonu binası önünde AB bayrakları" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Avrupa</span><span class="news-hero__dot" aria-hidden="true">·</span><time>38 dakika önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Avrupa Merkez Bankası faiz kararı öncesi piyasalar temkinli</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">GARAN</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,62</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">AKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,38</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="4 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-market.jpg" width="1600" height="1066" alt="Düşüşü gösteren kırmızı borsa grafiği" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Borsa</span><span class="news-hero__dot" aria-hidden="true">·</span><time>52 dakika önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">BIST 100 endeksi bankacılık satışlarıyla günü ekside kapattı</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">YKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,24</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="5 / 10">
+                <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="New York Federal Rezerv binası" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Ekonomi</span><span class="news-hero__dot" aria-hidden="true">·</span><time>1 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Merkez Bankası rezervleri haftalık bazda 2,1 milyar dolar arttı</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,92</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="6 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-market.jpg" width="1600" height="1066" alt="Borsa ekranları" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Emtia</span><span class="news-hero__dot" aria-hidden="true">·</span><time>1 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Brent petrol arz endişeleriyle 70 doların üzerine çıktı</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">TUPRS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,47</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">PETKM</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,66</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="7 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-eu.jpg" width="1600" height="1066" alt="AB bayrakları" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Şirket</span><span class="news-hero__dot" aria-hidden="true">·</span><time>2 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Havacılık hisseleri yaz sezonu yolcu verileriyle pozitif ayrıştı</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,05</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">PGSUS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,80</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="8 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-gold.jpg" width="1600" height="1066" alt="Külçe altınlar" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Kripto</span><span class="news-hero__dot" aria-hidden="true">·</span><time>2 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Bitcoin ETF girişleri haftalık bazda rekor seviyeye ulaştı</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">BTC</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+3,12</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ETH</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,94</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="9 / 10">
+                <img class="news-hero__img" src="src/assets/images/hero-ny-fed.jpg" width="1600" height="1066" alt="ABD bayrağı" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>Dünya</span><span class="news-hero__dot" aria-hidden="true">·</span><time>3 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Asya piyasaları ABD faiz kararını beklerken karışık seyretti</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></li></ul>
+                </div>
+              </div>
+              <div class="news-hero" role="group" aria-roledescription="slayt" aria-label="10 / 10">
+                <img class="news-hero__img" src="src/assets/images/news-market.jpg" width="1600" height="1066" alt="Borsa ekranları" loading="lazy">
+                <div class="news-hero__body">
+                  <p class="news-hero__meta t-body-s-medium"><span>KAP</span><span class="news-hero__dot" aria-hidden="true">·</span><time>3 saat önce</time></p>
+                  <h2 class="news-hero__title t-display-bold"><a href="#">Aselsan yeni savunma sözleşmesini KAP’a bildirdi</a></h2>
+                  <ul class="news-hero__tickers" aria-label="İlgili hisseler"><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+4,21</span></span></a></li><li><a class="ticker-chip ticker-chip--solid" href="#"><span class="ticker-chip__symbol">KONTR</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,10</span></span></a></li></ul>
                 </div>
               </div>
             </div>
@@ -288,51 +259,11 @@
         </div>
 
         <ul class="top-stories__list">
-          <li>
-            <article class="card-featured card-featured--compact">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 rekor tazeledi</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Borsa</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">8 dakika önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">XU100</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,34</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card-featured card-featured--compact">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Bankacılık endeksinde kâr satışları derinleşiyor</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Borsa</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">19 dakika önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card-featured card-featured--compact">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">THY, ekim ayı yolcu verilerini açıkladı</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">27 dakika önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li class="top-stories__extra">
-            <article class="card-featured card-featured--compact">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Brent petrolde arz endişesi fiyatları destekliyor</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Emtia</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">41 dakika önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">TUPRS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,47</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li class="top-stories__extra">
-            <article class="card-featured card-featured--compact">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Merkez Bankası rezervleri haftalık bazda arttı</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">AKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,38</span></span></a>
-              </div>
-            </article>
-          </li>
+          <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Borsa İstanbul güne yükselişle başladı, BIST 100 rekor tazeledi</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Borsa</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">8 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">XU100</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,34</span></span></a></div></article></li>
+          <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Bankacılık endeksinde kâr satışları derinleşiyor</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Borsa</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">19 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ISCTR</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,45</span></span></a></div></article></li>
+          <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">THY, ekim ayı yolcu verilerini açıkladı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">27 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">THYAO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></a></div></article></li>
+          <li class="top-stories__extra"><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Brent petrolde arz endişesi fiyatları destekliyor</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Emtia</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">41 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">TUPRS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,47</span></span></a></div></article></li>
+          <li class="top-stories__extra"><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Merkez Bankası rezervleri haftalık bazda arttı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">AKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,38</span></span></a></div></article></li>
         </ul>
       </section>
 
@@ -341,102 +272,25 @@
         <section class="news-column" aria-labelledby="gundem-title" data-slot="gundem">
           <h2 class="section-title" id="gundem-title"><a href="#"><span class="t-h3-bold">Gündem Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
           <ul class="news-column__list">
-            <li>
-              <article class="card-featured">
-                <img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Enflasyon beklentisi anketinde yıl sonu tahmini geriledi</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">GARAN</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,62</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Konut satışları eylülde yıllık bazda yüzde 12 arttı</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">EKGYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,12</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,41</span></span></a>
-                </div>
-              </article>
-            </li>
+            <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Enflasyon beklentisi anketinde yıl sonu tahmini geriledi</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">GARAN</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,62</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Konut satışları eylülde yıllık bazda yüzde 12 arttı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Ekonomi</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">EKGYO</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,12</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Avrupa borsaları enflasyon verileriyle yükselişe geçti</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Dünya</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,41</span></span></a></div></article></li>
           </ul>
         </section>
-
         <section class="news-column" aria-labelledby="sirket-title" data-slot="sirket">
           <h2 class="section-title" id="sirket-title"><a href="#"><span class="t-h3-bold">Şirket Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
           <ul class="news-column__list">
-            <li>
-              <article class="card-featured">
-                <img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Aselsan’dan 180 milyon dolarlık yeni ihracat sözleşmesi</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">35 dakika önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,41</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">BİM üçüncü çeyrek finansal sonuçlarını paylaştı</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">BIMAS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,84</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Ereğli Demir Çelik’te yatırım planı güncellendi</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">3 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">EREGL</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-9,98</span></span></a>
-                </div>
-              </article>
-            </li>
+            <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Aselsan’dan 180 milyon dolarlık yeni ihracat sözleşmesi</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">35 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ASELS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+2,41</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">BİM üçüncü çeyrek finansal sonuçlarını paylaştı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">1 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">BIMAS</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,84</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Ereğli Demir Çelik’te yatırım planı güncellendi</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Şirket</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">3 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">EREGL</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-9,98</span></span></a></div></article></li>
           </ul>
         </section>
-
         <section class="news-column" aria-labelledby="kap-haber-title" data-slot="kap-haber">
           <h2 class="section-title" id="kap-haber-title"><a href="#"><span class="t-h3-bold">KAP Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
           <ul class="news-column__list">
-            <li>
-              <article class="card-featured">
-                <img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Koza Altın’dan maden ruhsatı açıklaması</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">14 dakika önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">KOZAL</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+4,52</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Sasa Polyester yatırım teşvik belgesi aldı</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">52 dakika önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">SASA</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></a>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card-featured card-featured--compact">
-                <h3 class="card-featured__title t-h6-semibold"><a href="#">Yapı Kredi kredi derecelendirme notunu duyurdu</a></h3>
-                <div class="card-featured__meta">
-                  <p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p>
-                  <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">YKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,24</span></span></a>
-                </div>
-              </article>
-            </li>
+            <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Koza Altın’dan maden ruhsatı açıklaması</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">14 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">KOZAL</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+4,52</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Sasa Polyester yatırım teşvik belgesi aldı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">52 dakika önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">SASA</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></a></div></article></li>
+            <li><article class="card-featured card-featured--compact"><h3 class="card-featured__title t-h6-semibold"><a href="#">Yapı Kredi kredi derecelendirme notunu duyurdu</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">KAP</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">YKBNK</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,24</span></span></a></div></article></li>
           </ul>
         </section>
       </div>
@@ -504,80 +358,20 @@
         <section class="reports__column" aria-labelledby="seans-title">
           <h2 class="section-title" id="seans-title"><a href="#"><span class="t-h3-bold">Seans Raporu</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
           <ul class="list-card">
-            <li class="report-row">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt="">
-              <div class="report-row__content">
-                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-9,98</span> oranında düşüşle 13,53 liradan işlem gören hissede</a>
-                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <span class="badge t-body-xs-semibold">EREGL</span>
-            </li>
-            <li class="report-row">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt="">
-              <div class="report-row__content">
-                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-2,35</span> oranında düşüşle 8,72 liradan işlem gören hissede</a>
-                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <span class="badge t-body-xs-semibold">MNDTR</span>
-            </li>
-            <li class="report-row">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt="">
-              <div class="report-row__content">
-                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+9,96</span> oranında yükselişle 4,53 liradan işlem gören hissede</a>
-                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <span class="badge t-body-xs-semibold">PSGYO</span>
-            </li>
-            <li class="report-row report-row--desktop-only">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt="">
-              <div class="report-row__content">
-                <a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+4,12</span> oranında yükselişle 21,40 liradan işlem gören hissede</a>
-                <p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <span class="badge t-body-xs-semibold">KONKA</span>
-            </li>
+            <li class="report-row"><img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt=""><div class="report-row__content"><a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-9,98</span> oranında düşüşle 13,53 liradan işlem gören hissede</a><p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><span class="badge t-body-xs-semibold">EREGL</span></li>
+            <li class="report-row"><img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt=""><div class="report-row__content"><a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-negative">-2,35</span> oranında düşüşle 8,72 liradan işlem gören hissede</a><p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><span class="badge t-body-xs-semibold">MNDTR</span></li>
+            <li class="report-row"><img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt=""><div class="report-row__content"><a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+9,96</span> oranında yükselişle 4,53 liradan işlem gören hissede</a><p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><span class="badge t-body-xs-semibold">PSGYO</span></li>
+            <li class="report-row report-row--desktop-only"><img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt=""><div class="report-row__content"><a class="report-row__title t-body-m-semibold" href="#">Yüzde <span class="is-positive">+4,12</span> oranında yükselişle 21,40 liradan işlem gören hissede</a><p class="report-row__meta t-body-s-regular"><span>Seans Raporu</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><span class="badge t-body-xs-semibold">KONKA</span></li>
           </ul>
         </section>
 
         <section class="reports__column" aria-labelledby="analiz-title">
           <h2 class="section-title" id="analiz-title"><a href="#"><span class="t-h3-bold">Raporlar ve Analizler</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
           <ul class="list-card">
-            <li class="report-row report-row--analysis">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt="">
-              <div class="report-row__content">
-                <span class="report-row__overline t-overline">Analiz</span>
-                <a class="report-row__title t-body-m-semibold" href="#">Haftalık Bülten</a>
-                <p class="report-row__meta t-body-s-regular"><span>Bizim Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
-            </li>
-            <li class="report-row report-row--analysis">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt="">
-              <div class="report-row__content">
-                <span class="report-row__overline t-overline">Analiz</span>
-                <a class="report-row__title t-body-m-semibold" href="#">Akşam Bülteni</a>
-                <p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
-            </li>
-            <li class="report-row report-row--analysis">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt="">
-              <div class="report-row__content">
-                <span class="report-row__overline t-overline">Analiz</span>
-                <a class="report-row__title t-body-m-semibold" href="#">Petrol Fiyatları – Brent</a>
-                <p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
-            </li>
-            <li class="report-row report-row--analysis report-row--desktop-only">
-              <img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt="">
-              <div class="report-row__content">
-                <span class="report-row__overline t-overline">Analiz</span>
-                <a class="report-row__title t-body-m-semibold" href="#">Uluslararası Piyasalar – Eurotahvil</a>
-                <p class="report-row__meta t-body-s-regular"><span>İş Yatırım</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p>
-              </div>
-              <svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg>
-            </li>
+            <li class="report-row report-row--analysis"><img class="logo-company logo-company--40" src="src/assets/logos/company/eregl.svg" alt=""><div class="report-row__content"><span class="report-row__overline t-overline">Analiz</span><a class="report-row__title t-body-m-semibold" href="#">Haftalık Bülten</a><p class="report-row__meta t-body-s-regular"><span>Bizim Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg></li>
+            <li class="report-row report-row--analysis"><img class="logo-company logo-company--40" src="src/assets/logos/company/konka.svg" alt=""><div class="report-row__content"><span class="report-row__overline t-overline">Analiz</span><a class="report-row__title t-body-m-semibold" href="#">Akşam Bülteni</a><p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg></li>
+            <li class="report-row report-row--analysis"><img class="logo-company logo-company--40" src="src/assets/logos/company/mndtr.svg" alt=""><div class="report-row__content"><span class="report-row__overline t-overline">Analiz</span><a class="report-row__title t-body-m-semibold" href="#">Petrol Fiyatları – Brent</a><p class="report-row__meta t-body-s-regular"><span>İKON Menkul</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg></li>
+            <li class="report-row report-row--analysis report-row--desktop-only"><img class="logo-company logo-company--40" src="src/assets/logos/company/psgyo.svg" alt=""><div class="report-row__content"><span class="report-row__overline t-overline">Analiz</span><a class="report-row__title t-body-m-semibold" href="#">Uluslararası Piyasalar – Eurotahvil</a><p class="report-row__meta t-body-s-regular"><span>İş Yatırım</span><span class="dot" aria-hidden="true"></span><time datetime="17:59">17:59</time></p></div><svg class="icon report-row__chevron" aria-hidden="true"><use href="src/assets/icons/sprite.svg#chevron-right"/></svg></li>
           </ul>
         </section>
       </div>
@@ -587,78 +381,18 @@
         <h2 class="section-title" id="kap-title"><a href="#"><span class="t-h3-bold">KAP Duyuruları</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
         <div class="kap__card">
           <ul class="kap__column">
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-02-16"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">16</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Özel Durum Açıklaması</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/thyao.svg" alt=""><span class="kap-row__code t-body-s-semibold">THYAO</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türk Hava Yolları A.O.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-02-15"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">15</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Sermaye Artırımı Kararı</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/akbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">AKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Akbank T.A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-02-14"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">14</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Temettü Dağıtım Kararı</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/eregl.svg" alt=""><span class="kap-row__code t-body-s-semibold">EREGL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Ereğli Demir ve Çelik Fabrikaları T.A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-02-13"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">13</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Yeni Savunma Sözleşmesi</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/asels.svg" alt=""><span class="kap-row__code t-body-s-semibold">ASELS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Aselsan Elektronik Sanayi ve Ticaret A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-02-12"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">12</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Yatırım Teşvik Belgesi</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/sasa.svg" alt=""><span class="kap-row__code t-body-s-semibold">SASA</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Sasa Polyester Sanayi A.Ş.</span></p>
-              </div>
-            </li>
+            <li class="kap-row"><time class="date-block" datetime="2026-02-16"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">16</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Özel Durum Açıklaması</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/thyao.svg" alt=""><span class="kap-row__code t-body-s-semibold">THYAO</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türk Hava Yolları A.O.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-02-15"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">15</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Sermaye Artırımı Kararı</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/akbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">AKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Akbank T.A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-02-14"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">14</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Temettü Dağıtım Kararı</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/eregl.svg" alt=""><span class="kap-row__code t-body-s-semibold">EREGL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Ereğli Demir ve Çelik Fabrikaları T.A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-02-13"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">13</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Yeni Savunma Sözleşmesi</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/asels.svg" alt=""><span class="kap-row__code t-body-s-semibold">ASELS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Aselsan Elektronik Sanayi ve Ticaret A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-02-12"><span class="t-body-xs-regular">Şubat</span><span class="date-block__day t-h5-semibold">12</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Yatırım Teşvik Belgesi</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/sasa.svg" alt=""><span class="kap-row__code t-body-s-semibold">SASA</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Sasa Polyester Sanayi A.Ş.</span></p></div></li>
           </ul>
           <ul class="kap__column kap__column--secondary">
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-01-28"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">28</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Yıllık Finansal Rapor Özeti</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/bimas.svg" alt=""><span class="kap-row__code t-body-s-semibold">BIMAS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">BİM Birleşik Mağazalar A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-01-25"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">25</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Kredi Derecelendirme Notu</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/ykbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">YKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Yapı ve Kredi Bankası A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-01-22"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">22</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Yönetim Kurulu Üye Değişikliği</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/garan.svg" alt=""><span class="kap-row__code t-body-s-semibold">GARAN</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türkiye Garanti Bankası A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-01-18"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">18</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Maden Ruhsatı Güncellemesi</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/kozal.svg" alt=""><span class="kap-row__code t-body-s-semibold">KOZAL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Koza Altın İşletmeleri A.Ş.</span></p>
-              </div>
-            </li>
-            <li class="kap-row">
-              <time class="date-block" datetime="2026-01-15"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">15</span></time>
-              <div class="kap-row__content">
-                <a class="kap-row__title t-body-m-semibold" href="#">Uluslararası Proje İhalesi</a>
-                <p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/enkai.svg" alt=""><span class="kap-row__code t-body-s-semibold">ENKAI</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Enka İnşaat ve Sanayi A.Ş.</span></p>
-              </div>
-            </li>
+            <li class="kap-row"><time class="date-block" datetime="2026-01-28"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">28</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Yıllık Finansal Rapor Özeti</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/bimas.svg" alt=""><span class="kap-row__code t-body-s-semibold">BIMAS</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">BİM Birleşik Mağazalar A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-01-25"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">25</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Kredi Derecelendirme Notu</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/ykbnk.svg" alt=""><span class="kap-row__code t-body-s-semibold">YKBNK</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Yapı ve Kredi Bankası A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-01-22"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">22</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Yönetim Kurulu Üye Değişikliği</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/garan.svg" alt=""><span class="kap-row__code t-body-s-semibold">GARAN</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Türkiye Garanti Bankası A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-01-18"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">18</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Maden Ruhsatı Güncellemesi</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/kozal.svg" alt=""><span class="kap-row__code t-body-s-semibold">KOZAL</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Koza Altın İşletmeleri A.Ş.</span></p></div></li>
+            <li class="kap-row"><time class="date-block" datetime="2026-01-15"><span class="t-body-xs-regular">Ocak</span><span class="date-block__day t-h5-semibold">15</span></time><div class="kap-row__content"><a class="kap-row__title t-body-m-semibold" href="#">Uluslararası Proje İhalesi</a><p class="kap-row__meta"><img class="logo-company logo-company--16" src="src/assets/logos/company/enkai.svg" alt=""><span class="kap-row__code t-body-s-semibold">ENKAI</span><span class="dot" aria-hidden="true"></span><span class="kap-row__company t-body-s-regular">Enka İnşaat ve Sanayi A.Ş.</span></p></div></li>
           </ul>
         </div>
       </section>
@@ -692,62 +426,14 @@
               </tr>
             </thead>
             <tbody data-crypto-rows>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/btc.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BTC/USDT</span><span class="coin__full t-body-xs-regular">Bitcoin</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 78.439,61</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 79.668,00</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 78.261,61</td>
-                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,54</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/eth.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">ETH/USDT</span><span class="coin__full t-body-xs-regular">Ethereum</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 2.474,67</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 2.511,40</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 2.463,00</td>
-                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,03</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/xrp.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">XRP/USDT</span><span class="coin__full t-body-xs-regular">Ripple</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 2,3412</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 2,3890</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 2,3305</td>
-                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,12</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/sol.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">SOL/USDT</span><span class="coin__full t-body-xs-regular">Solana</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 182,45</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 186,20</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 180,90</td>
-                <td><span class="change-pill change-pill--down t-body-s-semibold">-%0,84</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/bnb.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BNB/USDT</span><span class="coin__full t-body-xs-regular">Binance Coin</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 612,30</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 618,75</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 608,10</td>
-                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,42</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/ada.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">ADA/USDT</span><span class="coin__full t-body-xs-regular">Cardano</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 0,7421</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,7510</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,7366</td>
-                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,65</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/doge.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">DOGE/USDT</span><span class="coin__full t-body-xs-regular">Dogecoin</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 0,2214</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2289</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 0,2198</td>
-                <td><span class="change-pill change-pill--down t-body-s-semibold">-%1,87</span></td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/link.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">LINK/USDT</span><span class="coin__full t-body-xs-regular">Chainlink</span></span></span></th>
-                <td class="t-numeric-m-semibold">$ 16,82</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 17,05</td>
-                <td class="crypto-table__hide-sm t-body-m-regular">$ 16,61</td>
-                <td><span class="change-pill change-pill--up t-body-s-semibold">+%0,93</span></td>
-              </tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/btc.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BTC/USDT</span><span class="coin__full t-body-xs-regular">Bitcoin</span></span></span></th><td class="t-numeric-m-semibold">$ 78.439,61</td><td class="crypto-table__hide-sm t-body-m-regular">$ 79.129,88</td><td class="crypto-table__hide-sm t-body-m-regular">$ 77.874,84</td><td><span class="change-pill change-pill--down t-body-s-semibold">-%1,54</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/eth.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">ETH/USDT</span><span class="coin__full t-body-xs-regular">Ethereum</span></span></span></th><td class="t-numeric-m-semibold">$ 2.474,67</td><td class="crypto-table__hide-sm t-body-m-regular">$ 2.496,45</td><td class="crypto-table__hide-sm t-body-m-regular">$ 2.456,85</td><td><span class="change-pill change-pill--down t-body-s-semibold">-%1,03</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/xrp.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">XRP/USDT</span><span class="coin__full t-body-xs-regular">Ripple</span></span></span></th><td class="t-numeric-m-semibold">$ 2,3412</td><td class="crypto-table__hide-sm t-body-m-regular">$ 2,3618</td><td class="crypto-table__hide-sm t-body-m-regular">$ 2,3243</td><td><span class="change-pill change-pill--down t-body-s-semibold">-%1,12</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/sol.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">SOL/USDT</span><span class="coin__full t-body-xs-regular">Solana</span></span></span></th><td class="t-numeric-m-semibold">$ 182,45</td><td class="crypto-table__hide-sm t-body-m-regular">$ 184,06</td><td class="crypto-table__hide-sm t-body-m-regular">$ 181,14</td><td><span class="change-pill change-pill--down t-body-s-semibold">-%0,84</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/bnb.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">BNB/USDT</span><span class="coin__full t-body-xs-regular">Binance Coin</span></span></span></th><td class="t-numeric-m-semibold">$ 612,30</td><td class="crypto-table__hide-sm t-body-m-regular">$ 617,69</td><td class="crypto-table__hide-sm t-body-m-regular">$ 607,89</td><td><span class="change-pill change-pill--up t-body-s-semibold">+%0,42</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/ada.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">ADA/USDT</span><span class="coin__full t-body-xs-regular">Cardano</span></span></span></th><td class="t-numeric-m-semibold">$ 0,7421</td><td class="crypto-table__hide-sm t-body-m-regular">$ 0,7486</td><td class="crypto-table__hide-sm t-body-m-regular">$ 0,7368</td><td><span class="change-pill change-pill--up t-body-s-semibold">+%0,65</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/doge.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">DOGE/USDT</span><span class="coin__full t-body-xs-regular">Dogecoin</span></span></span></th><td class="t-numeric-m-semibold">$ 0,2214</td><td class="crypto-table__hide-sm t-body-m-regular">$ 0,2233</td><td class="crypto-table__hide-sm t-body-m-regular">$ 0,2198</td><td><span class="change-pill change-pill--down t-body-s-semibold">-%1,87</span></td></tr>
+              <tr><th scope="row"><span class="coin"><span class="logo-currency logo-currency--32"><img src="src/assets/logos/currency/link.svg" alt=""></span><span class="coin__name"><span class="t-body-m-semibold">LINK/USDT</span><span class="coin__full t-body-xs-regular">Chainlink</span></span></span></th><td class="t-numeric-m-semibold">$ 16,82</td><td class="crypto-table__hide-sm t-body-m-regular">$ 16,97</td><td class="crypto-table__hide-sm t-body-m-regular">$ 16,70</td><td><span class="change-pill change-pill--up t-body-s-semibold">+%0,93</span></td></tr>
             </tbody>
           </table>
           </div>
@@ -763,36 +449,9 @@
       <section class="crypto-news" aria-labelledby="crypto-news-title" data-slot="crypto-news">
         <h2 class="section-title" id="crypto-news-title"><a href="#"><span class="t-h3-bold">Kripto Haberleri</span><svg class="icon" aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-right"/></svg></a></h2>
         <ul class="crypto-news__list scroll-x">
-          <li>
-            <article class="card-featured">
-              <img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Bitcoin ETF girişleri haftalık bazda rekor seviyeye ulaştı</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">BTC</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,54</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card-featured">
-              <img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Ethereum’da ağ güncellemesi öncesi işlem hacmi arttı</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">3 saat önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ETH</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,03</span></span></a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card-featured">
-              <img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy">
-              <h3 class="card-featured__title t-h6-semibold"><a href="#">Dogecoin hafta başında yüzde 9 değer kazandı</a></h3>
-              <div class="card-featured__meta">
-                <p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">4 saat önce</time></p>
-                <a class="ticker-chip" href="#"><span class="ticker-chip__symbol">DOGE</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+9,18</span></span></a>
-              </div>
-            </article>
-          </li>
+          <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-gold.jpg" width="1200" height="800" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Bitcoin ETF girişleri haftalık bazda rekor seviyeye ulaştı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">2 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">BTC</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,54</span></span></a></div></article></li>
+          <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-eu.jpg" width="1200" height="794" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Ethereum’da ağ güncellemesi öncesi işlem hacmi arttı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">3 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">ETH</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-1,03</span></span></a></div></article></li>
+          <li><article class="card-featured"><img class="card-featured__img" src="src/assets/images/news-market.jpg" width="1200" height="800" alt="" loading="lazy"><h3 class="card-featured__title t-h6-semibold"><a href="#">Dogecoin hafta başında yüzde 9 değer kazandı</a></h3><div class="card-featured__meta"><p class="news-meta"><span class="t-body-xs-medium">Kripto</span><span class="news-meta__dot" aria-hidden="true">·</span><time class="t-body-xs-medium" datetime="2026-10-18T09:49">4 saat önce</time></p><a class="ticker-chip" href="#"><span class="ticker-chip__symbol">DOGE</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+9,18</span></span></a></div></article></li>
         </ul>
       </section>
     </div>
@@ -809,26 +468,10 @@
           <span class="status-pill t-body-s-medium" data-market-status><span class="status-pill__dot" aria-hidden="true"></span><span data-market-status-label>BIST Açık</span></span>
         </header>
         <ul class="widget__card widget__card--rows">
-          <li class="market-row" data-live="USD">
-            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
-            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
-            <span class="market-row__value"><span class="t-h6-semibold">41,5612</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span>
-          </li>
-          <li class="market-row" data-live="EUR">
-            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
-            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
-            <span class="market-row__value"><span class="t-h6-semibold">48,2140</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></span>
-          </li>
-          <li class="market-row" data-live="GA">
-            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
-            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span>
-            <span class="market-row__value"><span class="t-h6-semibold">4.215,60</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,23</span></span></span>
-          </li>
-          <li class="market-row" data-live="GG">
-            <span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/silver.svg" alt=""></span><span class="t-body-m-medium">Gümüş</span></span>
-            <span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span>
-            <span class="market-row__value"><span class="t-h6-semibold">52,40</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,82</span></span></span>
-          </li>
+          <li class="market-row" data-live="USD"><span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span><span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span><span class="market-row__value"><span class="t-h6-semibold">41,5612</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+0,18</span></span></span></li>
+          <li class="market-row" data-live="EUR"><span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span><span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span><span class="market-row__value"><span class="t-h6-semibold">48,2140</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,21</span></span></span></li>
+          <li class="market-row" data-live="GA"><span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span><span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--up"><img src="src/assets/charts/sparkline-up.svg" alt=""></span></span><span class="market-row__value"><span class="t-h6-semibold">4.215,60</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+1,23</span></span></span></li>
+          <li class="market-row" data-live="GG"><span class="market-row__asset"><span class="logo-currency logo-currency--18"><img src="src/assets/logos/currency/silver.svg" alt=""></span><span class="t-body-m-medium">Gümüş</span></span><span class="market-row__chart" aria-hidden="true"><span class="sparkline sparkline--down"><img src="src/assets/charts/sparkline-down.svg" alt=""></span></span><span class="market-row__value"><span class="t-h6-semibold">52,40</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-0,82</span></span></span></li>
         </ul>
       </section>
 
@@ -878,34 +521,7 @@
           <div class="money__chart">
             <div class="tab-panel" role="tabpanel" id="money-panel" tabindex="0">
             <ul class="money__rows" data-money-rows>
-              <li class="money-row">
-                <div class="money-row__top">
-                  <span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span>
-                  <span class="money-row__value"><span class="money-row__amount t-body-m-semibold">1.012,30 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%1,23</span></span></span>
-                </div>
-                <span class="money-bar money-bar--up" style="--value: 1.00" aria-hidden="true"><span class="money-bar__fill"></span></span>
-              </li>
-              <li class="money-row">
-                <div class="money-row__top">
-                  <span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span>
-                  <span class="money-row__value"><span class="money-row__amount t-body-m-semibold">1.005,60 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,56</span></span></span>
-                </div>
-                <span class="money-bar money-bar--up" style="--value: 0.46" aria-hidden="true"><span class="money-bar__fill"></span></span>
-              </li>
-              <li class="money-row">
-                <div class="money-row__top">
-                  <span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span>
-                  <span class="money-row__value"><span class="money-row__amount t-body-m-semibold">991,80 ₺</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-%0,82</span></span></span>
-                </div>
-                <span class="money-bar money-bar--down" style="--value: 0.67" aria-hidden="true"><span class="money-bar__fill"></span></span>
-              </li>
-              <li class="money-row">
-                <div class="money-row__top">
-                  <span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/bist100.png" alt=""></span><span class="t-body-m-medium">BIST 100</span></span>
-                  <span class="money-row__value"><span class="money-row__amount t-body-m-semibold">1.003,40 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,34</span></span></span>
-                </div>
-                <span class="money-bar money-bar--up" style="--value: 0.28" aria-hidden="true"><span class="money-bar__fill"></span></span>
-              </li>
+              <li class="money-row"><div class="money-row__top"><span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/gold.svg" alt=""></span><span class="t-body-m-medium">Altın</span></span><span class="money-row__value"><span class="money-row__amount t-body-m-semibold" title="1.012,30 ₺" aria-label="1.012,30 ₺">1.012,30 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%1,23</span></span></span></div><span class="money-bar money-bar--up" style="--value: 1.00" aria-hidden="true"><span class="money-bar__fill"></span></span></li><li class="money-row"><div class="money-row__top"><span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/usd.svg" alt=""></span><span class="t-body-m-medium">Dolar</span></span><span class="money-row__value"><span class="money-row__amount t-body-m-semibold" title="1.005,60 ₺" aria-label="1.005,60 ₺">1.005,60 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,56</span></span></span></div><span class="money-bar money-bar--up" style="--value: 0.46" aria-hidden="true"><span class="money-bar__fill"></span></span></li><li class="money-row"><div class="money-row__top"><span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/eur.svg" alt=""></span><span class="t-body-m-medium">Euro</span></span><span class="money-row__value"><span class="money-row__amount t-body-m-semibold" title="991,80 ₺" aria-label="991,80 ₺">991,80 ₺</span><span class="change change--down"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-down"/></svg></span><span class="t-body-xs-semibold">-%0,82</span></span></span></div><span class="money-bar money-bar--down" style="--value: 0.67" aria-hidden="true"><span class="money-bar__fill"></span></span></li><li class="money-row"><div class="money-row__top"><span class="market-row__asset"><span class="logo-currency logo-currency--20"><img src="src/assets/logos/currency/bist100.png" alt=""></span><span class="t-body-m-medium">BIST 100</span></span><span class="money-row__value"><span class="money-row__amount t-body-m-semibold" title="1.003,40 ₺" aria-label="1.003,40 ₺">1.003,40 ₺</span><span class="change change--up"><span class="change__icon"><svg aria-hidden="true"><use href="src/assets/icons/sprite.svg#arrow-up"/></svg></span><span class="t-body-xs-semibold">+%0,34</span></span></span></div><span class="money-bar money-bar--up" style="--value: 0.28" aria-hidden="true"><span class="money-bar__fill"></span></span></li>
             </ul>
             </div>
           </div>
@@ -1032,62 +648,10 @@
         </div>
 
         <nav class="site-footer__nav" aria-label="Alt menü">
-          <div class="footer-col">
-            <h2 class="footer-col__title t-overline">Döviz</h2>
-            <ul class="footer-col__list t-body-s-regular">
-              <li><a href="#">Dolar</a></li>
-              <li><a href="#">Euro</a></li>
-              <li><a href="#">Sterlin</a></li>
-              <li><a href="#">Frank</a></li>
-              <li><a href="#">Kanada Doları</a></li>
-              <li><a href="#">Riyal</a></li>
-              <li><a href="#">Yen</a></li>
-              <li><a href="#">Pariteler</a></li>
-              <li><a href="#">Merkez Bankası Kurları</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h2 class="footer-col__title t-overline">Altın</h2>
-            <ul class="footer-col__list t-body-s-regular">
-              <li><a href="#">Altın Fiyatları</a></li>
-              <li><a href="#">Gram Altın</a></li>
-              <li><a href="#">Çeyrek Altın</a></li>
-              <li><a href="#">Yarım Altın</a></li>
-              <li><a href="#">Cumhuriyet Altını</a></li>
-              <li><a href="#">Ons Altın</a></li>
-              <li><a href="#">22 Ayar Bilezik</a></li>
-              <li><a href="#">Gümüş Fiyatı</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h2 class="footer-col__title t-overline">Borsa</h2>
-            <ul class="footer-col__list t-body-s-regular">
-              <li><a href="#">Canlı Borsa</a></li>
-              <li><a href="#">Hisse Fiyatları</a></li>
-              <li><a href="#">Endeksler</a></li>
-              <li><a href="#">En Çok Yükselenler</a></li>
-              <li><a href="#">En Yüksek Hacim</a></li>
-              <li><a href="#">Geçmiş Kapanışlar</a></li>
-              <li><a href="#">KAP Haberleri</a></li>
-              <li><a href="#">Günün Özeti</a></li>
-              <li><a href="#">Dünya Borsa Endeksleri</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h2 class="footer-col__title t-overline">Kripto ve Araçlar</h2>
-            <ul class="footer-col__list t-body-s-regular">
-              <li><a href="#">Kripto Paralar</a></li>
-              <li><a href="#">Bitcoin</a></li>
-              <li><a href="#">Ethereum</a></li>
-              <li><a href="#">Ripple</a></li>
-              <li><a href="#">Teknik Analiz</a></li>
-              <li><a href="#">Mali Tablolar</a></li>
-              <li><a href="#">Tahvil Bono Repo</a></li>
-              <li><a href="#">VİOP / Varant</a></li>
-              <li><a href="#">Maaş Hesaplama</a></li>
-              <li><a href="#">Terimler Sözlüğü</a></li>
-            </ul>
-          </div>
+          <div class="footer-col"><h2 class="footer-col__title t-overline">Döviz</h2><ul class="footer-col__list t-body-s-regular"><li><a href="#">Dolar</a></li><li><a href="#">Euro</a></li><li><a href="#">Sterlin</a></li><li><a href="#">Frank</a></li><li><a href="#">Kanada Doları</a></li><li><a href="#">Riyal</a></li><li><a href="#">Yen</a></li><li><a href="#">Pariteler</a></li><li><a href="#">Merkez Bankası Kurları</a></li></ul></div>
+          <div class="footer-col"><h2 class="footer-col__title t-overline">Altın</h2><ul class="footer-col__list t-body-s-regular"><li><a href="#">Altın Fiyatları</a></li><li><a href="#">Gram Altın</a></li><li><a href="#">Çeyrek Altın</a></li><li><a href="#">Yarım Altın</a></li><li><a href="#">Cumhuriyet Altını</a></li><li><a href="#">Ons Altın</a></li><li><a href="#">22 Ayar Bilezik</a></li><li><a href="#">Gümüş Fiyatı</a></li></ul></div>
+          <div class="footer-col"><h2 class="footer-col__title t-overline">Borsa</h2><ul class="footer-col__list t-body-s-regular"><li><a href="#">Canlı Borsa</a></li><li><a href="#">Hisse Fiyatları</a></li><li><a href="#">Endeksler</a></li><li><a href="#">En Çok Yükselenler</a></li><li><a href="#">En Yüksek Hacim</a></li><li><a href="#">Geçmiş Kapanışlar</a></li><li><a href="#">KAP Haberleri</a></li><li><a href="#">Günün Özeti</a></li><li><a href="#">Dünya Borsa Endeksleri</a></li></ul></div>
+          <div class="footer-col"><h2 class="footer-col__title t-overline">Kripto ve Araçlar</h2><ul class="footer-col__list t-body-s-regular"><li><a href="#">Kripto Paralar</a></li><li><a href="#">Bitcoin</a></li><li><a href="#">Ethereum</a></li><li><a href="#">Ripple</a></li><li><a href="#">Teknik Analiz</a></li><li><a href="#">Mali Tablolar</a></li><li><a href="#">Tahvil Bono Repo</a></li><li><a href="#">VİOP / Varant</a></li><li><a href="#">Maaş Hesaplama</a></li><li><a href="#">Terimler Sözlüğü</a></li></ul></div>
         </nav>
       </div>
 

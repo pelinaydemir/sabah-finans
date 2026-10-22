@@ -17,20 +17,18 @@
  * "Paramın Karşılığı" dönem getirileri (geçmiş fiyat gerektirir).
  * Prod ortamda bu dosyanın yerini kurumun kendi veri servisi alır; render fonksiyonları aynı kalır.
  */
-import { currencies, coins } from './data.js';
+import { currencyByCode, coins } from './data.js';
+import { ICONS, CHARTS } from './core/assets.js';
+import { num as fmt, signed, dir } from './core/format.js';
 
 const TRUNCGIL = 'https://finans.truncgil.com/v4/today.json';
 const COIN_IDS = { BTC: 'bitcoin', ETH: 'ethereum', XRP: 'ripple', SOL: 'solana', BNB: 'binancecoin', ADA: 'cardano', DOGE: 'dogecoin', LINK: 'chainlink' };
 const COINGECKO = `https://api.coingecko.com/api/v3/simple/price?ids=${Object.values(COIN_IDS).join(',')}&vs_currencies=usd&include_24hr_change=true`;
 const BINANCE = `https://api.binance.com/api/v3/ticker/24hr?symbols=${encodeURIComponent(JSON.stringify(Object.keys(COIN_IDS).map((s) => `${s}USDT`)))}`;
 const REFRESH_MS = 60_000;
-const ICONS = 'src/assets/icons/sprite.svg';
 
 /* Truncgil anahtarı → data.js kodu */
 const FX_MAP = { USD: 'USD', EUR: 'EUR', GBP: 'GBP', CHF: 'CHF', GRA: 'GA', CEYREKALTIN: 'CA', YARIMALTIN: 'YA', TAMALTIN: 'TA', CUMHURIYETALTINI: 'CUM', GUMUS: 'GG' };
-
-const fmt = (value, digits) => new Intl.NumberFormat('tr-TR', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(value);
-const signed = (value) => `${value > 0 ? '+' : value < 0 ? '-' : ''}${fmt(Math.abs(value), 2)}`;
 
 const fetchJSON = async (url, { bust = false } = {}) => {
   const ctrl = new AbortController();
@@ -93,19 +91,19 @@ const getCrypto = async () => {
 
 /* Ekrandaki "değer + değişim göstergesi" çiftini günceller (finans barı, Piyasa Özeti) */
 function paint(el, valueText, change) {
-  const dir = change < 0 ? 'down' : 'up';
+  const d = dir(change);
   const value = el.querySelector('.ticker__value, .market-row__value > .t-h6-semibold');
   if (value) value.textContent = valueText;
   const ch = el.querySelector('.change');
   if (ch) {
-    ch.className = `change change--${dir}`;
-    ch.querySelector('use')?.setAttribute('href', `${ICONS}#arrow-${dir}`);
+    ch.className = `change change--${d}`;
+    ch.querySelector('use')?.setAttribute('href', `${ICONS}#arrow-${d}`);
     ch.querySelector('.t-body-xs-semibold').textContent = signed(change);
   }
   const spark = el.querySelector('.sparkline');
-  if (spark && !spark.classList.contains(`sparkline--${dir}`)) {
-    spark.className = `sparkline sparkline--${dir}`;
-    spark.querySelector('img').src = `src/assets/charts/sparkline-${dir}.svg`;
+  if (spark && !spark.classList.contains(`sparkline--${d}`)) {
+    spark.className = `sparkline sparkline--${d}`;
+    spark.querySelector('img').src = `${CHARTS}sparkline-${d}.svg`;
   }
 }
 
@@ -124,7 +122,6 @@ function updateMarketStatus() {
 export function startLive({ onUpdate } = {}) {
   updateMarketStatus();
   setInterval(updateMarketStatus, 60_000);
-  const byCode = Object.fromEntries(currencies.map((c) => [c.code, c]));
   const byPair = Object.fromEntries(coins.map((c) => [c.pair.split('/')[0], c]));
 
   const apply = (fx, crypto) => {
@@ -135,9 +132,9 @@ export function startLive({ onUpdate } = {}) {
         const q = fx[key];
         const price = q && (q.Selling || q.Buying);
         if (!price) continue;
-        byCode[code].rate = price;
-        byCode[code].change = q.Change ?? byCode[code].change;
-        quotes[code] = [fmt(price, code === 'USD' || code === 'EUR' || code === 'GBP' || code === 'CHF' ? 4 : 2), byCode[code].change];
+        currencyByCode[code].rate = price;
+        currencyByCode[code].change = q.Change ?? currencyByCode[code].change;
+        quotes[code] = [fmt(price, code === 'USD' || code === 'EUR' || code === 'GBP' || code === 'CHF' ? 4 : 2), currencyByCode[code].change];
       }
       if (fx.XU100?.Selling) quotes.XU100 = [fmt(fx.XU100.Selling, 2), fx.XU100.Change ?? 0];
       // Ons: kaynak fiyatı 0 döndürüyor → gram altın ve dolardan türetilir (1 ons = 31,1035 g)

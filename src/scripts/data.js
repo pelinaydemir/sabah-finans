@@ -4,16 +4,13 @@
  * backend sözleşmesi için referanstır. Bkz. HANDOFF.md › "Veri entegrasyonu".
  */
 
-const IMG = 'src/assets/images/';
-const CUR = 'src/assets/logos/currency/';
-const GOLD = 'src/assets/logos/gold/';
-const CO = 'src/assets/logos/company/';
+import { IMG, CUR, GOLD, CO } from './core/assets.js';
 
 /* ---------------------------------------------------------------------------
    Manşet (Haber Kartı/Görsel Üzeri) — nav-number 1…10
    --------------------------------------------------------------------------- */
 export const headlines = [
-  { category: 'Dünya', time: '11 dakika önce', title: 'New York Fed imalat endeksi temmuzda beklentileri geçti', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası önünde dalgalanan ABD bayrağı', tickers: [['THYAO', '+0,18'], ['ISCTR', '-0,45']] },
+  { category: 'Dünya', time: '11 dakika önce', datetime: '2026-10-18T09:49', title: 'New York Fed imalat endeksi temmuzda beklentileri geçti', image: 'hero-ny-fed.jpg', alt: 'New York Federal Rezerv binası önünde dalgalanan ABD bayrağı', tickers: [['THYAO', '+0,18'], ['ISCTR', '-0,45']] },
   { category: 'Altın', time: '24 dakika önce', title: 'Gram altın güvenli liman talebiyle yeni zirveyi test ediyor', image: 'news-gold.jpg', alt: 'Kasada dizili külçe altınlar', tickers: [['KOZAL', '+2,14'], ['PEKGY', '+1,02']] },
   { category: 'Avrupa', time: '38 dakika önce', title: 'Avrupa Merkez Bankası faiz kararı öncesi piyasalar temkinli', image: 'news-eu.jpg', alt: 'Avrupa Komisyonu binası önünde AB bayrakları', tickers: [['GARAN', '-0,62'], ['AKBNK', '-0,38']] },
   { category: 'Borsa', time: '52 dakika önce', title: 'BIST 100 endeksi bankacılık satışlarıyla günü ekside kapattı', image: 'news-market.jpg', alt: 'Düşüşü gösteren kırmızı borsa grafiği', tickers: [['YKBNK', '-1,24'], ['ISCTR', '-0,45']] },
@@ -42,6 +39,9 @@ export const currencies = [
   { code: 'ONS', name: 'Ons Altın', label: 'Ons Altın', group: 'gold', logo: GOLD + 'ons.svg', rate: 110137.0, change: 0.94 },
   { code: 'GG', name: 'Gram Gümüş', label: 'Gram Gümüş', group: 'gold', logo: GOLD + 'gumus.svg', rate: 52.40, change: -0.82 },
 ];
+
+/** Koda göre hızlı erişim — canlı veri aynı nesneleri günceller */
+export const currencyByCode = Object.fromEntries(currencies.map((c) => [c.code, c]));
 
 export const currencyGroups = [
   { id: 'popular', label: 'Popüler' },
@@ -119,7 +119,7 @@ export const coins = [
 /* ---------------------------------------------------------------------------
    Arama — hisse/endeks sembolleri ve "En Çok Arananlar"
    Döviz, altın ve kripto sonuçları yukarıdaki `currencies` ve `coins` listelerinden
-   üretilir (bkz. main.js › buildSearchIndex). Canlı ortamda: GET /search?q=
+   üretilir (bkz. features/search.js › buildSearchIndex). Canlı ortamda: GET /search?q=
    --------------------------------------------------------------------------- */
 export const stocks = [
   { code: 'THYAO', name: 'Türk Hava Yolları A.O.', logo: CO + 'thyao.svg', change: 0.18 },
