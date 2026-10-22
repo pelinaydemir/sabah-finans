@@ -3,9 +3,10 @@
  * Desktop      : yavaş otomatik kayma (30px/sn), hover/odakta durur. Oklar şeridi
  *                bir haber ileri/geri alır, sonra otomatik kayma sürer. Döngü
  *                kesintisizdir: liste bir kez kopyalanır, sona gelince başa sarar.
- * Tablet/Mobil : otomatik kayma YOK — dokunmatikte parmakla kaydırma ile çakışır
- *                (WCAG 2.2.2). Şerit doğal yatay kaydırılır, her başlıkta durur
- *                (scroll-snap); tablet okları bir başlık ileri/geri alır.
+ * Tablet/Mobil : otomatik kayma ve ok YOK — dokunmatikte parmakla kaydırma ile
+ *                çakışır (WCAG 2.2.2). Şerit doğal yatay kaydırılır, her başlıkta
+ *                durur (scroll-snap).
+ * Hareketi azalt: desktop'ta otomatik kayma kapalıdır; oklar şeridi bir başlık kaydırır.
  */
 import { isDesktop, onBreakpointChange, reducedMotion } from '../core/dom.js';
 
@@ -96,7 +97,7 @@ export function initBreakingNews() {
     }
   };
 
-  /* Tablet (otomatik kayma kapalı): doğal kaydırmayla bir başlık ileri/geri */
+  /* Otomatik kayma kapalıyken (hareketi azalt): doğal kaydırmayla bir başlık ileri/geri */
   const step = (direction) => {
     const x = list.scrollLeft;
     const next = direction > 0

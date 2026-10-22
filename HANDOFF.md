@@ -139,7 +139,7 @@ taşınırken her şablon fonksiyonu doğrudan bir component'a karşılık gelir
 
 ### Figma dosya düzeni
 
-- **Sayfalar:** Base → ↳ UI Components · ↳ Icons · ↳ Typography · ↳ Colors ‖ Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Prototip · Etkileşimler (Present modunda 4 akış) · ↳ Tasarım Kararları (UX analizi ve kararlar).
+- **Sayfalar:** Base → ↳ UI Components · ↳ Icons · ↳ Typography · ↳ Colors ‖ Design → ↳ Ekranlar (Desktop/Tablet/Mobile + Arama durumları) · ↳ Tasarım Kararları (UX analizi, tasarım ve etkileşim kararları). Etkileşimler canlı sitede görülebildiği için ayrı prototip tutulmaz.
 - **Component adları** `Kategori/Ad` biçimindedir: `Layout/*`, `Navigation/*`, `Section/*`, `Card/*`, `Chip/*`, `List/*`, `Dropdown/*`, `Widget/*`, `Logo/*`, `Finance/*`, `Button`.
 - **Varyant özellikleri** Türkçe ve tutarlıdır: `Cihaz`, `Seçili = Evet/Hayır`, `Boyut`, `Görsel = Var/Yok`, `Tip`, `Durum`.
 - **Ekran katmanları** koddaki sınıf adlarıyla aynıdır (kebab-case): `top-stories`, `headline-slider`, `news-columns`, `news-column/gundem`, `story-list`, `sidebar`, `sidebar-divider`, `crypto-news`, `ad-inline`…

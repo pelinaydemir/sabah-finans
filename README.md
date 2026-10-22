@@ -9,7 +9,6 @@ Design System token'ları ve component'leri kullanılarak semantik, responsive H
 | **Canlı site** | <https://pelinaydemir.github.io/sabah-finans/> |
 | **Figma dosyası** | [proje-x](https://www.figma.com/design/Obf50BFcksCZuXTvLtuLkZ/proje-x?node-id=78-102655) |
 | **Anasayfa ekranları** | [Screens (1920 / 768 / 375)](https://www.figma.com/design/Obf50BFcksCZuXTvLtuLkZ/proje-x?node-id=214-24330) |
-| **Prototip** | [4 etkileşim akışı (Present)](https://www.figma.com/proto/Obf50BFcksCZuXTvLtuLkZ/proje-x?node-id=181-22454&starting-point-node-id=181%3A22454&page-id=181%3A22451) |
 | **Tasarım kararları** | [UX analizi ve kararlar](https://www.figma.com/design/Obf50BFcksCZuXTvLtuLkZ/proje-x?node-id=179-20872) |
 | **Tasarım & geliştirme** | [Pelin Aydemir](https://github.com/pelinaydemir) |
 | **Geliştirici teslim notları** | [`HANDOFF.md`](HANDOFF.md) |
