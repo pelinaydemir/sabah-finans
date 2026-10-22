@@ -6,7 +6,7 @@ import { attr, cls, tickerChip, sectionTitle } from './atoms.js';
 const time = ({ time: text, datetime }, className) => `<time${attr('class', className)}${attr('datetime', datetime)}>${text}</time>`;
 
 /** Kategori · zaman satırı */
-export const newsMeta = (item) =>
+const newsMeta = (item) =>
   `<p class="news-meta"><span class="t-body-xs-medium">${item.category}</span><span class="news-meta__dot" aria-hidden="true">·</span>${time(item, 't-body-xs-medium')}</p>`;
 
 /** Card/Haber — görsel varsa büyük, yoksa kompakt */

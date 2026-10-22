@@ -3,7 +3,7 @@
  */
 
 /** Desktop kırılımı (≥1280) — tokens.css ile aynı değer */
-export const DESKTOP_QUERY = '(min-width: 1280px)';
+const DESKTOP_QUERY = '(min-width: 1280px)';
 export const isDesktop = () => matchMedia(DESKTOP_QUERY).matches;
 export const onBreakpointChange = (fn) => matchMedia(DESKTOP_QUERY).addEventListener('change', fn);
 

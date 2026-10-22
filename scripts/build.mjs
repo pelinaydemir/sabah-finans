@@ -11,14 +11,24 @@
  */
 import { readFile, writeFile } from 'node:fs/promises';
 import * as content from '../src/scripts/content.js';
-import { headlines, moneyAssets, bistLists, coins, cryptoPeriods } from '../src/scripts/data.js';
+import {
+  headlines, moneyAssets, bistLists, coins, cryptoPeriods, bistBreadth, stockStats, cryptoUpdatedAt,
+} from '../src/scripts/data.js';
 import {
   breakingItem, ticker, categoryTabs, heroSlide, navNumber, newsCardItem, newsColumn, sectionTitle,
   sessionReportRow, analysisReportRow, kapRow, tabs, cryptoRow, newsCard, marketRow, moneyRows,
-  stockTile, footerCol,
+  stockTile, footerCol, widgetHeader, marketStatus, lastUpdate, bistBreadth as breadth, stockBreadth,
+  statsList, campaignSlot,
 } from '../src/scripts/components/index.js';
 
 const root = new URL('..', import.meta.url);
+
+/* "Son güncelleme" satırları */
+const updates = {
+  crypto: { at: cryptoUpdatedAt, note: '15 dk gecikmeli', live: 'crypto', className: 'crypto__footer' },
+  bist: { at: bistBreadth.updatedAt },
+  stats: { at: stockStats.updatedAt },
+};
 
 /* İşaret adı → HTML (dizi: her öğe ayrı satıra yazılır) */
 const renderers = {
@@ -40,6 +50,13 @@ const renderers = {
   moneyRows: () => moneyRows(moneyAssets, { period: 'daily', amount: 1000, symbol: '₺' }),
   bistTiles: () => bistLists.up.map(stockTile),
   footerMenu: () => content.footerMenu.map(footerCol),
+  widgetHeader: ({ id, title, link, status }) =>
+    widgetHeader({ id, title, link: link === 'true', extra: status === 'bist' ? marketStatus() : '' }),
+  lastUpdate: (attrs) => lastUpdate(updates[attrs.for]),
+  bistBreadth: () => breadth(bistBreadth),
+  stockBreadth: () => stockBreadth(stockStats),
+  statsList: () => statsList(stockStats),
+  campaignSlot: ({ type, slot }) => campaignSlot({ type, slot }),
 };
 
 const MARKER = /^([ \t]*)<!-- @render (\w+)((?:\s+\w+="[^"]*")*) -->$/gm;

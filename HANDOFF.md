@@ -71,12 +71,20 @@ Letter-spacing Figma'daki yüzde değerlerinden `em`'e çevrilmiştir (heading %
 
 | Token | Değer | Figma |
 |---|---|---|
+| `--radius-sm` | 2px | radius/sm (arama vurgusu) |
+| `--radius-md` | 4px | radius/md (kalın oran çubuğu) |
+| `--radius-md-plus` | 6px | radius/md-plus (rapor badge) |
 | `--radius-lg` | 8px | radius/lg |
 | `--radius-xl` | 10px | radius/xl |
 | `--radius-lg-plus` | 12px | radius/lg-plus (kartlar) |
+| `--radius-2xl` | 16px | radius/2xl (bottom sheet üst köşeleri) |
 | `--radius-pill` | 99px | radius/pill · radius-button |
 | `--radius-full` | 999px | radius/full |
 | `--shadow-card` | 5 katmanlı gölge | Effect style "Tab" |
+| `--shadow-sheet` · `--color-bg-overlay-sheet` · `--color-fill-grabber` | bottom sheet | iOS kit "Alert - Overlay" · "Fills - Vibrant/Primary" |
+
+Daire ve hap biçimli öğeler (değişim ikonu, 6px çubuklar, tutamaç) `--radius-full` kullanır; Figma'da da `radius/full`'a bağlıdır.
+Kalan sabit px değerleri Figma'daki 1:1 ölçülerdir (ikon/kutu boyutu, 1px çizgi, reklam alanı iç boşlukları) ve yorumla belirtilmiştir.
 
 Spacing token'ları (`--space-1` = 4px … `--space-16` = 64px) Figma auto-layout gap/padding değerlerinden türetilmiştir;
 Figma'da değişken olarak tanımlı değildir. Figma'ya `spacing/*` koleksiyonu eklenmesi önerilir.
@@ -124,7 +132,8 @@ Figma'daki component/instance mantığı kodda da aynıdır: her component'ın H
 Figma → şablon eşlemesi: Card/Haber → `newsCard` · Haber Kartı/Görsel Üzeri → `heroSlide` · Navigation/Sayfa Numarası → `navNumber` ·
 Finance/Ticker → `ticker` · Chip/Hisse → `tickerChip` · Change Indicator → `changeIndicator` · Navigation/Tab → `tabs` / `categoryTabs` ·
 Section/Başlık → `sectionTitle` · List/KAP Satırı → `kapRow` · List/Rapor Satırı → `sessionReportRow` / `analysisReportRow` ·
-Piyasa Özeti satırı → `marketRow` · Paramın Karşılığı satırı → `moneyRow` · BIST karosu → `stockTile` · Kripto satırı → `cryptoRow` · Footer kolonu → `footerCol`.
+Piyasa Özeti satırı → `marketRow` · Paramın Karşılığı satırı → `moneyRow` · BIST karosu → `stockTile` · Kripto satırı → `cryptoRow` · Footer kolonu → `footerCol` ·
+Widget başlığı → `widgetHeader` · Son güncelleme → `lastUpdate` · BIST dağılımı → `bistBreadth` · Hisse İstatistikleri → `stockBreadth` / `statsList` · Kampanya alanı → `campaignSlot`.
 Bir component değiştiğinde yalnızca şablonu güncelleyip `node scripts/build.mjs` çalıştırmak yeterlidir; React/Vue'ya
 taşınırken her şablon fonksiyonu doğrudan bir component'a karşılık gelir.
 

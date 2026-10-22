@@ -68,7 +68,7 @@ src/
 │   └── components/           Her dosya bir Figma component'ine karşılık gelir
 ├── scripts/
 │   ├── main.js               Giriş noktası (yalnızca özellikleri başlatır)
-│   ├── components/           Figma component'larının HTML şablonları (atoms · news · market · lists)
+│   ├── components/           Figma component'larının HTML şablonları (atoms · news · market · lists · widget)
 │   ├── features/             Etkileşimler — her widget/özellik ayrı modül (slider, dropdown, arama …)
 │   ├── core/                 Ortak yardımcılar: biçimlendirme (tr-TR), DOM/kırılım, varlık yolları
 │   ├── content.js            Editoryal örnek içerik (haberler, KAP, raporlar, menü)

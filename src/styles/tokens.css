@@ -68,6 +68,8 @@
   --color-bg-negative-subtle: var(--red-50);
   --color-bg-row-alt: var(--slate-50);    /* Kripto tablosu zebra satır (Slate/50) */
   --color-bg-date: var(--slate-100);      /* KAP tarih bloğu (Slate/100) */
+  --color-bg-overlay-sheet: rgb(41 41 58 / 0.23); /* bottom sheet arkası · iOS kit "Miscellaneous/Alert - Overlay" */
+  --color-fill-grabber: #cccccc;          /* sheet tutamacı · iOS kit "Fills - Vibrant/Primary" */
 
   /* Text */
   --color-text-primary: var(--neutral-900);
@@ -133,11 +135,13 @@
   /* ---------------------------------------------------------------------
      4. RADIUS
      --------------------------------------------------------------------- */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
+  --radius-sm: 2px;         /* radius/sm */
+  --radius-md: 4px;         /* radius/md */
+  --radius-md-plus: 6px;    /* radius/md-plus */
   --radius-lg: 8px;         /* radius/lg */
   --radius-xl: 10px;        /* radius/xl */
   --radius-lg-plus: 12px;   /* radius/lg-plus */
+  --radius-2xl: 16px;       /* radius/2xl */
   --radius-5xl: 28px;       /* radius/5xl */
   --radius-pill: 99px;      /* radius/pill · radius-button */
   --radius-full: 999px;     /* radius/full */
@@ -153,6 +157,10 @@
     0 38px 11px rgb(161 161 161 / 0);
   --shadow-ticker: 0 4px 10px rgb(0 0 0 / 0.05);
   --shadow-dropdown: 0 12px 16px rgb(17 23 34 / 0.14); /* Dropdown/Para Birimi */
+  --shadow-sheet: 0 -8px 24px rgb(17 23 34 / 0.12);    /* Dropdown · bottom sheet (tablet/mobil) */
+
+  /* CANLI BORSA butonundaki ışık hüzmesi */
+  --gradient-live-sweep: linear-gradient(90deg, rgb(255 255 255 / 0) 0%, rgb(255 255 255 / 0.35) 50%, rgb(255 255 255 / 0) 100%);
 
   /* Haber kartı (Görsel Üzeri) overlay'leri */
   --overlay-hero-scrim: linear-gradient(180deg, rgb(17 18 24 / 0) 50.12%, rgb(17 18 24 / 0.92) 100%);

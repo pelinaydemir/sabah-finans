@@ -216,7 +216,7 @@
   position: relative;
   display: block;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-full);
   background: var(--color-bg-subtle);
 }
 
@@ -235,7 +235,7 @@
   top: 0;
   height: 100%;
   width: max(6px, calc(var(--value, 0) * 50%));
-  border-radius: 3px;
+  border-radius: var(--radius-full);
   transition: width 0.3s ease;
 }
 
@@ -316,12 +316,12 @@
 .ratio-bar__segment {
   flex: var(--value, 1) 0 0;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-full);
 }
 
 .ratio-bar--lg .ratio-bar__segment {
   height: 8px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-md);
 }
 
 .ratio-bar__segment--up   { background: var(--color-bg-positive); }

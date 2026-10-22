@@ -143,3 +143,15 @@ export const stocks = [
 
 /* Varsayılan durumda listelenen semboller (sıra = popülerlik) */
 export const popularSearches = ['THYAO', 'USD', 'GA', 'ASELS', 'BTC', 'XU100', 'EUR', 'GARAN'];
+
+/* ---------------------------------------------------------------------------
+   Piyasa genişliği ve istatistikler — BIST Öne Çıkanlar alt satırı, Hisse İstatistikleri
+   --------------------------------------------------------------------------- */
+export const bistBreadth = { up: 149, down: 444, updatedAt: '2026-10-16T17:59' };
+export const stockStats = {
+  up: 69, flat: 10, down: 552,
+  volumeTry: '152.015.139.268,00', volumeLot: '9.899.001.370',
+  updatedAt: '2026-10-16T17:59',
+};
+/* Kripto tablosu ilk görünüm zamanı — canlı veri gelince live.js gerçek saatle değiştirir */
+export const cryptoUpdatedAt = '2026-02-18T16:11';

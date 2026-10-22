@@ -20,6 +20,7 @@
 import { currencyByCode, coins } from './data.js';
 import { ICONS, CHARTS } from './core/assets.js';
 import { num as fmt, signed, dir } from './core/format.js';
+import { lastUpdateLabel } from './components/widget.js';
 
 const TRUNCGIL = 'https://finans.truncgil.com/v4/today.json';
 const COIN_IDS = { BTC: 'bitcoin', ETH: 'ethereum', XRP: 'ripple', SOL: 'solana', BNB: 'binancecoin', ADA: 'cardano', DOGE: 'dogecoin', LINK: 'chainlink' };
@@ -160,11 +161,8 @@ export function startLive({ onUpdate } = {}) {
 
     // Canlı kripto geldiyse tablo altındaki "Son güncelleme" satırı gerçek saati gösterir
     if (crypto) {
-      const now = new Date();
-      const stamp = new Intl.DateTimeFormat('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(now).replace(',', '');
-      document.querySelectorAll('[data-live-updated="crypto"]').forEach((el) => {
-        el.innerHTML = `Son güncelleme: <time datetime="${now.toISOString()}">${stamp}</time> · ${crypto.source}`;
-      });
+      const label = lastUpdateLabel(new Date(), crypto.source);
+      document.querySelectorAll('[data-live-updated="crypto"]').forEach((el) => { el.innerHTML = label; });
     }
 
     const updated = Object.keys(quotes).length;

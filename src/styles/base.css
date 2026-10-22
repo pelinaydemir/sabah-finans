@@ -88,8 +88,7 @@ table {
 .t-h3-semibold,
 .t-h4-semibold,
 .t-h5-semibold,
-.t-h6-semibold,
-.t-h6-medium {
+.t-h6-semibold {
   font-family: var(--font-family-display);
   letter-spacing: var(--letter-spacing-heading);
 }
@@ -100,11 +99,8 @@ table {
 .t-h4-semibold { font-size: var(--text-h4-size); line-height: var(--text-h4-line-height); font-weight: var(--font-weight-semibold); }
 .t-h5-semibold { font-size: var(--text-h5-size); line-height: var(--text-h5-line-height); font-weight: var(--font-weight-semibold); }
 .t-h6-semibold { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-semibold); }
-.t-h6-medium   { font-size: var(--text-h6-size); line-height: var(--text-h6-line-height); font-weight: var(--font-weight-medium); }
 
 /* Body/* (Google Sans Flex) */
-.t-body-l-semibold { font-size: var(--text-body-l-size); line-height: var(--text-body-l-line-height); font-weight: var(--font-weight-semibold); }
-
 .t-body-m-regular  { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-regular); }
 .t-body-m-medium   { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-medium); }
 .t-body-m-semibold { font-size: var(--text-body-m-size); line-height: var(--text-body-m-line-height); font-weight: var(--font-weight-semibold); }

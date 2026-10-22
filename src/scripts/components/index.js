@@ -7,3 +7,4 @@ export * from './atoms.js';
 export * from './news.js';
 export * from './market.js';
 export * from './lists.js';
+export * from './widget.js';

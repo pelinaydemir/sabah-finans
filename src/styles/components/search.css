@@ -152,7 +152,7 @@
 
 /* Yazılan ifadeyle eşleşen kısım */
 .search-panel mark {
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   background: var(--color-bg-brand-subtle);
   color: var(--color-text-brand);
 }
@@ -326,8 +326,8 @@
   /* 16px: iOS'un odakta sayfayı yakınlaştırmasını engeller */
   .search__input {
     color: var(--color-text-primary);
-    font-size: 16px;
-    line-height: 24px;
+    font-size: var(--text-body-m-size);
+    line-height: var(--text-body-m-line-height);
   }
 
   .search__input::placeholder {

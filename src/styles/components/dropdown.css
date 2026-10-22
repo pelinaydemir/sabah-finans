@@ -172,7 +172,7 @@
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgb(41 41 58 / 0.23);
+  background: var(--color-bg-overlay-sheet);
   animation: sheet-fade 0.2s ease-out;
 }
 
@@ -196,8 +196,8 @@
   margin-inline: auto;
   padding: var(--space-2) var(--space-4) calc(var(--space-6) + env(safe-area-inset-bottom));
   border: 0;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -8px 24px rgb(17 23 34 / 0.12);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  box-shadow: var(--shadow-sheet);
   transform-origin: bottom center;
   animation: sheet-up 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition: transform 0.2s ease;
@@ -216,8 +216,8 @@
   width: 36px;
   height: 5px;
   margin-top: 5px;
-  border-radius: 100px;
-  background: #ccc; /* Figma: fills · vibrant / primary */
+  border-radius: var(--radius-full);
+  background: var(--color-fill-grabber);
 }
 
 @keyframes sheet-up {

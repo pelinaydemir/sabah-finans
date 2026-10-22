@@ -20,10 +20,15 @@ export const percent = (value) => `${value > 0 ? '+' : value < 0 ? '-' : ''}%${n
 export const dir = (value) => (value < 0 ? 'down' : 'up');
 
 /** Büyük tutarlar 100.000'den itibaren kısaltılır: 108,9 B · 1,012 Mr (4 anlamlı basamak) */
-export const COMPACT_FROM = 100_000;
+const COMPACT_FROM = 100_000;
 export const compact = (value, digits = 2) => (Math.abs(value) >= COMPACT_FROM
   ? new Intl.NumberFormat('tr-TR', { notation: 'compact', maximumSignificantDigits: 4 }).format(value)
   : num(value, digits));
+
+/** Tarih + saat: "16.10.2026 17:59" (Date veya yerel ISO metni) */
+export const dateTime = (value) => new Intl.DateTimeFormat('tr-TR', {
+  day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
+}).format(new Date(value)).replace(',', '');
 
 /** Arama için: büyük/küçük harf ve aksan duyarsız karşılaştırma anahtarı */
 export const fold = (text) => text.toLocaleLowerCase('tr').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ı/g, 'i');

@@ -21,7 +21,7 @@ export const marketRow = (item) => {
 };
 
 /** Paramın Karşılığı satırı — tutar + oran çubuğu (max: dönemdeki en büyük mutlak getiri) */
-export const moneyRow = (item, { period, amount, symbol, max }) => {
+const moneyRow = (item, { period, amount, symbol, max }) => {
   const r = item.returns[period];
   const value = amount * (1 + r / 100);
   const full = `${num(value)} ${symbol}`;
